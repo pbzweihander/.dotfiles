@@ -21,6 +21,13 @@ set noshowmode
 set noswapfile
 set nowrap
 
+"
+" define a group 'vimrc' and initialize
+"
+augroup vimrc
+    autocmd!
+augroup END
+
 " Indentation
 set cindent
 set autoindent
@@ -164,6 +171,7 @@ let g:indent_guides_default_mapping = 0
 
 " vim-better-whitespace
 let g:strip_whitespace_on_save = 1
+highlight ExtraWhitespace ctermbg=red
 
 " clever-f.vim
 let g:clever_f_across_no_line = 1
@@ -257,10 +265,12 @@ function! s:beauty()
   " Listchars for whitespaces
   call s:fg('NonText',      'darkblue')
   call s:fg('SpecialKey',   'darkblue')
+  call s:bg('ExtraWhitespace', 'red')
   " Pair matching
   call s:fg('MatchParen',   226)
   call s:bg('MatchParen',   16)
 endfunction
+autocmd vimrc VimEnter,ColorScheme * call <SID>beauty()
 
 " indentation
 function! s:indent()
@@ -279,3 +289,4 @@ function! s:indent()
     let &listchars = "tab:\u203A\ ,extends:\u00BB,precedes:\u00AB"
   endif
 endfunction
+autocmd vimrc VimEnter,Colorscheme * call <SID>indent()
