@@ -1,11 +1,12 @@
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias llh='ls -alhF'
-alias python=python3
+alias ls='ls --color=auto'
+alias ll='ls --color=auto -alF'
+alias la='ls --color=auto -A'
+alias lh='ls --color=auto -alhF'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
 alias vi=vim
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias pip=pip3
