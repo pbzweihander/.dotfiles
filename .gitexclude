@@ -1,0 +1,46 @@
+*.dSYM            # clang
+npm-debug.log     # npm
+.byebug_history   # Ruby byebug
+*.pyc             # Python 2
+.xmark.*.html     # Xmark
+
+#
+# OS X
+#
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+#
+# Linux
+#
+*~
+.directory
+
+#
+# Windows
+#
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+~$*.docx
+~$*.xlsx
+
+
+
+# vim-obsession
+Session.vim

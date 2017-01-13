@@ -1,0 +1,40 @@
+# vim: noexpandtab sw=8
+[user]
+	name = pbzweihander
+	email = sd852456@naver.com
+[core]
+	editor = vim
+	pager = less -+XF -Qc
+	excludesfile = ~/.gitexclude
+	fscache = yes
+	autocrlf = no
+	quotepath = no
+	precomposeunicode = yes
+[log]
+	date = iso8601
+[color]
+	ui = auto
+[diff]
+	renames = copies
+	tool = vimdiff
+[difftool]
+	prompt = no
+[fetch]
+	prune = yes
+[branch]
+	autosetuprebase = always
+[push]
+	default = simple
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[credential]
+	helper = cache --timeout=3600
+[credential "https://github.com"]
+	username = pbzweihander
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[alias]
+	g = "log --graph --pretty=\"format:%C(auto)%h%d %s%x1b[38;5;022m% GS%x1b[0m\""
