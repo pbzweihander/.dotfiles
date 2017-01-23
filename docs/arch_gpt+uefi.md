@@ -135,3 +135,14 @@ edit startup.nsh
     # FS0:
     # /EFI/grub_
 ```
+
+<br>
+
+기타
+--------
+### GNOME 터미널에서 한글 입력이 안될 경우
+```bash
+sudo vim /etc/profile
+    # export XMODIFIERS=@im=ibus
+    # export GTK_IM_MODULE=ibus
+```
