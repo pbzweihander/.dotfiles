@@ -98,7 +98,7 @@ VBoxClient-all # 재부팅 후 해야함
 # (필요할 경우) 그래픽 카드 드라이버 설치
 pacman -S mesa
 # GNOME 설치
-pacman -S gnome gnome-extra
+pacman -S gnome
 # 네트워크 매니저 설치
 pacman -S network-manager-applet networkmanager
 # 무선 네트워크가 필요하다면
@@ -127,6 +127,7 @@ reboot
 - python python-pip python-setuptools elixir
 - powerline-fonts ttf-dejavu ttf-nanum(AUR) noto-fonts
 - ibus ibus-hangul
+- (GNOME) gedit galculator
 - (내 노트북) b43-firmware(AUR)
 
 <br>
