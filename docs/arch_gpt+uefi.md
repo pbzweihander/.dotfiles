@@ -129,13 +129,6 @@ reboot
 - ibus ibus-hangul
 - (내 노트북) b43-firmware(AUR)
 
-### VirtualBox의 UEFI Interactive Shell에서 막힌다면
-```bash
-edit startup.nsh
-    # FS0:
-    # /EFI/grub_
-```
-
 <br>
 
 기타
@@ -145,4 +138,10 @@ edit startup.nsh
 sudo vim /etc/profile
     # export XMODIFIERS=@im=ibus
     # export GTK_IM_MODULE=ibus
+```
+### VirtualBox의 UEFI Interactive Shell에서 막힌다면
+```bash
+edit startup.nsh
+    # FS0:
+    # /EFI/grub_
 ```
