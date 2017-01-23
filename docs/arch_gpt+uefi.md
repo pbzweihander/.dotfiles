@@ -127,6 +127,7 @@ reboot
 - python python-pip python-setuptools elixir
 - powerline-fonts ttf-dejavu ttf-nanum(AUR) noto-fonts
 - ibus ibus-hangul
+- (내 노트북) b43-firmware(AUR)
 
 ### VirtualBox의 UEFI Interactive Shell에서 막힌다면
 ```bash
