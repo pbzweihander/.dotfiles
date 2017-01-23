@@ -1,9 +1,13 @@
 설치 전 할 일
 --------
 홍차 한 잔을 준비한다 (중요)
+
 VirtualBox라면 VM 설정에서 EFI 사용을 체크한다
+
 ArchLinux 홈페이지에서 Archlinux ISO 파일을 받는다
+
 Rufus에서 GPT 파티션 형식의 UEFI로 부팅디스크 생성 (VM은 불필요)
+
 부팅디스크로 부팅한다
 
 부팅미디어에서 할 일
