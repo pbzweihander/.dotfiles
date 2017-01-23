@@ -143,5 +143,5 @@ sudo vim /etc/profile
 ```bash
 edit startup.nsh
     # FS0:
-    # /EFI/grub_
+    # \EFI\grub\grubx64.efi
 ```
