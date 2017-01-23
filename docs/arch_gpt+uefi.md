@@ -10,6 +10,8 @@ Rufus에서 GPT 파티션 형식의 UEFI로 부팅디스크 생성 (VM은 불필
 
 부팅디스크로 부팅한다
 
+<br>
+
 부팅미디어에서 할 일
 --------
 ```bash
@@ -37,6 +39,8 @@ genfstab -U /mnt >> /mnt/etc/fstab
 echo '<PC_NAME>' > /mnt/etc/hostname # 컴퓨터 이름 설정
 arch-chroot /mnt /bin/bash
 ```
+
+<br>
 
 설치 직후 할 일
 --------
@@ -113,6 +117,8 @@ umount -R /mnt/boot
 umount -R /mnt
 reboot
 ```
+
+<br>
 
 설치 후 할 일
 --------
