@@ -159,8 +159,7 @@ reboot
 ### 도움 되는 유틸들
 - ttf-nanum([AUR](https://aur.archlinux.org/ttf-nanum.git)) noto-fonts
 - [ibus](https://wiki.archlinux.org/index.php/Internationalization/Korean_(%ED%95%9C%EA%B5%AD%EC%96%B4)) ibus-hangul
-- (GNOME) gedit galculator
-- (Xfce) mousepad
+- gedit(또는 mousepad) galculator Xarchiver
 
 <br>
 
