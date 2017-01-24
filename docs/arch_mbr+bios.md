@@ -34,4 +34,11 @@ arch-chroot /mnt /bin/bash
 
 <br>
 
-[이하 동일](arch_gpt+uefi.md)
+설치 직후 할 일
+--------
+```bash
+# Grub 설치
+grub-install --recheck /dev/sda
+```
+
+[Timezone 설정 부터 동일](arch_gpt+uefi.md)
