@@ -108,7 +108,7 @@ GUI 설치
 # 네트워크 매니저 설치
 pacman -S network-manager-applet networkmanager
 # 무선 네트워크가 필요하다면
-pacman -S iw wpa_supplicant
+pacman -S iw wpa_supplicant gnome-keyring
 # 노트북일 경우 터치패드 지원
 pacman -S xf86-input-synaptics
 systemctl enable NetworkManager.service
