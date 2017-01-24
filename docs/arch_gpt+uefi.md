@@ -42,7 +42,7 @@ arch-chroot /mnt /bin/bash
 
 <br>
 
-설치 직후 할 일
+설치 직 후 할 일
 --------
 ```bash
 # Timezone 설정
@@ -77,7 +77,7 @@ systemctl enable sshd
 
 # 네트워크 인터페이스 확인
 ip link
-# DHCP 설정, 아래 네트워크 매니저 설치시 불필요
+# DHCP 설정, 네트워크 매니저 설치시 불필요
 nano /etc/systemd/network/<interface>.network
     # [Match]
     # Name=en*
@@ -97,20 +97,48 @@ VBoxClient-all # 재부팅 후 해야함
 
 # (필요할 경우) 그래픽 카드 드라이버 설치
 pacman -S mesa
-# GNOME 설치
-pacman -S gnome
+```
+
+<br>
+
+GUI 설치
+--------
+### 사전 준비
+```bash
 # 네트워크 매니저 설치
 pacman -S network-manager-applet networkmanager
 # 무선 네트워크가 필요하다면
-pacman -S iw wpa_supplicant dialog
+pacman -S iw wpa_supplicant
 # 노트북일 경우 터치패드 지원
 pacman -S xf86-input-synaptics
-# 자동 완성 설치, 굳이 GNOME 설치 중이 아니더라도 필요할듯
-pacman -S bash-completion
-# 서비스 활성화
 systemctl enable NetworkManager.service
-systemctl enable gdm.service
+```
 
+### GNOME
+```bash
+# GNOME 설치
+pacman -S gnome
+# 서비스 활성화
+systemctl enable gdm.service
+```
+
+### Xfce
+```bash
+# X Server 설치, 왜 GNOME 설치할때는 안해도 될까? dependency에 들어있나?
+pacman -S xorg-server xorg-server-utils
+# Xfce 설치
+pacman -S xfce4
+# 디스플레이 매니저 설치, 여기선 LightDM을 사용해보자
+pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+# 서비스 활성화
+systemctl enable lightdm.service
+```
+
+<br>
+
+끝
+--------
+```bash
 # 재부팅
 exit
 umount -R /mnt/boot
@@ -124,17 +152,21 @@ reboot
 --------
 ### 필수 설치
 - vim git tmux fish wget zip
-- python python-pip python-setuptools elixir
-- powerline-fonts ttf-dejavu ttf-nanum(AUR) noto-fonts
+- python python-pip elixir
+- powerline-fonts ttf-dejavu
+- (내 노트북) b43-firmware(AUR)
+
+### 도움 되는 유틸들
+- ttf-nanum(AUR) noto-fonts
 - ibus ibus-hangul
 - (GNOME) gedit galculator
-- (내 노트북) b43-firmware(AUR)
+- (Xfce) mousepad
 
 <br>
 
 기타
 --------
-### GNOME 터미널에서 한글 입력이 안될 경우
+### 터미널에서 한글 입력이 안될 경우
 ```bash
 sudo vim /etc/profile
     # export XMODIFIERS=@im=ibus
