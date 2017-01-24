@@ -4,9 +4,9 @@
 
 VirtualBox라면 VM 설정에서 EFI 사용을 체크한다
 
-ArchLinux 홈페이지에서 Archlinux ISO 파일을 받는다
+ArchLinux 홈페이지에서 [Archlinux ISO 파일](https://www.archlinux.org/download/)을 받는다
 
-Rufus에서 GPT 파티션 형식의 UEFI로 부팅디스크 생성 (VM은 불필요)
+[Rufus](https://rufus.akeo.ie/)에서 GPT 파티션 형식의 UEFI로 부팅디스크 생성 (VM은 불필요)
 
 부팅디스크로 부팅한다
 
@@ -151,14 +151,14 @@ reboot
 설치 후 할 일
 --------
 ### 필수 설치
-- vim git tmux fish wget zip
+- vim git tmux [fish](https://wiki.archlinux.org/index.php/Fish) wget zip
 - python python-pip elixir
 - powerline-fonts ttf-dejavu
-- (내 노트북) b43-firmware(AUR)
+- (내 노트북) b43-firmware([AUR](https://aur.archlinux.org/b43-firmware.git))
 
 ### 도움 되는 유틸들
-- ttf-nanum(AUR) noto-fonts
-- ibus ibus-hangul
+- ttf-nanum([AUR](https://aur.archlinux.org/ttf-nanum.git)) noto-fonts
+- [ibus](https://wiki.archlinux.org/index.php/Internationalization/Korean_(%ED%95%9C%EA%B5%AD%EC%96%B4)) ibus-hangul
 - (GNOME) gedit galculator
 - (Xfce) mousepad
 
