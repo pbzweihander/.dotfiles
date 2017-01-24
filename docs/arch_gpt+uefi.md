@@ -96,7 +96,7 @@ systemctl enable vboxservice.service
 VBoxClient-all # 재부팅 후 해야함
 
 # (필요할 경우) 그래픽 카드 드라이버 설치
-pacman -S mesa
+pacman -S mesa xf86-video-intel
 ```
 
 <br>
@@ -124,14 +124,14 @@ systemctl enable gdm.service
 
 ### Xfce
 ```bash
-# X Server 설치, 왜 GNOME 설치할때는 안해도 될까? dependency에 들어있나?
+# X Server 설치
 pacman -S xorg-server xorg-server-utils
 # Xfce 설치
 pacman -S xfce4
-# 디스플레이 매니저 설치, 여기선 LightDM을 사용해보자
-pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+# 디스플레이 매니저 설치, 여기선 GDM을 사용해보자
+pacman -S gdm
 # 서비스 활성화
-systemctl enable lightdm.service
+systemctl enable gdm.service
 ```
 
 <br>
