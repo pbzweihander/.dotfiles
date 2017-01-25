@@ -2,6 +2,7 @@
 " General Configs
 "
 
+set t_ut=
 scriptencoding utf-8
 set encoding=utf-8
 set fileencoding=utf-8
@@ -16,17 +17,13 @@ set nobackup
 if !has('nvim')
     set nocompatible
 endif
-set nofoldenable
 set noshowmode
 set noswapfile
 set nowrap
 
-"
-" define a group 'vimrc' and initialize
-"
-augroup vimrc
-    autocmd!
-augroup END
+" Fold
+set foldmethod=indent
+set foldlevel=99
 
 " Indentation
 set cindent
@@ -47,14 +44,6 @@ set nowrapscan
 " Line Number Column
 set number
 set cursorline
-" 80th Column Color
-set textwidth=80
-set formatoptions-=t
-if v:version >= 703
-    set colorcolumn=+1,+2,+3
-endif
-" Listchars
-set list
 " Pair Matching
 set matchpairs+=<:>
 set showmatch
@@ -80,10 +69,6 @@ vnoremap <C-e> $
 vnoremap <backspace> "_d
 " Easy Newline Insert
 nnoremap <CR> o<ESC>
-" Easy File Save
-nnoremap <silent> <C-s> :update<CR>
-inoremap <silent> <C-s> <ESC>:update<CR>
-vnoremap <silent> <C-s> <ESC>:update<CR>
 " Easy Indentation
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
@@ -123,6 +108,8 @@ nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
+" Fold / Unfold
+nnoremap <space> za
 
 "
 " Plugins
@@ -131,14 +118,12 @@ inoremap <S-Down> <Esc>:m+<CR>
 try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'simnalamburt/vim-mundo'
     Plug 'tpope/vim-git'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-endwise'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-obsession'
-    if v:version >= 703
-        Plug 'mhinz/vim-startify'
-    endif
     Plug 'godlygeek/tabular'
     Plug 'vim-utils/vim-interruptless'
     Plug 'junegunn/gv.vim'
@@ -149,144 +134,94 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'junegunn/seoul256.vim'
 
+    " Fold
+    Plug 'tmhedberg/SimpylFold'
+
     " Syntax
     Plug 'elixir-lang/vim-elixir'
-
-    " Blink
-    Plug 'rhysd/clever-f.vim'
-    Plug 'Lokaltog/vim-easymotion'
+    Plug 'vim-scripts/indentpython.vim'
+    Plug 'scrooloose/syntastic'
+    Plug 'nvie/vim-flake8'
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 
 " vim-airline
 let g:airline_powerline_fonts = 1
 
+" vim-fugitive
+nnoremap <leader>g :Git
+
 " vim-indent-guides
-nmap <leader>i <Plug>IndentGuidesTogle
+nmap <leader>i <Plug>IndentGuidesToggle
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'startify']
 let g:indent_guides_default_mapping = 0
 
 " vim-better-whitespace
 let g:strip_whitespace_on_save = 1
-highlight ExtraWhitespace ctermbg=red
 
-" clever-f.vim
-let g:clever_f_across_no_line = 1
-let g:clever_f_smart_case = 1
+" mundo.vim
+let g:mundo_right = 1
+nnoremap <leader>m :MundoToggle<CR>
 
-" vim-easymotion
-map / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-map n <Plug>(easymotion-next)
-map N <Plug>(easymotion-prev)
+" SimpylFold
+let g:SimpylFold_docstring_preview = 1
 
+" Python Syntax
+let python_highlight_all=1
+syntax on
 
 "
 " Beautiful vim
 "
 
-try
-    colorscheme seoul256
-catch /^Vim\%((\a\+)\)\=:E185/
-    colorscheme elflord
-endtry
+set background=dark
 let g:seoul256_background = 233
-let s:back_color = 234
+colo seoul256
+let s:backcolor = 234
 
-" Reference: https://github.com/junegunn/seoul256.vim/blob/master/colors/seoul256.vim
 if !exists('s:rgb_map')
-  let s:rgb_map = {
-  \ 'NONE': 'NONE',
-  \ 'white': '#FFFFFF', 'black': '#191919',
-  \ 'darkblue': '#0000BF', 'darkgray': '#6C6C6C',
-  \  16: '#000000',
-  \  22: '#006F00', 23: '#007173', 24: '#007299', 25: '#0074BE', 30: '#009799',
-  \  31: '#0099BD', 38: '#00BDDF', 52: '#730B00', 58: '#727100', 59: '#727272',
-  \  65: '#719872', 66: '#719899', 67: '#7299BC', 68: '#719CDF', 73: '#6FBCBD',
-  \  74: '#70BDDF', 88: '#9B1300', 89: '#9B1D72', 94: '#9A7200', 95: '#9A7372',
-  \  96: '#9A7599', 101: '#999872', 103: '#999ABD', 108: '#98BC99', 109: '#98BCBD',
-  \ 110: '#98BEDE', 116: '#97DDDF', 125: '#BF2172', 131: '#BE7572', 137: '#BE9873',
-  \ 143: '#BDBB72', 144: '#BDBC98', 145: '#BDBDBD', 151: '#BCDDBD', 152: '#BCDEDE',
-  \ 153: '#BCE0FF', 161: '#E12672', 168: '#E17899', 173: '#E19972', 174: '#E09B99',
-  \ 179: '#DFBC72', 181: '#E0BEBC', 184: '#DEDC00', 186: '#DEDD99', 187: '#DFDEBD',
-  \ 189: '#DFDFFF', 216: '#FFBD98', 217: '#FFBFBD', 218: '#FFC0DE', 220: '#FFDD00',
-  \ 222: '#FFDE99', 224: '#FFDFDF', 226: '#FFFF00',
-  \ 230: '#FFFFDF', 231: '#FFFFFF', 232: '#060606',
-  \ 233: '#171717', 234: '#252525', 235: '#333233', 236: '#3F3F3F', 237: '#4B4B4B',
-  \ 238: '#565656', 239: '#616161', 240: '#6B6B6B', 241: '#757575', 249: '#BFBFBF',
-  \ 250: '#C8C8C8', 251: '#D1D0D1', 252: '#D9D9D9', 253: '#E1E1E1', 254: '#E9E9E9',
-  \ 255: '#F1F1F1' }
+    let s:rgb_map = {
+                \ 'NONE': 'NONE',
+                \ 'white': '#FFFFFF', 'black': '#191919',
+                \ 16: '#000000', 160: '#D70000',
+                \ 226: '#FFFF00', 233: '#171717',
+                \ 234: '#252525'}
 endif
+
 function! s:rs(item)
-  execute printf("highlight %s cterm=NONE gui=NONE", a:item)
+    execute printf("highlight %s cterm=NONE gui=NONE", a:item)
 endfunction
 function! s:fg(item, color)
-  execute printf("highlight %s ctermfg=%s guifg=%s", a:item, a:color, get(s:rgb_map, a:color))
+    execute printf("highlight %s ctermfg=%s guifg=%s", a:item, a:color, get(s:rgb_map, a:color))
 endfunction
 function! s:bg(item, color)
-  execute printf("highlight %s ctermbg=%s guibg=%s", a:item, a:color, get(s:rgb_map, a:color))
+    execute printf("highlight %s ctermbg=%s guibg=%s", a:item, a:color, get(s:rgb_map, a:color))
 endfunction
 
-function! s:beauty()
-  syntax enable
+call s:fg('MatchParen', 226)
+call s:bg('MatchParen', 16)
 
-  call s:rs('CursorLine')
-  call s:bg('CursorLine',   'NONE')
-  call s:bg('CursorLineNr', s:back_color)
-  call s:bg('LineNr',       s:back_color)
-  call s:bg('ColorColumn',  s:back_color)
-  call s:fg('VertSplit',    s:back_color)
-  call s:bg('VertSplit',    s:back_color)
-
-  " Status line, Tab line
-  call s:fg('StatusLine',   s:back_color)
-  call s:bg('StatusLine',   'darkgray')
-  call s:fg('WildMenu',     'white')
-  call s:bg('WildMenu',     s:back_color)
-  call s:rs('TabLine')
-  call s:fg('TabLine',      'darkgray')
-  call s:bg('TabLine',      s:back_color)
-  call s:rs('TabLineSel')
-  call s:fg('TabLineSel',   'white')
-  call s:bg('TabLineSel',   s:back_color)
-  call s:fg('TabLineFill',  s:back_color)
-  call s:bg('TabLineFill',  s:back_color)
-
-  " vimdiff
-  call s:bg('DiffChange',   'NONE')
-  call s:bg('DiffText',     22)
-  call s:bg('DiffAdd',      22)
-  call s:fg('DiffDelete',   235)
-  call s:bg('DiffDelete',   'NONE')
-
-  " Listchars for whitespaces
-  call s:fg('NonText',      'darkblue')
-  call s:fg('SpecialKey',   'darkblue')
-  call s:bg('ExtraWhitespace', 'red')
-  " Pair matching
-  call s:fg('MatchParen',   226)
-  call s:bg('MatchParen',   16)
-endfunction
-autocmd vimrc VimEnter,ColorScheme * call <SID>beauty()
-
-" indentation
-function! s:indent()
-  if &softtabstop < 4 || !&expandtab
+call s:bg('ExtraWhitespace', 160)
+if &softtabstop < 4 || !&expandtab
     call s:bg('IndentGuidesOdd', 'NONE')
-  else
+else
     let g:indent_guides_guide_size = 1
-    call s:bg('IndentGuidesOdd', s:back_color)
-  endif
-  call s:bg('IndentGuidesEven', s:back_color)
+    call s:bg('IndentGuidesOdd', s:backcolor)
+endif
+call s:bg('IndentGuidesEven', s:backcolor)
 
-  " Do not decorate tab with '›' when tabstop is small
-  if &tabstop <= 4
-    let &listchars = "tab:\ \ ,extends:\u00BB,precedes:\u00AB"
-  else
-    let &listchars = "tab:\u203A\ ,extends:\u00BB,precedes:\u00AB"
-  endif
-endfunction
-autocmd vimrc VimEnter,Colorscheme * call <SID>indent()
+
+"
+" PEP8
+" for explicitation!
+
+au BufNewFile,BufRead *.py
+            \ set tabstop=4
+            \ set softtabstop=4
+            \ set shiftwidth=4
+            \ set textwidth=79
+            \ set expandtab
+            \ set autoindent
+            \ set fileformat=unix
