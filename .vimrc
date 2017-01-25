@@ -18,12 +18,9 @@ if !has('nvim')
     set nocompatible
 endif
 set noshowmode
+set nofoldenable
 set noswapfile
 set nowrap
-
-" Fold
-set foldmethod=indent
-set foldlevel=99
 
 " Indentation
 set cindent
@@ -108,8 +105,6 @@ nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
-" Fold / Unfold
-nnoremap <space> za
 
 "
 " Plugins
@@ -133,9 +128,6 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'junegunn/seoul256.vim'
-
-    " Fold
-    Plug 'tmhedberg/SimpylFold'
 
     " Syntax
     Plug 'elixir-lang/vim-elixir'
@@ -164,9 +156,6 @@ let g:strip_whitespace_on_save = 1
 " mundo.vim
 let g:mundo_right = 1
 nnoremap <leader>m :MundoToggle<CR>
-
-" SimpylFold
-let g:SimpylFold_docstring_preview = 1
 
 " Python Syntax
 let python_highlight_all=1
@@ -211,4 +200,3 @@ else
     call s:bg('IndentGuidesOdd', s:backcolor)
 endif
 call s:bg('IndentGuidesEven', s:backcolor)
-
