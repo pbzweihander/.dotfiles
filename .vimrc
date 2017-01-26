@@ -105,6 +105,9 @@ nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
+" Test, only in python
+nnoremap <C-p> :! python %<CR>
+inoremap <C-p> <Esc>:w<CR>:! python %<CR>
 
 "
 " Plugins
