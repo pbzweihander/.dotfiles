@@ -106,8 +106,8 @@ nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
 " Test, only in python
-nnoremap <C-p> :! python %<CR>
-inoremap <C-p> <Esc>:w<CR>:! python %<CR>
+nnoremap <S-F5> :! python %<CR>
+inoremap <S-F5> <Esc>:w<CR>:! python %<CR>
 
 "
 " Plugins
@@ -138,7 +138,8 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'scrooloose/syntastic'
     Plug 'nvie/vim-flake8'
 
-    Plug 'Valloric/YouCompleteMe'
+    " Auto completion
+    Plug 'maralla/completor.vim'
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 
@@ -165,15 +166,6 @@ nnoremap <leader>m :MundoToggle<CR>
 " Python Syntax
 let python_highlight_all=1
 syntax on
-
-" YouCompleteMe
-" Don't forget to run install script in ~/.vim/plugged/YouCompleteMe
-" ./install.py --clang-completer --system-libclang
-" Dependencies : clang, cmake
-let g:ycm_autoclose_preview_window_after_completion=1
-nnoremap <leader>d :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>f :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>s :YcmDiags<CR>
 
 "
 " Beautiful vim
