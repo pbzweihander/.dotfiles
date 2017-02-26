@@ -34,6 +34,7 @@ mount /dev/sda1 /mnt/boot
 
 nano /etc/pacman.d/mirrorlist # 미러 우선순위 변경
     # Server = http://mirror.premi.st/archlinux/$repo/os/$arch
+    # Server = http://ftp.kaist.ac.kr/ArchLinux/$repo/os/$arch
 pacstrap /mnt base base-devel grub efibootmgr sudo openssh
 genfstab -U /mnt >> /mnt/etc/fstab
 echo '<PC_NAME>' > /mnt/etc/hostname # 컴퓨터 이름 설정
