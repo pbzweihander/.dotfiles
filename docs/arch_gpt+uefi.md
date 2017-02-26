@@ -135,6 +135,18 @@ pacman -S gdm
 systemctl enable gdm.service
 ```
 
+### KDE
+```bash
+# X Server 설치
+pacman -S xorg-server xorg-server-utils
+# Plasma 설치
+pacman -S plasma konsole
+# 언어팩 설치
+pacman -S kde-l10n-ko
+# 디스플레이 매니저 서비스 활성화
+systemctl enable sddm.service
+```
+
 <br>
 
 끝
@@ -160,7 +172,9 @@ reboot
 ### 도움 되는 유틸들
 - ttf-nanum([AUR](https://aur.archlinux.org/ttf-nanum.git)) noto-fonts
 - [ibus](https://wiki.archlinux.org/index.php/Internationalization/Korean_(%ED%95%9C%EA%B5%AD%EC%96%B4)) ibus-hangul
-- gedit(또는 mousepad) galculator Xarchiver
+- (GTK 계열) gedit(또는 mousepad) galculator
+- (KDE 계열) kalgebra
+- xarchiver
 
 <br>
 
