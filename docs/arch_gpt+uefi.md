@@ -140,7 +140,12 @@ systemctl enable gdm.service
 # X Server 설치
 pacman -S xorg-server xorg-server-utils
 # Plasma 설치
-pacman -S plasma konsole
+pacman -S plasma
+# 기본 프로그램 설치
+pacman -S konsole dolphin kdemultimedia-kmix
+# Theme 변경
+nano /etc/sddm.conf
+    # Current=breeze
 # 언어팩 설치
 pacman -S kde-l10n-ko
 # 디스플레이 매니저 서비스 활성화
@@ -173,7 +178,7 @@ reboot
 - ttf-nanum([AUR](https://aur.archlinux.org/ttf-nanum.git)) noto-fonts
 - [ibus](https://wiki.archlinux.org/index.php/Internationalization/Korean_(%ED%95%9C%EA%B5%AD%EC%96%B4)) ibus-hangul
 - (GTK 계열) gedit(또는 mousepad) galculator
-- (KDE 계열) kalgebra
+- (KDE 계열) ark dolphin-plugins dragon gwenview kalgebra kate kcalc kdenetwork-kget kdeutils-sweeper kfind konqueror kwrite okular spectacle
 - xarchiver
 
 <br>
