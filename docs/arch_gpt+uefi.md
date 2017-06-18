@@ -38,7 +38,7 @@ nano /etc/pacman.d/mirrorlist # 미러 우선순위 변경
 pacstrap /mnt base base-devel grub efibootmgr sudo openssh
 genfstab -U /mnt >> /mnt/etc/fstab
 echo '<PC_NAME>' > /mnt/etc/hostname # 컴퓨터 이름 설정
-arch-chroot /mnt /bin/bash
+arch-chroot /mnt
 ```
 
 <br>
@@ -48,6 +48,7 @@ arch-chroot /mnt /bin/bash
 ```bash
 # Timezone 설정
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+hwclock --systohc --utc
 
 # Locale 설정
 nano /etc/locale.gen
@@ -55,10 +56,24 @@ nano /etc/locale.gen
     # ko_KR.UTF-8 UTF-8
 locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
-set LANG en_US.UTF-8
 
-# 하드웨어 시계 설정
-hwclock --systohc --utc
+# 컴퓨터 이름 설정
+echo '<PC_NAME>' > /mnt/etc/hostname
+nano /etc/hosts
+	# ...
+	# 127.0.1.1 <PC_NAME>.localdomain <PC_NAME>
+
+# 네트워크 설정
+ip link # 네트워크 인터페이스 이름 확인
+ip link set <interface> up
+# DHCP를 설정하거나, NetworkManager를 설치하자
+
+# 새 유저 생성, root 잠그기
+useradd -m -G sudo -s /bin/bash <username>
+passwd <username>
+EDITOR=nano visudo
+	# %sudo ALL=(ALL) ALL 라고 적혀있는 줄을 uncomment
+passwd root -dl
 
 # Grub 설치, 대기시간 줄이기
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub --recheck
@@ -66,38 +81,10 @@ nano /etc/default/grub
     # GRUB_TIMEOUT=1
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# 새 유저 생성, root 잠그기
-useradd -m -G wheel -s /bin/bash thomas
-passwd thomas
-EDITOR=nano visudo # sudoer에 wheel 그룹 추가
-passwd root -dl
-
-# ssh 설정
-nano /etc/ssh/sshd_config
-systemctl enable sshd
-
-# 네트워크 인터페이스 확인
-ip link
-# DHCP 설정, 네트워크 매니저 설치시 불필요
-nano /etc/systemd/network/<interface>.network
-    # [Match]
-    # Name=en*
-    #
-    # [Network]
-    # DHCP=ipv4
-systemctl enable systemd-networkd.service
-# DHCP DNS 설정
-nano /etc/resolv.conf
-    # nameserver 8.8.8.8
-    # nameserver 8.8.4.4
-
 # (VirtualBox) VirtualBox 패키지 설치
 pacman -S virtualbox-guest-utils virtualbox-guest-modules-arch
 systemctl enable vboxservice.service
 VBoxClient-all # 재부팅 후 해야함
-
-# (필요할 경우) 그래픽 카드 드라이버 설치
-pacman -S mesa xf86-video-intel
 ```
 
 <br>
@@ -106,6 +93,8 @@ GUI 설치
 --------
 ### 사전 준비
 ```bash
+# 그래픽 카드 드라이버 설치
+pacman -S mesa xf86-video-intel
 # 네트워크 매니저 설치
 pacman -S network-manager-applet networkmanager
 # 무선 네트워크가 필요하다면
@@ -169,14 +158,14 @@ reboot
 설치 후 할 일
 --------
 ### 필수 설치
-- vim git tmux [fish](https://wiki.archlinux.org/index.php/Fish) wget zip
-- python python-pip elixir
-- powerline-fonts ttf-dejavu
+- vim git tmux wget zip
+- python python-pip
+- powerline-fonts noto-fonts
 - (내 노트북) b43-firmware([AUR](https://aur.archlinux.org/b43-firmware.git))
 
 ### 도움 되는 유틸들
-- ttf-nanum([AUR](https://aur.archlinux.org/ttf-nanum.git)) noto-fonts
-- [ibus](https://wiki.archlinux.org/index.php/Internationalization/Korean_(%ED%95%9C%EA%B5%AD%EC%96%B4)) ibus-hangul
+- ttf-nanum([AUR](https://aur.archlinux.org/ttf-nanum.git))
+- [ibus](https://wiki.archlinux.org/index.php/Internationalization/Korean_(%ED%95%9C%EA%B5%AD%EC%96%B4) ibus-hangul
 - (GTK 계열) gedit(또는 mousepad) galculator
 - (KDE 계열) ark dolphin-plugins dragon gwenview kalgebra kate kcalc kdenetwork-kget kdeutils-sweeper kfind konqueror kwrite okular spectacle
 - xarchiver
@@ -185,11 +174,13 @@ reboot
 
 기타
 --------
-### 터미널에서 한글 입력이 안될 경우
+### 터미널에서 한글 입력이 안되거나 ibus가 자동시작하지 않는 경우
 ```bash
-sudo vim /etc/profile
-    # export XMODIFIERS=@im=ibus
+sudo nano ~/.xprofile
     # export GTK_IM_MODULE=ibus
+	# export XMODIFIERS=@im=ibus
+	# export QT_IM_MODULE=ibus
+	# ibus-daemon -drx
 ```
 ### VirtualBox의 UEFI Interactive Shell에서 막힌다면
 ```bash
