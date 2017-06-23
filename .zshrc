@@ -49,9 +49,18 @@ export SHELLDER_STATUS_FG='white'
 export DEFAULT_USER="$USER"
 
 # ssh
-alias martini='ssh sd852456@martini.snucse.org'
-alias helma='ssh thomas@helma.pbzweihander.me'
-alias trude='ssh thomas@pbzweihander.me'
+alias sshmartini='ssh sd852456@martini.snucse.org'
+alias sshcosmo='ssh thomas@147.46.241.244'
+alias sshhelma='ssh -i ~/.ssh/id_rsa.helma thomas@helma.pbzweihander.me'
+alias sshtrude='ssh -i ~/.ssh/id_rsa.trude thomas@pbzweihander.me'
+
+scphelma() {
+    scp -i ~/.ssh/id_rsa.helma "$1" "thomas@helma.pbzweihander.me:$2"
+}
+
+scptrude() {
+    scp -i ~/.ssh/id_rsa.trude "$1" "thomas@pbzweihander.me:$2"
+}
 
 plugins=(git)
 
