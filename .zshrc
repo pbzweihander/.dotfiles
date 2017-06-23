@@ -2,6 +2,7 @@
 source ~/.zplug/init.zsh
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting'
+zplug 'zsh-users/zsh-autosuggestions'
 zplug 'simnalamburt/cgitc'
 zplug 'simnalamburt/shellder', as:theme
 if ! zplug check; then
