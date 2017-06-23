@@ -62,3 +62,11 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
+
+# keybinding
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[3~' delete-char
+bindkey '^[[6~' forward-word
+bindkey '^[[5~' backward-word
+
