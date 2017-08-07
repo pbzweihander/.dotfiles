@@ -139,7 +139,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'nvie/vim-flake8'
 
     " Auto completion
-    Plug 'maralla/completor.vim'
+    "Plug 'maralla/completor.vim'
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 

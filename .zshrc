@@ -19,28 +19,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
-
-# shellder color scheme
-export SHELLDER_CONTEXT_BG='white'
-export SHELLDER_CONTEXT_FG='black'
-
-export SHELLDER_DIRECTORY_BG='blue'
-export SHELLDER_DIRECTORY_FG='black'
-
-export SHELLDER_GIT_CLEAN_BG='green'
-export SHELLDER_GIT_CLEAN_FG='black'
-export SHELLDER_GIT_DIRTY_BG='yellow'
-export SHELLDER_GIT_DIRTY_FG='black'
-
-export SHELLDER_VIRTUALENV_BG='yellow'
-export SHELLDER_VIRTUALENV_FG='white'
-
-export SHELLDER_STATUS_BG='black'
-export SHELLDER_STATUS_FG='white'
-
-# Theme
-export DEFAULT_USER="$USER"
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
