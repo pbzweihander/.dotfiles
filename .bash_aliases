@@ -10,6 +10,8 @@ alias vi=vim
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias ccd='cd ..'
+alias cdd='cd $OLDPWD'
 
 # ssh
 alias sshmartini='ssh sd852456@martini.snucse.org'
