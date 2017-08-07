@@ -10,3 +10,9 @@ alias vi=vim
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+
+# ssh
+alias sshmartini='ssh sd852456@martini.snucse.org'
+alias sshcosmo='ssh thomas@147.46.241.244'
+alias sshhelma='ssh -i ~/.ssh/id_rsa.helma thomas@helma.pbzweihander.me'
+alias sshtrude='ssh -i ~/.ssh/id_rsa.trude thomas@pbzweihander.me'
