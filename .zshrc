@@ -12,13 +12,6 @@ zplug load
 
 stty stop undef
 
-alias ls='ls --color=auto -F'
-alias la='ls --color=auto -aF'
-alias ll='ls --color=auto -lahF'
-alias mv='mv -i'
-alias cp='cp -i'
-alias rm='rm -i'
-
 setopt auto_cd histignorealldups sharehistory
 zstyle ':completion:*' menu select
 
@@ -48,11 +41,9 @@ export SHELLDER_STATUS_FG='white'
 # Theme
 export DEFAULT_USER="$USER"
 
-# ssh
-alias sshmartini='ssh sd852456@martini.snucse.org'
-alias sshcosmo='ssh thomas@147.46.241.244'
-alias sshhelma='ssh -i ~/.ssh/id_rsa.helma thomas@helma.pbzweihander.me'
-alias sshtrude='ssh -i ~/.ssh/id_rsa.trude thomas@pbzweihander.me'
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 scphelma() {
     scp -i ~/.ssh/id_rsa.helma "$1" "thomas@helma.pbzweihander.me:$2"
