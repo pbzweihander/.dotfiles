@@ -23,13 +23,9 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-scphelma() {
-    scp -i ~/.ssh/id_rsa.helma "$1" "thomas@helma.pbzweihander.me:$2"
-}
-
-scptrude() {
-    scp -i ~/.ssh/id_rsa.trude "$1" "thomas@pbzweihander.me:$2"
-}
+if [ -f ~/.zsh_aliases ]; then
+    . ~/.zsh_aliases
+fi
 
 plugins=(git)
 
