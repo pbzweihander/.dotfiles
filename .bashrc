@@ -25,5 +25,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.bashrc.local ]; then
+    source ~/.bashrc.local
+fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
