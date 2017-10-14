@@ -20,3 +20,23 @@ alias sshhelma='ssh -i ~/.ssh/id_rsa.helma thomas@helma.pbzweihander.me'
 alias sshtrude='ssh -i ~/.ssh/id_rsa.trude thomas@pbzweihander.me'
 alias moshhelma='mosh --ssh="ssh -i ~/.ssh/id_rsa.helma" thomas@helma.pbzweihander.me'
 alias moshtrude='mosh --ssh="ssh -i ~/.ssh/id_rsa.trude" thomas@pbzweihander.me'
+
+#
+# rust
+#
+
+# cargo
+alias cn='cargo new'
+alias cnb='cargo new --bin'
+alias cc='cargo check'
+alias cb='cargo build'
+alias ct='cargo test'
+alias cr='cargo run'
+
+# clippy
+alias ccl='cargo clippy'
+
+# cargo-edit
+alias ca='cargo add'
+alias cu='cargo upgrade'
+
