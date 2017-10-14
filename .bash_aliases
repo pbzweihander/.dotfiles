@@ -30,8 +30,10 @@ alias cn='cargo new'
 alias cnb='cargo new --bin'
 alias cc='cargo check'
 alias cb='cargo build'
+alias cbr='cargo build --release'
 alias ct='cargo test'
 alias cr='cargo run'
+alias crr='cargo run --release'
 
 # clippy
 alias ccl='cargo clippy'
