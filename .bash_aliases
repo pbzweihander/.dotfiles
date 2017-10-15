@@ -41,4 +41,16 @@ alias ccl='cargo clippy'
 # cargo-edit
 alias ca='cargo add'
 alias cu='cargo upgrade'
+alias crm='cargo rm'
+
+#
+# exa
+#
+
+alias e='exa --group-directories-first'
+alias ea='exa -a --group-directories-first'
+alias el='exa -l --group-directories-first'
+alias ela='exa -al --group-directories-first'
+alias et='exa -T --group-directories-first'
+alias eg='exa -l --git'
 
