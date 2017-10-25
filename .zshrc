@@ -1,5 +1,8 @@
+DEFAULT_USER=thomas
+
 # zplug
 source ~/.zplug/init.zsh
+zplug 'zplug/zplug', hook-build: 'zplug --self-manage'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'zsh-users/zsh-autosuggestions'
@@ -31,6 +34,8 @@ plugins=(git)
 
 # User configuration
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -44,4 +49,5 @@ bindkey '^[[F' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^[[6~' forward-word
 bindkey '^[[5~' backward-word
+
 
