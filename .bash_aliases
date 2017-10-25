@@ -47,10 +47,15 @@ alias crm='cargo rm'
 # exa
 #
 
-alias e='exa --group-directories-first'
-alias ea='exa -a --group-directories-first'
-alias el='exa -l --group-directories-first'
-alias ela='exa -al --group-directories-first'
-alias et='exa -T --group-directories-first'
-alias eg='exa -l --git'
+alias l='exa --group-directories-first'
+alias ls='exa --group-directories-first'
+alias la='exa -a --group-directories-first'
+alias ll='exa -l --group-directories-first'
+alias lla='exa -al --group-directories-first'
+
+#
+# bauerbill
+#
+
+alias bb='sudo bauerbill'
 
