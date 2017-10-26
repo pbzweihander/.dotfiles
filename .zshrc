@@ -6,8 +6,9 @@ zplug 'zplug/zplug', hook-build: 'zplug --self-manage'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'zsh-users/zsh-autosuggestions'
+zplug 'plugins/shrink-path', from:oh-my-zsh
 zplug 'simnalamburt/cgitc'
-zplug 'simnalamburt/shellder', as:theme
+zplug 'pbzweihander/shellder', as:theme
 if ! zplug check; then
     zplug install
 fi
@@ -30,8 +31,6 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
-plugins=(git)
-
 # User configuration
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -49,5 +48,4 @@ bindkey '^[[F' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^[[6~' forward-word
 bindkey '^[[5~' backward-word
-
 
