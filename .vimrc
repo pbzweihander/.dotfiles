@@ -133,10 +133,10 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'junegunn/seoul256.vim'
 
     " Syntax
-    Plug 'elixir-lang/vim-elixir'
     Plug 'vim-scripts/indentpython.vim'
     Plug 'scrooloose/syntastic'
     Plug 'nvie/vim-flake8'
+    Plug 'rust-lang/rust.vim'
 
     " Auto completion
     "Plug 'maralla/completor.vim'
@@ -166,6 +166,10 @@ nnoremap <leader>m :MundoToggle<CR>
 " Python Syntax
 let python_highlight_all=1
 syntax on
+
+" rustfmt
+let g:rustfmt_autosave = 1
+
 
 "
 " Beautiful vim
