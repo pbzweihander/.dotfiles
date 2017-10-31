@@ -1,8 +1,68 @@
+#
+# basic commands
+#
 
-scphelma() {
-    scp -i ~/.ssh/id_rsa.helma "$1" "thomas@helma.pbzweihander.me:$2"
-}
+# ls or exa
+if (( $+commands[exa] )); then
+    alias l='exa --group-directories-first'
+    alias ls='exa --group-directories-first'
+    alias la='exa -a --group-directories-first'
+    alias ll='exa -l --group-directories-first'
+    alias lla='exa -al --group-directories-first'
+else
+    alias l='ls --color=auto'
+    alias ls='ls --color=auto'
+    alias la='ls --color=auto -AF'
+    alias ll='ls --color=auto -lF'
+    alias lla='ls --color=auto -AlF'
+    alias lh='ls --color=auto -AlhF'
+fi
 
-scptrude() {
-    scp -i ~/.ssh/id_rsa.trude "$1" "thomas@pbzweihander.me:$2"
-}
+# color=auto
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+
+# no vi!
+if (( $+commands[vim] )); then
+    alias vi=vim
+fi
+
+# interactive
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# change directory
+alias ccd='cd ..'
+alias cdd='cd $OLDPWD'
+
+#
+# rust
+#
+
+# cargo
+alias cn='cargo new'
+alias cnb='cargo new --bin'
+alias cc='cargo check'
+alias cb='cargo build'
+alias cbr='cargo build --release'
+alias ct='cargo test'
+alias cr='cargo run'
+alias crr='cargo run --release'
+
+# clippy
+alias ccl='cargo clippy'
+
+# cargo-edit
+alias ca='cargo add'
+alias cu='cargo upgrade'
+alias crm='cargo rm'
+
+#
+# bauerbill
+#
+
+alias bb='sudo bauerbill'
+
