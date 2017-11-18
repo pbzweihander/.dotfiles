@@ -5,10 +5,10 @@
 # ls or exa
 if (( $+commands[exa] )); then
     alias l='exa --group-directories-first'
-    alias ls='exa --group-directories-first'
-    alias la='exa -a --group-directories-first'
-    alias ll='exa -l --group-directories-first'
-    alias lla='exa -al --group-directories-first'
+    alias ls='exa -F --group-directories-first'
+    alias la='exa -aF --group-directories-first'
+    alias ll='exa -lF --group-directories-first'
+    alias lla='exa -alF --group-directories-first'
 else
     alias l='ls --color=auto'
     alias ls='ls --color=auto'
