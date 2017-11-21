@@ -1,0 +1,8 @@
+[DEFAULT]
+bantime = 86400
+findtime = 600
+maxentry = 3
+
+[sshd]
+enabled = true
+
