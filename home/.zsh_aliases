@@ -73,3 +73,13 @@ alias bb='sudo bauerbill'
 
 alias c.='code .'
 
+#
+# utils
+#
+
+# wttr.in
+wttr() {
+    LOCATION=${1// /+}
+    curl ko.wttr.in/$LOCATION
+}
+
