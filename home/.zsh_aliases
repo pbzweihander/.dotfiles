@@ -50,8 +50,9 @@ alias cb='cargo build'
 alias cbr='cargo build --release'
 alias ct='cargo test'
 alias cr='cargo run'
-alias crr='cargo run --release'
 alias cu='cargo update'
+alias ciu='cargo install-update'
+alias cpb='cargo publish'
 
 # clippy
 alias ccl='cargo clippy'
@@ -65,7 +66,7 @@ alias crm='cargo rm'
 # bauerbill
 #
 
-alias bb='sudo bauerbill'
+alias bb='bb-wrapper'
 
 #
 # vs-code
