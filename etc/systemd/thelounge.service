@@ -1,0 +1,13 @@
+[Unit]
+Description=The Lounge IRC client
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/thelounge start
+User=thomas
+Group=thomas
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
