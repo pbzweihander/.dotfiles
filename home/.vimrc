@@ -69,13 +69,14 @@ nnoremap <CR> o<ESC>
 " Easy Indentation
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
-" Easy Splitting & Resizing
+" Easy Splitting
 nnoremap <silent> <C-_> :split<CR>
 nnoremap <silent> <C-\> :vertical split<CR>
-nnoremap <silent> <C-h> :vertical resize -5<CR>
-nnoremap <silent> <C-j> :resize -3<CR>
-nnoremap <silent> <C-k> :resize +3<CR>
-nnoremap <silent> <C-l> :vertical resize +5<CR>
+" Easy Navigation
+nnoremap <silent> <C-h> <C-w><C-h>
+nnoremap <silent> <C-j> <C-w><C-j>
+nnoremap <silent> <C-k> <C-w><C-k>
+nnoremap <silent> <C-l> <C-w><C-l>
 " Tab Navigations
 nnoremap <esc>t :tabnew<CR>
 nnoremap <esc>T :-tabnew<CR>
@@ -105,9 +106,6 @@ nnoremap <S-Up> :m-2<CR>
 nnoremap <S-Down> :m+<CR>
 inoremap <S-Up> <Esc>:m-2<CR>
 inoremap <S-Down> <Esc>:m+<CR>
-" Test, only in python
-nnoremap <S-F5> :! python %<CR>
-inoremap <S-F5> <Esc>:w<CR>:! python %<CR>
 
 "
 " Plugins
