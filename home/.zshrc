@@ -10,6 +10,7 @@ if [ -f ~/.zplug/init.zsh ]; then
     zplug 'plugins/shrink-path', from:oh-my-zsh
     zplug 'simnalamburt/cgitc'
     zplug 'simnalamburt/shellder', as:theme
+    zplug 'voronkovich/gitignore.plugin.zsh'
     zplug load
 else
     PS1='%n@%m:%~%# '
