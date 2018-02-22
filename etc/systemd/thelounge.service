@@ -3,11 +3,12 @@ Description=The Lounge IRC client
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/thelounge start
+ExecStart=/usr/bin/env thelounge start
+Environment="PATH=/bin:/usr/bin:/home/thomas/.npm-global/bin"
 User=thomas
 Group=thomas
 Restart=on-failure
-RestartSec=5
+RestartSec=3
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
