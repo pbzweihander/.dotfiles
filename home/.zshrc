@@ -5,12 +5,13 @@ if [ -f ~/.zplug/init.zsh ]; then
     source ~/.zplug/init.zsh
     zplug 'zplug/zplug', hook-build: 'zplug --self-manage'
     zplug 'zsh-users/zsh-completions'
-    zplug 'zsh-users/zsh-syntax-highlighting'
     zplug 'zsh-users/zsh-autosuggestions'
     zplug 'plugins/shrink-path', from:oh-my-zsh
     zplug 'simnalamburt/cgitc'
     zplug 'simnalamburt/shellder', as:theme
     zplug 'voronkovich/gitignore.plugin.zsh'
+    zplug 'rupa/z'
+    zplug "zsh-users/zsh-syntax-highlighting", defer:2
     zplug load
 else
     PS1='%n@%m:%~%# '
@@ -48,15 +49,21 @@ if [ -f ~/.zsh_aliases ]; then
     source ~/.zsh_aliases
 fi
 
-DEFAULT_USER=thomas # for shellder
+DEFAULT_USER="$USER" # for shellder
 
 # Path
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
+
 if [ -d ~/.cargo/bin ]; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
+
 if [ -d ~/.npm-global/bin ]; then
     export PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
+if [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
 fi
 
 # keybinding
