@@ -10,7 +10,7 @@ if [ -f ~/.zplug/init.zsh ]; then
     zplug 'simnalamburt/cgitc'
     zplug 'simnalamburt/shellder', as:theme
     zplug 'voronkovich/gitignore.plugin.zsh'
-    zplug 'rupa/z'
+    zplug 'rupa/z', use:"*.sh"
     zplug "zsh-users/zsh-syntax-highlighting", defer:2
     zplug load
 else
