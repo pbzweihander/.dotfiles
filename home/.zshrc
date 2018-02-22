@@ -13,6 +13,9 @@ if [ -f ~/.zplug/init.zsh ]; then
     zplug 'rupa/z', use:"*.sh"
     zplug "zsh-users/zsh-syntax-highlighting", defer:2
     zplug load
+    if ! zplug check; then
+        zplug install
+    fi
 else
     PS1='%n@%m:%~%# '
 fi
