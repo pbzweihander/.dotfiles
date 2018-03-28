@@ -22,9 +22,14 @@ export PS1="${GREEN}\\u@\\h${RESET}${BOLD}${WHITE}:${RESET}${CYAN}\\w${RESET}${B
 #
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    source ~/.bash_aliases
+fi
+
+if [ -f ~/.fzf.bash ]; then
+    source ~/.fzf.bash
 fi
 
 if [ -f ~/.bashrc.local ]; then
     source ~/.bashrc.local
 fi
+
