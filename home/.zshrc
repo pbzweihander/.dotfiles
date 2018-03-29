@@ -65,6 +65,10 @@ if [ -d ~/.npm-global/bin ]; then
     export PATH="$HOME/.npm-global/bin:$PATH"
 fi
 
+if [ -d ~/.local/bin ]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
