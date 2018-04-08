@@ -7,8 +7,8 @@ if (( $+commands[exa] )); then
     alias l='exa --group-directories-first'
     alias ls='exa -F --group-directories-first'
     alias la='exa -aF --group-directories-first'
-    alias ll='exa -lF --group-directories-first'
-    alias lla='exa -alF --group-directories-first'
+    alias ll='exa -lgF --group-directories-first'
+    alias lla='exa -algF --group-directories-first'
 else
     alias l='ls --color=auto'
     alias ls='ls --color=auto'

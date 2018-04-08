@@ -29,6 +29,7 @@ if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
     else
         zplug 'plugins/shrink-path', from:oh-my-zsh
         zplug 'simnalamburt/shellder', as:theme
+        export DEFAULT_USER="$USER"
     fi
 
     zplug 'voronkovich/gitignore.plugin.zsh'
@@ -75,7 +76,6 @@ if [ -f ~/.zsh_aliases ]; then
     source ~/.zsh_aliases
 fi
 
-DEFAULT_USER="$USER" # for shellder
 
 # Path
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
