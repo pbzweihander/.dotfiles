@@ -1,23 +1,46 @@
+[[ -o interactive ]] || return
+
+if [[ -a /proc/version ]] && grep -q Microsoft /proc/version; then
+  unsetopt BG_NICE
+fi
+
 #
 # zplug
 #
-if [ -f ~/.zplug/init.zsh ]; then
+autoload -U is-at-least
+if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
     source ~/.zplug/init.zsh
-    zplug 'zplug/zplug', hook-build: 'zplug --self-manage'
-    zplug 'zsh-users/zsh-completions'
-    zplug 'zsh-users/zsh-autosuggestions'
-    zplug 'plugins/shrink-path', from:oh-my-zsh
-    zplug 'simnalamburt/cgitc'
-    zplug 'simnalamburt/shellder', as:theme
+
+    zplug "zplug/zplug", hook-build: "zplug --self-manage"
+
+    zplug "simnalamburt/cgitc"
+    zplug "simnalamburt/zsh-expand-all"
+
+    zplug "zsh-users/zsh-completions"
+    zplug "zsh-users/zsh-autosuggestions"
+    zplug "zsh-users/zsh-syntax-highlighting"
+    zplug "zsh-users/zsh-history-substring-search"
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+
+    if is-at-least 5.2.0; then
+        zplug "mafredri/zsh-async"
+        zplug "sindresorhus/pure", use:pure.zsh, as:theme
+    else
+        zplug 'plugins/shrink-path', from:oh-my-zsh
+        zplug 'simnalamburt/shellder', as:theme
+    fi
+
     zplug 'voronkovich/gitignore.plugin.zsh'
     zplug 'rupa/z', use:"*.sh"
-    zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
     zplug load
+
     if ! zplug check; then
         zplug install
     fi
 else
-    PS1='%n@%m:%~%# '
+    PS1='%n@%m:%~%(!.#.$) '
 fi
 
 #
