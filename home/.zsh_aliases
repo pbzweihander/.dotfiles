@@ -43,6 +43,8 @@ alias cdd='cd $OLDPWD'
 #
 
 # cargo
+alias ci='cargo init'
+alias cib='cargo init --bin'
 alias cn='cargo new'
 alias cnb='cargo new --bin'
 alias cc='cargo check'
