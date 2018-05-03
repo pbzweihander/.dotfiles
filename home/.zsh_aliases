@@ -76,6 +76,11 @@ alias zl='z -l'
 alias zt='z -t'
 alias zc='z -c'
 
+# bat
+if (( $+commands[bat] )); then
+    alias cat='bat'
+fi
+
 # wttr.in
 wttr() {
     LOCATION=${1// /+}
