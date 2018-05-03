@@ -96,6 +96,10 @@ if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
 
+if [ -d ~/.skim ]; then
+    export PATH="$HOME/.skim/bin:$PATH"
+fi
+
 # keybinding
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
