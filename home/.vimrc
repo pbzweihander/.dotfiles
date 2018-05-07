@@ -136,6 +136,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'scrooloose/syntastic'
     Plug 'nvie/vim-flake8'
     Plug 'rust-lang/rust.vim'
+    Plug 'isobit/vim-caddyfile'
 
     " Auto completion
     "Plug 'maralla/completor.vim'
