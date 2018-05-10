@@ -124,6 +124,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'vim-utils/vim-interruptless'
     Plug 'junegunn/gv.vim'
     Plug 'justinmk/vim-dirvish'
+    Plug 'editorconfig/editorconfig-vim'
     Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 
     " Visual
