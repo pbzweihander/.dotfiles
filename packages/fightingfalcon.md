@@ -1,5 +1,7 @@
 # fightingfalcon
 
+Arch Linux
+
 ## pacman
 
 - base base-devel grub sudo openssh
