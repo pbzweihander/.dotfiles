@@ -37,7 +37,6 @@ Arch Linux
 
 ## rustup
 
-- [rustup](http://rustup.rs/)
 - rust
 - [rls](https://github.com/rust-lang-nursery/rls)
 - [rustfmt](https://github.com/rust-lang-nursery/rustfmt)
@@ -52,6 +51,7 @@ Arch Linux
 
 ## etc
 
+- [rustup](https://rustup.rs/)
 - [zplug](https://github.com/zplug/zplug)
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - [tpm](https://github.com/tmux-plugins/tpm)
