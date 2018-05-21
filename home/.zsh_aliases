@@ -55,6 +55,7 @@ alias cr='cargo run'
 alias cu='cargo update'
 alias ciu='cargo install-update'
 alias cpb='cargo publish'
+alias cclr='cargo clean'
 
 # clippy
 alias ccl='cargo clippy'
@@ -81,9 +82,11 @@ if (( $+commands[bat] )); then
     alias cat='bat'
 fi
 
+# micro
+alias mi='micro'
+
 # wttr.in
 wttr() {
     LOCATION=${1// /+}
     curl ko.wttr.in/$LOCATION
 }
-
