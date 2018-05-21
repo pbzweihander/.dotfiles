@@ -25,3 +25,4 @@ Debian 9
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - [tpm](https://github.com/tmux-plugins/tpm)
 - [caddy](https://caddyserver.com)
+- [micro](https://github.com/zyedidia/micro)

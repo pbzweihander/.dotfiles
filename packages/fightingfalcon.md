@@ -55,3 +55,4 @@ Arch Linux
 - [zplug](https://github.com/zplug/zplug)
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - [tpm](https://github.com/tmux-plugins/tpm)
+- [micro](https://github.com/zyedidia/micro)
