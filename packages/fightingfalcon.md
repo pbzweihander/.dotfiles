@@ -9,7 +9,7 @@ Arch Linux
 - networkmanager network-manager-applet
 - iw wpa_supplicant gnome-keyring
 - gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
-- vim mosh git tmux zsh wget
+- vim mosh git tmux zsh wget xclip
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk
 - python python2 jdk8-openjdk
