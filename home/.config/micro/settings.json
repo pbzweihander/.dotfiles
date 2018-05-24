@@ -41,5 +41,11 @@
     "tabsize": 4,
     "tabstospaces": true,
     "termtitle": false,
-    "useprimary": true
+    "useprimary": true,
+    "ft:yaml": {
+        "tabsize": 2
+    },
+    "*.Caddyfile": {
+        "filetype": "caddyfile"
+    }
 }

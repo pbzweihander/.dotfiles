@@ -85,6 +85,10 @@ fi
 # micro
 alias mi='micro'
 
+# xclip
+alias xc='xclip'
+alias xp='xclip -o'
+
 # wttr.in
 wttr() {
     LOCATION=${1// /+}
