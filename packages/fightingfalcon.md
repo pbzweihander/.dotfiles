@@ -20,6 +20,13 @@ Arch Linux
 - libreoffice
 - vlc
 
+## pacman (multilib)
+
+> enable multilib:
+> https://wiki.archlinux.org/index.php/Multilib
+
+- wine
+
 ## AUR
 
 - [bauerbill](https://xyne.archlinux.ca/projects/bauerbill/)
