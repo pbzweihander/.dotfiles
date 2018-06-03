@@ -41,6 +41,7 @@ Arch Linux
   - [dash-to-dock](https://aur.archlinux.org/packages/gnome-shell-extension-dash-to-dock/)
   - [no-topleft-hot-corner](https://aur.archlinux.org/packages/gnome-shell-extension-no-topleft-hot-corner/)
   - [topicons-plus](https://aur.archlinux.org/packages/gnome-shell-extension-topicons-plus/)
+- debtap
 
 ## rustup
 
