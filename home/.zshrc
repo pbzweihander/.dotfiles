@@ -100,6 +100,10 @@ if [ -d ~/.skim ]; then
     export PATH="$HOME/.skim/bin:$PATH"
 fi
 
+if [ -d /opt/google-cloud-sdk ]; then
+    export PATH="/opt/google-cloud-sdk/bin:$PATH"
+fi
+
 # keybinding
 bindkey '^[[H' beginning-of-line
 bindkey '^[[1~' beginning-of-line

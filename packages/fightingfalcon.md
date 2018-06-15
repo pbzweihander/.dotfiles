@@ -42,6 +42,7 @@ Arch Linux
   - [no-topleft-hot-corner](https://aur.archlinux.org/packages/gnome-shell-extension-no-topleft-hot-corner/)
   - [topicons-plus](https://aur.archlinux.org/packages/gnome-shell-extension-topicons-plus/)
 - debtap
+- google-cloud-sdk
 
 ## rustup
 
