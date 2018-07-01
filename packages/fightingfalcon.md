@@ -57,6 +57,7 @@ Arch Linux
 - [cargo-update](https://github.com/nabijaczleweli/cargo-update)
 - [exa](https://github.com/ogham/exa)
 - [bat](https://github.com/sharkdp/bat)
+- [cargo-bloat](https://github.com/RazrFalcon/cargo-bloat)
 
 ## etc
 
