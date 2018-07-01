@@ -58,6 +58,7 @@ Arch Linux
 - [exa](https://github.com/ogham/exa)
 - [bat](https://github.com/sharkdp/bat)
 - [cargo-bloat](https://github.com/RazrFalcon/cargo-bloat)
+- [cargo-expand](https://github.com/dtolnay/cargo-expand)
 
 ## etc
 
