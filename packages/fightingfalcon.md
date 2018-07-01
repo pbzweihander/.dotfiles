@@ -43,6 +43,7 @@ Arch Linux
   - [topicons-plus](https://aur.archlinux.org/packages/gnome-shell-extension-topicons-plus/)
 - debtap
 - google-cloud-sdk
+- fkill
 
 ## rustup
 
