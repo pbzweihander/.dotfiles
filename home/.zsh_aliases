@@ -29,10 +29,17 @@ if (( $+commands[vim] )); then
     alias vi=vim
 fi
 
-# interactive
+# basic commands
 alias rm='rm -i'
+alias rmf='rm -f'
+alias rmr='rm -ir'
+alias rmrf='rm -rf'
 alias cp='cp -i'
+alias cpr='cp -ir'
+alias cpf='cp -f'
+alias cprf='cp -rf'
 alias mv='mv -i'
+alias mvf='mv -f'
 
 # change directory
 alias ccd='cd ..'
