@@ -12,7 +12,7 @@ Arch Linux
 - vim mosh git tmux zsh wget xclip
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk
-- python python2 jdk8-openjdk
+- python python2 jdk8-openjdk go
 - [httpie](https://httpie.org/)
 - [fd](https://github.com/sharkdp/fd)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
