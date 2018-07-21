@@ -19,6 +19,7 @@ Arch Linux
 - firefox
 - libreoffice
 - vlc
+- musl
 
 ## pacman (multilib)
 
