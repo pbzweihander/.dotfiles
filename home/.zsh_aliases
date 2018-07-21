@@ -75,6 +75,17 @@ alias ca='cargo add'
 alias cug='cargo upgrade'
 alias crm='cargo rm'
 
+#
+# Docker
+#
+
+# rust-musl-builder
+alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src -v cargo-git:/home/rust/.cargo/git -v cargo-registry:/home/rust/.cargo/registry ekidd/rust-musl-builder'
+
+#
+# etc
+#
+
 # bauerbill
 alias bb='bb-wrapper'
 
