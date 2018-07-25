@@ -12,7 +12,7 @@ Arch Linux
 - vim mosh git tmux zsh wget xclip
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk ttf-fira-code
-- python python2 jdk8-openjdk go rustup musl
+- cmake python python2 jdk8-openjdk go rustup musl
 - httpie fd ripgrep exa
 - firefox
 - libreoffice
@@ -47,10 +47,10 @@ Arch Linux
 - rust
 - [rls](https://github.com/rust-lang-nursery/rls)
 - [rustfmt](https://github.com/rust-lang-nursery/rustfmt)
+- [clippy](https://github.com/rust-lang-nursery/rust-clippy)
 
 ## cargo
 
-- clippy
 - [cargo-edit](https://github.com/killercup/cargo-edit)
 - [cargo-update](https://github.com/nabijaczleweli/cargo-update)
 - [bat](https://github.com/sharkdp/bat)
