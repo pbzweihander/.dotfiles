@@ -119,4 +119,3 @@ bindkey '^[[1;3D' backward-word
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
-

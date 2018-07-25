@@ -94,7 +94,7 @@ alias n.='nautilus .'
 #
 
 # bauerbill
-alias bb='bb-wrapper'
+alias bb=bb-wrapper
 
 # vs-code
 alias c.='code .'
@@ -107,18 +107,12 @@ alias zc='z -c'
 
 # bat
 if (( $+commands[bat] )); then
-    alias cat='bat'
+    alias cat=bat
 fi
 
 # micro
-alias mi='micro'
+alias mi=micro
 
 # xclip
-alias xc='xclip'
+alias xc=xclip
 alias xp='xclip -o'
-
-# wttr.in
-wttr() {
-    LOCATION=${1// /+}
-    curl ko.wttr.in/$LOCATION
-}
