@@ -83,6 +83,13 @@ alias crm='cargo rm'
 alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src -v cargo-git:/home/rust/.cargo/git -v cargo-registry:/home/rust/.cargo/registry ekidd/rust-musl-builder'
 
 #
+# Gnome
+#
+
+# nautilus
+alias n.='nautilus .'
+
+#
 # etc
 #
 
