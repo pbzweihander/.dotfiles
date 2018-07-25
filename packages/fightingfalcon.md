@@ -13,26 +13,25 @@ Arch Linux
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk ttf-fira-code
 - cmake python python2 jdk8-openjdk go rustup musl
-- httpie fd ripgrep exa
-- firefox
-- libreoffice
-- vlc
+- httpie fd ripgrep exa docker
+- firefox libreoffice gimp vlc
 
 ### [multilib](https://wiki.archlinux.org/index.php/Multilib)
 
 - wine
 
-### [ownstuff](https://wiki.archlinux.org/index.php/unofficial_user_repositories#ownstuff)
+### [aur-archlinux](https://wiki.archlinux.org/index.php/unofficial_user_repositories#aur-archlinux)
 
+
+- [bauerbill](https://xyne.archlinux.ca/projects/bauerbill/)
+- [visual-studio-code-bin](https://aur.archlinux.org/packages/visual-studio-code-bin/)
+- [slack](https://aur.archlinux.org/packages/slack-desktop/)
+- [keybase](https://aur.archlinux.org/packages/keybase-bin/)
 - mingw-w64-gcc
+- pandoc-bin
 
 ## AUR
 
-- [bauerbill](https://xyne.archlinux.ca/projects/bauerbill/)
-- [ttf-nanum](https://aur.archlinux.org/packages/ttf-nanum/)
-- [visual-studio-code](https://aur.archlinux.org/packages/visual-studio-code-bin/)
-- [slack](https://aur.archlinux.org/packages/slack-desktop/)
-- [keybase](https://aur.archlinux.org/packages/keybase-bin/)
 - gnome-shell-extension
   - [arc-menu](https://aur.archlinux.org/packages/gnome-shell-extension-arc-menu-git/)
   - [arch-update](https://aur.archlinux.org/packages/gnome-shell-extension-arch-update/)
