@@ -105,14 +105,9 @@ alias zl='z -l'
 alias zt='z -t'
 alias zc='z -c'
 
-# bat
-if (( $+commands[bat] )); then
-    alias cat=bat
-fi
-
 # micro
 alias mi=micro
 
 # xclip
-alias xc=xclip
-alias xp='xclip -o'
+alias xc='xclip -i -selection clipboard'
+alias xp='xclip -o -selection clipboard'
