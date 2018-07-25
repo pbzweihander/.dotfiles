@@ -10,12 +10,12 @@ if (( $+commands[exa] )); then
     alias ll='exa -lgF --group-directories-first'
     alias lla='exa -algF --group-directories-first'
 else
-    alias l='ls --color=auto'
-    alias ls='ls --color=auto'
-    alias la='ls --color=auto -AF'
-    alias ll='ls --color=auto -lF'
-    alias lla='ls --color=auto -AlF'
-    alias lh='ls --color=auto -AlhF'
+    alias l='ls --color=auto --group-directories-first'
+    alias ls='ls --color=auto --group-directories-first'
+    alias la='ls --color=auto --group-directories-first -AF'
+    alias ll='ls --color=auto --group-directories-first -lF'
+    alias lla='ls --color=auto --group-directories-first -AlF'
+    alias lh='ls --color=auto --group-directories-first -AlhF'
 fi
 
 # color=auto
