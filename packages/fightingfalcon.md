@@ -11,15 +11,12 @@ Arch Linux
 - gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
 - vim mosh git tmux zsh wget xclip
 - ibus ibus-hangul
-- powerline-fonts noto-fonts-cjk
-- python python2 jdk8-openjdk go
-- [httpie](https://httpie.org/)
-- [fd](https://github.com/sharkdp/fd)
-- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- powerline-fonts noto-fonts-cjk ttf-fira-code
+- python python2 jdk8-openjdk go rustup musl
+- httpie fd ripgrep exa
 - firefox
 - libreoffice
 - vlc
-- musl
 
 ### [multilib](https://wiki.archlinux.org/index.php/Multilib)
 
@@ -32,7 +29,6 @@ Arch Linux
 ## AUR
 
 - [bauerbill](https://xyne.archlinux.ca/projects/bauerbill/)
-- [fire-code](https://github.com/tonsky/FiraCode)
 - [ttf-nanum](https://aur.archlinux.org/packages/ttf-nanum/)
 - [visual-studio-code](https://aur.archlinux.org/packages/visual-studio-code-bin/)
 - [slack](https://aur.archlinux.org/packages/slack-desktop/)
@@ -57,7 +53,6 @@ Arch Linux
 - clippy
 - [cargo-edit](https://github.com/killercup/cargo-edit)
 - [cargo-update](https://github.com/nabijaczleweli/cargo-update)
-- [exa](https://github.com/ogham/exa)
 - [bat](https://github.com/sharkdp/bat)
 - [cargo-bloat](https://github.com/RazrFalcon/cargo-bloat)
 - [cargo-expand](https://github.com/dtolnay/cargo-expand)
@@ -65,7 +60,6 @@ Arch Linux
 
 ## etc
 
-- [rustup](https://rustup.rs/)
 - [zplug](https://github.com/zplug/zplug)
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - [tpm](https://github.com/tmux-plugins/tpm)
