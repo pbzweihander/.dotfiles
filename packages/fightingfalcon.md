@@ -21,12 +21,13 @@ Arch Linux
 - vlc
 - musl
 
-## pacman (multilib)
-
-> enable multilib:
-> https://wiki.archlinux.org/index.php/Multilib
+### [multilib](https://wiki.archlinux.org/index.php/Multilib)
 
 - wine
+
+### [ownstuff](https://wiki.archlinux.org/index.php/unofficial_user_repositories#ownstuff)
+
+- mingw-w64-gcc
 
 ## AUR
 
