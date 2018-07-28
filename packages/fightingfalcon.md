@@ -56,6 +56,7 @@ Arch Linux
 - [cargo-bloat](https://github.com/RazrFalcon/cargo-bloat)
 - [cargo-expand](https://github.com/dtolnay/cargo-expand)
 - [cross](https://github.com/japaric/cross)
+- [cargo-audit](https://github.com/RustSec/cargo-audit)
 
 ## etc
 
