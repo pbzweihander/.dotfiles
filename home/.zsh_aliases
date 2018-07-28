@@ -79,8 +79,12 @@ alias crm='cargo rm'
 # Docker
 #
 
-# rust-musl-builder
-alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src -v cargo-git:/home/rust/.cargo/git -v cargo-registry:/home/rust/.cargo/registry ekidd/rust-musl-builder'
+musl-build() {
+    docker run \
+        -v cargo-cache:/root/.cargo \
+        -v "$PWD:/volume" \
+        --rm -it clux/muslrust cargo build --release
+}
 
 # dockviz
 alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
