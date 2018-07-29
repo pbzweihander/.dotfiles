@@ -9,7 +9,7 @@ Arch Linux
 - networkmanager network-manager-applet
 - iw wpa_supplicant gnome-keyring
 - gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
-- vim mosh git tmux zsh wget xclip
+- vim mosh git tmux zsh wget xclip jq
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk ttf-fira-code
 - cmake python python2 jdk8-openjdk go rustup musl
@@ -29,6 +29,7 @@ Arch Linux
 - [keybase](https://aur.archlinux.org/packages/keybase-bin/)
 - mingw-w64-gcc
 - pandoc-bin
+- alactritty
 
 ## AUR
 
@@ -64,3 +65,4 @@ Arch Linux
 - [vim-plug](https://github.com/junegunn/vim-plug)
 - [tpm](https://github.com/tmux-plugins/tpm)
 - [micro](https://github.com/zyedidia/micro)
+- [fzf](https://github.com/junegunn/fzf)
