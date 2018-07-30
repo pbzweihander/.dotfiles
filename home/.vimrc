@@ -125,7 +125,6 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'junegunn/gv.vim'
     Plug 'justinmk/vim-dirvish'
     Plug 'editorconfig/editorconfig-vim'
-    Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 
     " Visual
     Plug 'nathanaelkane/vim-indent-guides'
