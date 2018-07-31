@@ -84,6 +84,7 @@ musl-build() {
         -v cargo-cache:/root/.cargo \
         -v "$PWD:/volume" \
         --rm -it clux/muslrust cargo build --release
+    sudo chown -R $USER:$USER target
 }
 
 # dockviz
