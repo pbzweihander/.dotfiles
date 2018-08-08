@@ -107,12 +107,6 @@ alias bb=bb-wrapper
 # vs-code
 alias c.='code .'
 
-# zsh z
-alias zr='z -r'
-alias zl='z -l'
-alias zt='z -t'
-alias zc='z -c'
-
 # micro
 alias mi=micro
 

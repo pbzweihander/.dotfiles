@@ -33,7 +33,6 @@ if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
     fi
 
     zplug 'voronkovich/gitignore.plugin.zsh'
-    zplug 'rupa/z', use:"*.sh"
 
     zplug load
 
