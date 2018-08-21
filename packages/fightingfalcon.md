@@ -9,11 +9,12 @@ Arch Linux
 - networkmanager network-manager-applet
 - iw wpa_supplicant gnome-keyring
 - gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
-- vim mosh git tmux zsh wget xclip jq
+- vim mosh git tmux zsh wget xclip jq docker
+- htop glances
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk ttf-fira-code
 - cmake python python2 jdk8-openjdk go rustup musl
-- httpie fd ripgrep exa docker
+- httpie fd ripgrep exa
 - firefox libreoffice gimp vlc
 
 ### [multilib](https://wiki.archlinux.org/index.php/Multilib)
@@ -41,6 +42,7 @@ Arch Linux
   - [topicons-plus](https://aur.archlinux.org/packages/gnome-shell-extension-topicons-plus/)
 - debtap
 - fkill
+- [howdoi](https://github.com/gleitz/howdoi)
 
 ## rustup
 
