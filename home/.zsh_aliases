@@ -87,6 +87,10 @@ musl-build() {
     sudo chown -R $USER:$USER target
 }
 
+howto() {
+    docker run --rm -it pbzweihander/howto $*
+}
+
 # dockviz
 alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 
