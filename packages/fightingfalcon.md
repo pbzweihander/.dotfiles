@@ -9,12 +9,12 @@ Arch Linux
 - networkmanager network-manager-applet
 - iw wpa_supplicant gnome-keyring
 - gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
-- vim mosh git tmux zsh wget xclip jq docker
+- vim mosh git tmux zsh wget xclip jq docker rsync
 - htop glances
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk ttf-fira-code
 - cmake python python2 jdk8-openjdk go rustup musl
-- httpie fd ripgrep exa
+- httpie fd ripgrep exa bc
 - firefox libreoffice gimp vlc
 
 ### [multilib](https://wiki.archlinux.org/index.php/Multilib)
