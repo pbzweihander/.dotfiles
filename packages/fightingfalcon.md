@@ -13,7 +13,10 @@ Arch Linux
 - htop glances
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code
-- cmake python python2 jdk8-openjdk go rustup musl
+- cmake jdk8-openjdk go
+- python python-pip python2 python2-pip
+- rustup musl
+- ocaml ocaml-findlib opam
 - httpie fd ripgrep exa bc
 - firefox libreoffice gimp vlc discord
 
@@ -60,6 +63,12 @@ Arch Linux
 - [cargo-expand](https://github.com/dtolnay/cargo-expand)
 - [cross](https://github.com/japaric/cross)
 - [cargo-audit](https://github.com/RustSec/cargo-audit)
+
+## opam
+
+- merlin ocp-indent
+- [dune](https://github.com/ocaml/dune)
+- oasis
 
 ## etc
 

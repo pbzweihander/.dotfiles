@@ -75,7 +75,6 @@ if [ -f ~/.zsh_aliases ]; then
     source ~/.zsh_aliases
 fi
 
-
 # Path
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
 
@@ -87,12 +86,16 @@ if [ -d ~/.npm-global/bin ]; then
     export PATH="$HOME/.npm-global/bin:$PATH"
 fi
 
-if [ -d ~/.local/bin ]; then
-    export PATH="$HOME/.local/bin:$PATH"
+if [ -f ~/.opam/opam-init/init.zsh ]; then
+    source ~/.opam/opam-init/init.zsh
 fi
 
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
+fi
+
+if [ -d ~/.local/bin ]; then
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 
 if [ -d ~/.skim ]; then
