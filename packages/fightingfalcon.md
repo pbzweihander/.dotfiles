@@ -15,7 +15,7 @@ Arch Linux
 - powerline-fonts noto-fonts-cjk ttf-fira-code
 - cmake python python2 jdk8-openjdk go rustup musl
 - httpie fd ripgrep exa bc
-- firefox libreoffice gimp vlc
+- firefox libreoffice gimp vlc discord
 
 ### [multilib](https://wiki.archlinux.org/index.php/Multilib)
 
