@@ -36,6 +36,10 @@ if [ -d ~/.npm-global/bin ]; then
 fi
 
 # sources
+if [ -f ~/.cgitc/init.bash ]; then
+    source ~/.cgitc/init.bash
+fi
+
 if [ -f ~/.opam/opam-init/init.sh ]; then
     source ~/.opam/opam-init/init.sh
 fi
