@@ -17,18 +17,34 @@ WHITE="\[$(tput setaf 7)\]"
 
 export PS1="${GREEN}\\u@\\h${RESET}${BOLD}${WHITE}:${RESET}${CYAN}\\w${RESET}${BOLD}${WHITE}\\$ ${RESET}"
 
-#
-# Aliases
-#
-
+# aliases
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
+fi
+
+# paths
+if [ -d ~/.local/bin ]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d ~/.cargo/bin ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+if [ -d ~/.npm-global/bin ]; then
+    export PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
+# sources
+if [ -f ~/.opam/opam-init/init.sh ]; then
+    source ~/.opam/opam-init/init.sh
 fi
 
 if [ -f ~/.fzf.bash ]; then
     source ~/.fzf.bash
 fi
 
+# local settings
 if [ -f ~/.bashrc.local ]; then
     source ~/.bashrc.local
 fi

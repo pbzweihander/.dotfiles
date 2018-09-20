@@ -75,8 +75,12 @@ if [ -f ~/.zsh_aliases ]; then
     source ~/.zsh_aliases
 fi
 
-# Path
+# paths
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
+
+if [ -d ~/.local/bin ]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 if [ -d ~/.cargo/bin ]; then
     export PATH="$HOME/.cargo/bin:$PATH"
@@ -86,24 +90,13 @@ if [ -d ~/.npm-global/bin ]; then
     export PATH="$HOME/.npm-global/bin:$PATH"
 fi
 
+# sources
 if [ -f ~/.opam/opam-init/init.zsh ]; then
     source ~/.opam/opam-init/init.zsh
 fi
 
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
-fi
-
-if [ -d ~/.local/bin ]; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -d ~/.skim ]; then
-    export PATH="$HOME/.skim/bin:$PATH"
-fi
-
-if [ -d /opt/google-cloud-sdk ]; then
-    export PATH="/opt/google-cloud-sdk/bin:$PATH"
 fi
 
 # keybinding
