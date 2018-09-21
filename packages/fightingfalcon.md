@@ -12,7 +12,7 @@ Arch Linux
 - vim mosh git tmux zsh wget xclip jq docker rsync
 - htop glances
 - ibus ibus-hangul
-- powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code
+- powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code ttf-droid
 - cmake jdk8-openjdk go
 - python python-pip python2 python2-pip
 - rustup musl
@@ -34,7 +34,6 @@ Arch Linux
 - mingw-w64-gcc
 - pandoc-bin
 - alactritty
-- [nerd-fonts-complete](https://github.com/ryanoasis/nerd-fonts)
 
 ## AUR
 
