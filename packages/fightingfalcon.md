@@ -34,6 +34,7 @@ Arch Linux
 - mingw-w64-gcc
 - pandoc-bin
 - alactritty
+- [nerd-fonts-complete](https://github.com/ryanoasis/nerd-fonts)
 
 ## AUR
 
