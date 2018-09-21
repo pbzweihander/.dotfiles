@@ -6,7 +6,7 @@
     "colorcolumn": 0,
     "colorscheme": "default",
     "cursorline": true,
-    "eofnewline": false,
+    "eofnewline": true,
     "fastdirty": true,
     "fileformat": "unix",
     "ftoptions": true,
