@@ -12,7 +12,7 @@ Arch Linux
 - vim mosh git tmux zsh wget xclip jq docker rsync
 - htop glances
 - ibus ibus-hangul
-- powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code ttf-droid
+- powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code
 - cmake jdk8-openjdk go
 - python python-pip python2 python2-pip
 - rustup musl
@@ -26,7 +26,6 @@ Arch Linux
 
 ### [aur-archlinux](https://wiki.archlinux.org/index.php/unofficial_user_repositories#aur-archlinux)
 
-
 - [bauerbill](https://xyne.archlinux.ca/projects/bauerbill/)
 - [visual-studio-code-bin](https://aur.archlinux.org/packages/visual-studio-code-bin/)
 - [slack](https://aur.archlinux.org/packages/slack-desktop/)
@@ -37,7 +36,7 @@ Arch Linux
 
 ## AUR
 
-- gnome-shell-extension
+- gnome-shell-extensions
   - [arc-menu](https://aur.archlinux.org/packages/gnome-shell-extension-arc-menu-git/)
   - [arch-update](https://aur.archlinux.org/packages/gnome-shell-extension-arch-update/)
   - [dash-to-dock](https://aur.archlinux.org/packages/gnome-shell-extension-dash-to-dock/)
@@ -46,6 +45,7 @@ Arch Linux
 - debtap
 - fkill
 - [howdoi](https://github.com/gleitz/howdoi)
+- ttf-meslo
 
 ## rustup
 
