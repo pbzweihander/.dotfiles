@@ -18,6 +18,10 @@ WHITE="\[$(tput setaf 7)\]"
 export PS1="${GREEN}\\u@\\h${RESET}${BOLD}${WHITE}:${RESET}${CYAN}\\w${RESET}${BOLD}${WHITE}\\$ ${RESET}"
 
 # aliases
+if [ -f ~/.sh_aliases ]; then
+    source ~/.sh_aliases
+fi
+
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi

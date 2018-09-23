@@ -71,6 +71,10 @@ zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 #
 
 # aliases
+if [ -f ~/.sh_aliases ]; then
+    source ~/.sh_aliases
+fi
+
 if [ -f ~/.zsh_aliases ]; then
     source ~/.zsh_aliases
 fi

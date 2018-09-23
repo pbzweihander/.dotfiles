@@ -1,0 +1,85 @@
+#
+# basic commands
+#
+
+alias rm='rm -i'
+alias rmf='rm -f'
+alias rmr='rm -ir'
+alias rmrf='rm -rf'
+alias cp='cp -i'
+alias cpr='cp -ir'
+alias cpf='cp -f'
+alias cprf='cp -rf'
+alias mv='mv -i'
+alias mvf='mv -f'
+
+# color=auto
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+
+# change directory
+alias ccd='cd ..'
+alias cdd='cd $OLDPWD'
+
+#
+# rust
+#
+
+# cargo
+alias ci='cargo init'
+alias cib='cargo init --bin'
+alias cn='cargo new'
+alias cnb='cargo new --bin'
+alias cc='cargo check'
+alias cca='cargo check --all-targets'
+alias cb='cargo build'
+alias cbr='cargo build --release'
+alias ct='cargo test'
+alias ctb='cargo test --bin'
+alias cr='cargo run'
+alias crb='cargo run --bin'
+alias cu='cargo update'
+alias ciu='cargo install-update'
+alias cpb='cargo publish'
+alias cclr='cargo clean'
+
+# clippy
+alias ccl='cargo clippy'
+
+# cargo-edit
+alias ca='cargo add'
+alias cug='cargo upgrade'
+alias crm='cargo rm'
+
+#
+# Docker
+#
+
+# dockviz
+alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+
+#
+# Gnome
+#
+
+# nautilus
+alias n.='nautilus .'
+
+#
+# etc
+#
+
+# bauerbill
+alias bb=bb-wrapper
+
+# vs-code
+alias c.='code .'
+
+# micro
+alias mi=micro
+
+# xclip
+alias xc='xclip -i -selection clipboard'
+alias xp='xclip -o -selection clipboard'
