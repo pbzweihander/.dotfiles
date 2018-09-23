@@ -57,6 +57,9 @@ alias crm='cargo rm'
 # Docker
 #
 
+# docker-compose
+alias dc=docker-compose
+
 # dockviz
 alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 
