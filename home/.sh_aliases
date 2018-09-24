@@ -70,17 +70,17 @@ alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock 
 #
 
 # nautilus
-alias n.='nautilus .'
+alias n.='nautilus . &'
 
 #
 # etc
 #
 
-# bauerbill
-alias bb=bb-wrapper
+# pakku
+alias pk=pakku
 
 # vs-code
-alias c.='code .'
+alias c.='code . &'
 
 # micro
 alias mi=micro
