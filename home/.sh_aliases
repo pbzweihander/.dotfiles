@@ -57,6 +57,8 @@ alias crm='cargo rm'
 # Docker
 #
 
+alias dk=docker
+
 # docker-compose
 alias dc=docker-compose
 
