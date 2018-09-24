@@ -10,7 +10,7 @@ Arch Linux
 - iw wpa_supplicant gnome-keyring
 - gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
 - vim mosh git tmux zsh wget xclip jq docker docker-compose rsync
-- htop glances
+- htop glances powertop
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code
 - cmake jdk8-openjdk go
@@ -18,21 +18,10 @@ Arch Linux
 - rustup musl
 - ocaml ocaml-findlib opam
 - httpie fd ripgrep exa bc
-- firefox libreoffice gimp vlc discord
-- alactritty
-
-### [multilib](https://wiki.archlinux.org/index.php/Multilib)
-
-- wine
-
-### [aur-archlinux](https://wiki.archlinux.org/index.php/unofficial_user_repositories#aur-archlinux)
-
-- [bauerbill](https://xyne.archlinux.ca/projects/bauerbill/)
-- [visual-studio-code-bin](https://aur.archlinux.org/packages/visual-studio-code-bin/)
-- [slack](https://aur.archlinux.org/packages/slack-desktop/)
-- [keybase](https://aur.archlinux.org/packages/keybase-bin/)
-- mingw-w64-gcc
-- pandoc-bin
+- firefox libreoffice gimp vlc pandoc
+- alacritty
+- code
+- kbfs keybase keybase-gui
 
 ## AUR
 
@@ -42,10 +31,10 @@ Arch Linux
   - [dash-to-dock](https://aur.archlinux.org/packages/gnome-shell-extension-dash-to-dock/)
   - [no-topleft-hot-corner](https://aur.archlinux.org/packages/gnome-shell-extension-no-topleft-hot-corner/)
   - [topicons-plus](https://aur.archlinux.org/packages/gnome-shell-extension-topicons-plus/)
-- debtap
 - fkill
-- [howdoi](https://github.com/gleitz/howdoi)
 - ttf-meslo
+- slack
+- discord
 
 ## rustup
 
@@ -59,15 +48,10 @@ Arch Linux
 - [cargo-edit](https://github.com/killercup/cargo-edit)
 - [cargo-update](https://github.com/nabijaczleweli/cargo-update)
 - [bat](https://github.com/sharkdp/bat)
-- [cargo-bloat](https://github.com/RazrFalcon/cargo-bloat)
-- [cargo-expand](https://github.com/dtolnay/cargo-expand)
-- [cross](https://github.com/japaric/cross)
-- [cargo-audit](https://github.com/RustSec/cargo-audit)
 
 ## opam
 
 - merlin ocp-indent
-- [dune](https://github.com/ocaml/dune)
 - oasis
 
 ## etc
