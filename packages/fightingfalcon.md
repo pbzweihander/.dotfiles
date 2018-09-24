@@ -19,6 +19,7 @@ Arch Linux
 - ocaml ocaml-findlib opam
 - httpie fd ripgrep exa bc
 - firefox libreoffice gimp vlc discord
+- alactritty
 
 ### [multilib](https://wiki.archlinux.org/index.php/Multilib)
 
@@ -32,7 +33,6 @@ Arch Linux
 - [keybase](https://aur.archlinux.org/packages/keybase-bin/)
 - mingw-w64-gcc
 - pandoc-bin
-- alactritty
 
 ## AUR
 
