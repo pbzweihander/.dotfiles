@@ -25,6 +25,7 @@ Arch Linux
 
 ## AUR
 
+- pakku
 - gnome-shell-extensions
   - [arc-menu](https://aur.archlinux.org/packages/gnome-shell-extension-arc-menu-git/)
   - [arch-update](https://aur.archlinux.org/packages/gnome-shell-extension-arch-update/)
