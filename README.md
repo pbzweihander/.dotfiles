@@ -12,5 +12,7 @@
   - home/ : dotfiles for `~/`
     - .config/ : config files for `~/.config/`
     - ln.sh : symbolic link generator for basic dotfiles
-  - packages/ : installed package list of machines
+  - packages/ : list of installed packages on machines
+    - [fightingfalcon.md](packages/fightingfalcon.md)
+    - [litvyak.md](packages/litvyak.md)
   - services/ : systemd service files

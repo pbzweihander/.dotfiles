@@ -1,6 +1,16 @@
 # fightingfalcon
 
-Arch Linux
+_fightingfalcon_, the personal notebook
+
+- Samsung NT501R3M
+  - CPU: Intel Pentium 4415U
+  - RAM: 4G DDR4
+  - SSD: M.2 128GB
+  - VGA: Intel HD Graphics
+  - Display: 33.7cm FHD 1920x1080
+  - Size: 318.4 x 224.5 x 18.95mm
+  - Weight: 1.45kg
+  - OS: Arch Linux
 
 ## pacman
 
