@@ -14,7 +14,7 @@ Arch Linux
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code
 - cmake jdk8-openjdk go
-- python python-pip python2 python2-pip
+- python python2 python-pip python-virtualenv python2-pip
 - rustup musl
 - ocaml ocaml-findlib opam
 - httpie fd ripgrep exa bc
