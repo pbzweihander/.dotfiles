@@ -14,12 +14,13 @@ _fightingfalcon_, the personal notebook
 
 ## pacman
 
-- base base-devel grub sudo openssh
+- base base-devel openssh
 - mesa xf86-video-intel
-- networkmanager network-manager-applet
-- iw wpa_supplicant gnome-keyring
+- networkmanager network-manager-applet iw wpa_supplicant
+- archlinux-keyring gnome-keyring
 - gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
-- vim mosh git tmux zsh wget xclip jq docker docker-compose rsync
+- vim mosh git tmux zsh wget httpie xclip rsync fd ripgrep exa
+- docker docker-compose
 - htop glances powertop
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code
@@ -27,7 +28,7 @@ _fightingfalcon_, the personal notebook
 - python python2 python-pip python-virtualenv python2-pip
 - rustup musl
 - ocaml ocaml-findlib opam
-- httpie fd ripgrep exa bc
+- nodejs npm
 - firefox libreoffice gimp vlc pandoc
 - alacritty
 - code
@@ -64,6 +65,11 @@ _fightingfalcon_, the personal notebook
 
 - merlin ocp-indent
 - oasis
+
+## npm
+
+- @angular/cli
+- typescript
 
 ## etc
 
