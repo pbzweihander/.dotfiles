@@ -24,36 +24,6 @@ alias ccd='cd ..'
 alias cdd='cd $OLDPWD'
 
 #
-# rust
-#
-
-# cargo
-alias ci='cargo init'
-alias cib='cargo init --bin'
-alias cn='cargo new'
-alias cnb='cargo new --bin'
-alias cc='cargo check'
-alias cca='cargo check --all-targets'
-alias cb='cargo build'
-alias cbr='cargo build --release'
-alias ct='cargo test'
-alias ctb='cargo test --bin'
-alias cr='cargo run'
-alias crb='cargo run --bin'
-alias cu='cargo update'
-alias ciu='cargo install-update'
-alias cpb='cargo publish'
-alias cclr='cargo clean'
-
-# clippy
-alias ccl='cargo clippy'
-
-# cargo-edit
-alias ca='cargo add'
-alias cug='cargo upgrade'
-alias crm='cargo rm'
-
-#
 # Docker
 #
 
