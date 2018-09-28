@@ -21,7 +21,7 @@ _fightingfalcon_, the personal notebook
 - gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
 - vim mosh git tmux zsh wget httpie xclip rsync fd ripgrep exa
 - docker docker-compose
-- htop glances powertop
+- htop glances powertop lshw
 - ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code
 - cmake jdk8-openjdk go
@@ -29,7 +29,7 @@ _fightingfalcon_, the personal notebook
 - rustup musl
 - ocaml ocaml-findlib opam
 - nodejs npm
-- firefox libreoffice gimp vlc pandoc
+- firefox libreoffice gimp vlc pandoc texlive-most texlive-langkorean
 - alacritty
 - code
 - kbfs keybase keybase-gui
