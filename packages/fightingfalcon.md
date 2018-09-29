@@ -17,12 +17,11 @@ _fightingfalcon_, the personal notebook
 - base base-devel openssh
 - mesa xf86-video-intel
 - networkmanager network-manager-applet iw wpa_supplicant
-- archlinux-keyring gnome-keyring
-- gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
+- archlinux-keyring
+- plasma dolphin
 - vim mosh git tmux zsh wget httpie xclip rsync fd ripgrep exa
 - docker docker-compose
 - htop glances powertop lshw
-- ibus ibus-hangul
 - powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code
 - cmake jdk8-openjdk go
 - python python2 python-pip python-virtualenv python2-pip
@@ -37,12 +36,7 @@ _fightingfalcon_, the personal notebook
 ## AUR
 
 - pakku
-- gnome-shell-extensions
-  - [arc-menu](https://aur.archlinux.org/packages/gnome-shell-extension-arc-menu-git/)
-  - [arch-update](https://aur.archlinux.org/packages/gnome-shell-extension-arch-update/)
-  - [dash-to-dock](https://aur.archlinux.org/packages/gnome-shell-extension-dash-to-dock/)
-  - [no-topleft-hot-corner](https://aur.archlinux.org/packages/gnome-shell-extension-no-topleft-hot-corner/)
-  - [topicons-plus](https://aur.archlinux.org/packages/gnome-shell-extension-topicons-plus/)
+- nabi
 - fkill
 - ttf-meslo
 - slack
