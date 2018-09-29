@@ -28,7 +28,8 @@ _fightingfalcon_, the personal notebook
 - rustup musl
 - ocaml ocaml-findlib opam
 - nodejs npm
-- firefox libreoffice gimp vlc pandoc texlive-most texlive-langkorean
+- firefox libreoffice gimp vlc qpdfview
+- pandoc texlive-most texlive-langkorean
 - alacritty
 - code
 - kbfs keybase keybase-gui
