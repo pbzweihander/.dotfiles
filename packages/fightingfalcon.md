@@ -28,8 +28,9 @@ _fightingfalcon_, the personal notebook
 - ocaml ocaml-findlib opam
 - nodejs npm
 - budgie-desktop
-- eog evince gedit gnome-calculator gnome-control-center
-- gnome-screenshot nautilus network-manager-applet
+- eog evince gedit nautilus network-manager-applet
+- gnome-*
+  - calculator control-center screenshot backgrounds
 - ibus ibus-hangul
 - firefox libreoffice gimp vlc
 - pandoc texlive-most texlive-langkorean
