@@ -16,7 +16,7 @@ _fightingfalcon_, the personal notebook
 
 - base base-devel openssh
 - mesa xf86-video-intel
-- networkmanager iw wpa_supplicant
+- networkmanager network-manager-applet iw wpa_supplicant
 - archlinux-keyring gnome-keyring
 - vim mosh git tmux zsh wget httpie xclip rsync fd ripgrep exa
 - docker docker-compose
@@ -27,10 +27,7 @@ _fightingfalcon_, the personal notebook
 - rustup musl
 - ocaml ocaml-findlib opam
 - nodejs npm
-- budgie-desktop
-- eog evince gedit nautilus network-manager-applet
-- gnome-*
-  - calculator control-center screenshot backgrounds
+- budgie-desktop gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
 - ibus ibus-hangul
 - firefox libreoffice gimp vlc
 - pandoc texlive-most texlive-langkorean
