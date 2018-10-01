@@ -20,7 +20,7 @@ _fightingfalcon_, the personal notebook
 - archlinux-keyring gnome-keyring
 - vim mosh git tmux zsh wget httpie xclip rsync fd ripgrep exa bat
 - docker docker-compose
-- htop glances powertop lshw
+- htop glances powertop lshw lsof
 - powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code
 - cmake jdk8-openjdk go
 - python python2 python-pip python-virtualenv python2-pip
