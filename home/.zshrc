@@ -116,6 +116,9 @@ bindkey '^[[1;3C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;3D' backward-word
 
+# bat
+export BAT_THEME="Sublime Snazzy"
+
 # local settings
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
