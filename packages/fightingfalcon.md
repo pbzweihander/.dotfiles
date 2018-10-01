@@ -18,7 +18,7 @@ _fightingfalcon_, the personal notebook
 - mesa xf86-video-intel
 - networkmanager network-manager-applet iw wpa_supplicant
 - archlinux-keyring gnome-keyring
-- vim mosh git tmux zsh wget httpie xclip rsync fd ripgrep exa
+- vim mosh git tmux zsh wget httpie xclip rsync fd ripgrep exa bat
 - docker docker-compose
 - htop glances powertop lshw
 - powerline-fonts noto-fonts-cjk noto-fonts-emoji ttf-fira-code
@@ -54,7 +54,6 @@ _fightingfalcon_, the personal notebook
 
 - [cargo-edit](https://github.com/killercup/cargo-edit)
 - [cargo-update](https://github.com/nabijaczleweli/cargo-update)
-- [bat](https://github.com/sharkdp/bat)
 
 ## opam
 
