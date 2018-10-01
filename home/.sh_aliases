@@ -21,6 +21,8 @@ alias diff='diff --color=auto'
 
 # change directory
 alias ccd='cd ..'
+alias cccd='cd ../..'
+alias ccccd='cd ../../..'
 alias cdd='cd $OLDPWD'
 
 #
