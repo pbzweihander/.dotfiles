@@ -112,8 +112,8 @@ inoremap <S-Down> <Esc>:m+<CR>
 "
 
 try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'itchyny/lightline.vim'
+
     Plug 'simnalamburt/vim-mundo'
     Plug 'tpope/vim-git'
     Plug 'tpope/vim-fugitive'
@@ -129,7 +129,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     " Visual
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'ntpeters/vim-better-whitespace'
-    Plug 'junegunn/seoul256.vim'
+    Plug 'connorholyday/vim-snazzy'
 
     " Syntax
     Plug 'vim-scripts/indentpython.vim'
@@ -143,9 +143,6 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     "Plug 'maralla/completor.vim'
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
-
-" vim-airline
-let g:airline_powerline_fonts = 1
 
 " vim-fugitive
 nnoremap <leader>g :Git
@@ -172,42 +169,7 @@ syntax on
 let g:rustfmt_autosave = 1
 
 
-"
-" Beautiful vim
-"
-
-set background=dark
-let g:seoul256_background = 233
-colo seoul256
-let s:backcolor = 234
-
-if !exists('s:rgb_map')
-    let s:rgb_map = {
-                \ 'NONE': 'NONE',
-                \ 'white': '#FFFFFF', 'black': '#191919',
-                \ 16: '#000000', 160: '#D70000',
-                \ 226: '#FFFF00', 233: '#171717',
-                \ 234: '#252525'}
-endif
-
-function! s:rs(item)
-    execute printf("highlight %s cterm=NONE gui=NONE", a:item)
-endfunction
-function! s:fg(item, color)
-    execute printf("highlight %s ctermfg=%s guifg=%s", a:item, a:color, get(s:rgb_map, a:color))
-endfunction
-function! s:bg(item, color)
-    execute printf("highlight %s ctermbg=%s guibg=%s", a:item, a:color, get(s:rgb_map, a:color))
-endfunction
-
-call s:fg('MatchParen', 226)
-call s:bg('MatchParen', 16)
-
-call s:bg('ExtraWhitespace', 160)
-if &softtabstop < 4 || !&expandtab
-    call s:bg('IndentGuidesOdd', 'NONE')
-else
-    let g:indent_guides_guide_size = 1
-    call s:bg('IndentGuidesOdd', s:backcolor)
-endif
-call s:bg('IndentGuidesEven', s:backcolor)
+" theme
+colorscheme snazzy
+let g:SnazzyTransparent = 1
+let g:lightline = { 'colorscheme': 'snazzy', }
