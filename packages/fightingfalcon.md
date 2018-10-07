@@ -29,7 +29,7 @@ _fightingfalcon_, the personal notebook
 - nodejs npm
 - budgie-desktop gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
 - ibus ibus-hangul
-- firefox libreoffice gimp vlc
+- firefox libreoffice imagemagick gimp inkscape vlc
 - pandoc texlive-most texlive-langkorean
 - alacritty
 - code
