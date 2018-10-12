@@ -1,3 +1,3 @@
 {
-    "Alt-Delete": "DeleteWordRight",
+    "ShiftTab": "OutdentSelection,OutdentLine"
 }
