@@ -38,3 +38,12 @@ musl-build() {
 howto() {
     docker run --rm -it pbzweihander/howto $*
 }
+
+#
+# Gnome
+#
+
+# evince
+ev() {
+    evince $* &
+}
