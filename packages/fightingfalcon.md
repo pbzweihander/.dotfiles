@@ -57,8 +57,10 @@ _fightingfalcon_, the personal notebook
 
 ## opam
 
-- merlin ocp-indent
+- ocp-indent
+- earlybird
 - oasis
+- dune
 
 ## npm
 
