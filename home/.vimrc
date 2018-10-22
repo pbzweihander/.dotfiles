@@ -53,8 +53,6 @@ set wildmode=longest,full
 
 let g:mapleader = ","
 
-" Easy Command-Line Mode
-nnoremap ; :
 " Easy Home/End
 inoremap <C-a> <ESC>I
 inoremap <C-e> <ESC>A
@@ -77,18 +75,6 @@ nnoremap <silent> <C-h> <C-w><C-h>
 nnoremap <silent> <C-j> <C-w><C-j>
 nnoremap <silent> <C-k> <C-w><C-k>
 nnoremap <silent> <C-l> <C-w><C-l>
-" Tab Navigations
-nnoremap <esc>t :tabnew<CR>
-nnoremap <esc>T :-tabnew<CR>
-nnoremap <esc>1 1gt
-nnoremap <esc>2 2gt
-nnoremap <esc>3 3gt
-nnoremap <esc>4 4gt
-nnoremap <esc>5 5gt
-nnoremap <esc>6 6gt
-nnoremap <esc>7 7gt
-nnoremap <esc>8 8gt
-nnoremap <esc>9 9gt
 " Tab Navigations
 nnoremap <a-t> :tabnew<CR>
 nnoremap <a-T> :-tabnew<CR>
@@ -140,7 +126,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     autocmd BufNewFile,BufRead *.Caddyfile set syntax=caddyfile
 
     " Auto completion
-    "Plug 'maralla/completor.vim'
+    Plug 'maralla/completor.vim'
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 
@@ -168,8 +154,8 @@ syntax on
 " rustfmt
 let g:rustfmt_autosave = 1
 
-
 " theme
 colorscheme snazzy
 let g:SnazzyTransparent = 1
 let g:lightline = { 'colorscheme': 'snazzy', }
+
