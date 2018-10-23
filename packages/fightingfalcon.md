@@ -27,6 +27,7 @@ _fightingfalcon_, the personal notebook
 - rustup musl
 - ocaml ocaml-findlib opam
 - nodejs npm
+- coq coqide
 - budgie-desktop gnome gnome-tweaks adapta-gtk-theme papirus-icon-theme
 - ibus ibus-hangul
 - firefox libreoffice imagemagick gimp inkscape vlc
@@ -54,6 +55,7 @@ _fightingfalcon_, the personal notebook
 
 - [cargo-edit](https://github.com/killercup/cargo-edit)
 - [cargo-update](https://github.com/nabijaczleweli/cargo-update)
+- [tealdeer](https://github.com/dbrgn/tealdeer)
 
 ## opam
 
