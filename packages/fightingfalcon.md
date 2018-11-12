@@ -38,7 +38,7 @@ _fightingfalcon_, the personal notebook
 
 ## AUR
 
-- pakku
+- yay
 - fkill
 - ttf-meslo
 - slack
