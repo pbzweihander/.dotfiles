@@ -48,8 +48,10 @@ alias n.='nautilus . &'
 # etc
 #
 
-# pakku
-alias pk=pakku
+# arch package managers
+alias ya=yay
+alias pk=yay
+alias pc=pacman
 
 # vs-code
 alias c.='code . &'
@@ -60,3 +62,7 @@ alias mi=micro
 # xclip
 alias xc='xclip -i -selection clipboard'
 alias xp='xclip -o -selection clipboard'
+
+# python coverage
+alias cv='coverage run --branch'
+alias cvr='coverage report -m'
