@@ -1,7 +1,7 @@
 # vim: noexpandtab sw=8
 [user]
 	name = pbzweihander
-	email = sd852456@naver.com
+	email = pbzweihander@gmail.com
 [core]
 	editor = micro
 	pager = less -+XF -Qc
