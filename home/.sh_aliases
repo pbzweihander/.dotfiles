@@ -53,8 +53,11 @@ alias ya=yay
 alias pk=yay
 alias pc=pacman
 
-# vs-code
+# vscode
 alias c.='code . &'
+
+# idea
+alias i.='idea . &'
 
 # micro
 alias mi=micro
@@ -62,7 +65,3 @@ alias mi=micro
 # xclip
 alias xc='xclip -i -selection clipboard'
 alias xp='xclip -o -selection clipboard'
-
-# python coverage
-alias cv='coverage run --branch'
-alias cvr='coverage report -m'
