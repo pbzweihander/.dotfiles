@@ -118,6 +118,7 @@ bindkey '^[[1;3D' backward-word
 
 # bat
 export BAT_THEME="Sublime Snazzy"
+export BAT_PAGER="less -RF"
 
 # local settings
 if [ -f ~/.zshrc.local ]; then
