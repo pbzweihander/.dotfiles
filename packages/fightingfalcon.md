@@ -43,6 +43,7 @@ _fightingfalcon_, the personal notebook
 - ttf-meslo
 - slack
 - discord
+- [tealdeer](https://github.com/dbrgn/tealdeer)
 
 ## rustup
 
@@ -55,7 +56,6 @@ _fightingfalcon_, the personal notebook
 
 - [cargo-edit](https://github.com/killercup/cargo-edit)
 - [cargo-update](https://github.com/nabijaczleweli/cargo-update)
-- [tealdeer](https://github.com/dbrgn/tealdeer)
 
 ## opam
 
