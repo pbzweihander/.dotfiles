@@ -105,6 +105,12 @@ if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
 
+if [ -d ~/.pyenv ]; then
+    export PATH="/home/thomas/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 # keybinding
 bindkey '^[[H' beginning-of-line
 bindkey '^[[1~' beginning-of-line
