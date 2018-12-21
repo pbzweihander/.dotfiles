@@ -34,6 +34,11 @@ alias dk=docker
 # docker-compose
 alias dc=docker-compose
 
+# docker-swarm
+alias ds="docker service"
+alias dst="docker stack"
+alias dsw="docker swarm"
+
 # dockviz
 alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 
