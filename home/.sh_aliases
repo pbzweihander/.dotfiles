@@ -61,8 +61,8 @@ alias pc=pacman
 # vscode
 alias c.='code . &'
 
-# idea
-alias i.='idea . &'
+# godot
+alias g.='godot-mono -e > /dev/null &'
 
 # micro
 alias mi=micro
