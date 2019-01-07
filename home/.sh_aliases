@@ -70,3 +70,7 @@ alias mi=micro
 # xclip
 alias xc='xclip -i -selection clipboard'
 alias xp='xclip -o -selection clipboard'
+
+# hangul
+alias ㅊㅇ=cd
+alias ㅣㄴ=ls
