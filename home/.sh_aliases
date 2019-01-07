@@ -62,7 +62,7 @@ alias pc=pacman
 alias c.='code . &'
 
 # godot
-alias g.='godot-mono -e > /dev/null &'
+alias g.='godot-mono -e > /dev/null 2> /dev/null &'
 
 # micro
 alias mi=micro
