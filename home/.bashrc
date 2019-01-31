@@ -39,6 +39,10 @@ if [ -d ~/.npm-global/bin ]; then
     export PATH="$HOME/.npm-global/bin:$PATH"
 fi
 
+if [ -d ~/.yarn/bin ]; then
+    export PATH="$HOME/.yarn/bin:$PATH"
+fi
+
 # sources
 if [ -f ~/.cgitc/init.bash ]; then
     source ~/.cgitc/init.bash

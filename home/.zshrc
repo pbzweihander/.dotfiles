@@ -96,6 +96,10 @@ if [ -d ~/.npm-global/bin ]; then
     export PATH="$HOME/.npm-global/bin:$PATH"
 fi
 
+if [ -d ~/.yarn/bin ]; then
+    export PATH="$HOME/.yarn/bin:$PATH"
+fi
+
 # sources
 if [ -f ~/.opam/opam-init/init.zsh ]; then
     source ~/.opam/opam-init/init.zsh
