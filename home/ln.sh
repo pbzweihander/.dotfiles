@@ -5,11 +5,9 @@ ln -rsf .sh_aliases ~/.sh_aliases
 
 # bash
 ln -rsf .bashrc ~/.bashrc
-ln -rsf .bash_aliases ~/.bash_aliases
 
 # zsh
 ln -rsf .zshrc ~/.zshrc
-ln -rsf .zsh_aliases ~/.zsh_aliases
 
 # vim
 ln -rsf .vimrc ~/.vimrc
@@ -21,13 +19,13 @@ ln -rsf .tmux.conf ~/.tmux.conf
 ln -rsf .gitconfig ~/.gitconfig
 ln -rsf .gitexclude ~/.gitexclude
 
-# ssh config
-mkdir -p ~/.ssh
-ln -rsf .ssh/config ~/.ssh/config
-
 #
 # config
 #
+
+# ssh
+mkdir -p ~/.ssh
+ln -rsf .ssh/config ~/.ssh/config
 
 # alacritty
 mkdir -p ~/.config/alacritty
