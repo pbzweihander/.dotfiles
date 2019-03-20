@@ -10,7 +10,7 @@ npm-debug.log     # npm
 .DS_Store
 .AppleDouble
 .LSOverride
-Icon
+Icon
 ._*
 
 # Files that might appear on external disk
@@ -44,3 +44,5 @@ $RECYCLE.BIN/
 
 # vim-obsession
 Session.vim
+
+.node-version
