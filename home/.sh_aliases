@@ -25,13 +25,23 @@ alias cccd='cd ../..'
 alias ccccd='cd ../../..'
 alias cdd='cd $OLDPWD'
 
-# ls or exa
-if hash exa 2>/dev/null; then
+# lsd or exa or ls
+if hash lsd 2> /dev/null; then
+    alias l='lsd --group-dirs first -- '
+    alias ls='lsd -F --group-dirs first -- '
+    alias la='lsd -aF --group-dirs first -- '
+    alias ll='lsd -lF --group-dirs first -- '
+    alias lla='lsd -alF --group-dirs first -- '
+    alias lt='lsd --tree -F --group-dirs first -- '
+    alias lta='lsd --tree -aF --group-dirs first -- '
+elif hash exa 2>/dev/null; then
     alias l='exa --group-directories-first'
     alias ls='exa -F --group-directories-first'
     alias la='exa -aF --group-directories-first'
     alias ll='exa -lgF --group-directories-first'
     alias lla='exa -algF --group-directories-first'
+    alias lt='exa -TF --group-directories-first'
+    alias lta='exa -TFa --group-directories-first'
 else
     alias l='ls --color=auto --group-directories-first'
     alias ls='ls --color=auto --group-directories-first'
