@@ -46,6 +46,10 @@ if hash vim 2>/dev/null; then
     alias vi=vim
 fi
 
+# systemctl
+alias sctl='sudo systemctl'
+alias jctl='sudo journalctl'
+
 #
 # Docker
 #
