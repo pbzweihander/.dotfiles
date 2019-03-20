@@ -100,6 +100,11 @@ if [ -d ~/.yarn/bin ]; then
     export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
+if [ -d ~/.nodenv/bin ]; then
+    export PATH="$HOME/.nodenv/bin:$PATH"
+    eval "$(nodenv init -)"
+fi
+
 # sources
 if [ -f ~/.opam/opam-init/init.zsh ]; then
     source ~/.opam/opam-init/init.zsh

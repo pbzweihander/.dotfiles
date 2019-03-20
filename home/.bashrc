@@ -86,6 +86,11 @@ if [ -d ~/.yarn/bin ]; then
     export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
+if [ -d ~/.nodenv/bin ]; then
+    export PATH="$HOME/.nodenv/bin:$PATH"
+    eval "$(nodenv init -)"
+fi
+
 # sources
 if [ -f ~/.cgitc/init.bash ]; then
     source ~/.cgitc/init.bash
