@@ -117,7 +117,15 @@ fi
 if [ -d ~/.pyenv ]; then
     export PATH="/home/thomas/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+
+    if hash pyenv-virtualenv 2> /dev/null; then
+        eval "$(pyenv virtualenv-init -)"
+    fi
+fi
+
+if hash virtualenvwrapper.sh 2> /dev/null; then
+    export WORKON_HOME=$HOME/.venvs
+    source virtualenvwrapper.sh
 fi
 
 # keybinding
