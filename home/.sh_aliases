@@ -120,6 +120,9 @@ alias g.='godot-mono -e > /dev/null 2> /dev/null &'
 # micro
 alias mi=micro
 
+# amp
+alias am=amp
+
 # xclip
 alias xc='xclip -i -selection clipboard'
 alias xp='xclip -o -selection clipboard'
