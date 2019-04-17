@@ -91,15 +91,18 @@ howto() {
 }
 
 rd() {
+    cargo doc
     PORT=${*:-8080}
     BASENAME=$(basename "$PWD")
-    docker run \
-        --rm -itd \
-        -p $PORT:8080 \
-        -v $PWD/target/doc:/tmp \
-        --name $BASENAME-doc \
-        svenstaro/miniserve:alpine /tmp
-    xdg-open http://localhost:$PORT/$BASENAME/index.html || true
+    if ! docker ps | grep $BASENAME-doc > /dev/null; then
+        docker run \
+            --rm -itd \
+            -p $PORT:8080 \
+            -v $PWD/target/doc:/tmp \
+            --name $BASENAME-doc \
+            svenstaro/miniserve:alpine /tmp
+    fi
+    xdg-open http://localhost:$PORT/$(echo $BASENAME | sed -e 's/-/_/g')/index.html || true
 }
 
 #
