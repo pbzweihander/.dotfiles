@@ -90,14 +90,16 @@ howto() {
     docker run --rm -it pbzweihander/howto $*
 }
 
-serve-doc() {
+rd() {
     PORT=${*:-8080}
+    BASENAME=$(basename "$PWD")
     docker run \
         --rm -itd \
         -p $PORT:8080 \
         -v $PWD/target/doc:/tmp \
-        --name $(basename "$PWD")-doc \
+        --name $BASENAME-doc \
         svenstaro/miniserve:alpine /tmp
+    xdg-open http://localhost:$PORT/$BASENAME/index.html || true
 }
 
 #
