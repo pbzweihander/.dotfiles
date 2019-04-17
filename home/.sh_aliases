@@ -90,6 +90,16 @@ howto() {
     docker run --rm -it pbzweihander/howto $*
 }
 
+serve-doc() {
+    PORT=${*:-8080}
+    docker run \
+        --rm -itd \
+        -p $PORT:8080 \
+        -v $PWD/target/doc:/tmp \
+        --name $(basename "$PWD")-doc \
+        svenstaro/miniserve:alpine /tmp
+}
+
 #
 # Gnome
 #
