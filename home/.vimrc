@@ -111,6 +111,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'junegunn/gv.vim'
     Plug 'justinmk/vim-dirvish'
     Plug 'editorconfig/editorconfig-vim'
+    Plug 'easymotion/vim-easymotion'
 
     " Visual
     Plug 'nathanaelkane/vim-indent-guides'
@@ -126,7 +127,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     autocmd BufNewFile,BufRead *.Caddyfile set syntax=caddyfile
 
     " Auto completion
-    Plug 'maralla/completor.vim'
+    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 
