@@ -64,22 +64,22 @@ alias jctl='sudo journalctl'
 # Docker
 #
 
-alias dk=docker
+alias dk="sudo docker"
 
 # docker-compose
-alias dc=docker-compose
+alias dc="sudo docker-compose"
 
 # docker-swarm
-alias ds="docker service"
-alias dst="docker stack"
-alias dsw="docker swarm"
+alias ds="sudo docker service"
+alias dst="sudo docker stack"
+alias dsw="sudo docker swarm"
 
 # dockviz
-alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+alias dockviz="sudo docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 
 # utilities
 musl-build() {
-    docker run \
+    sudo docker run \
         -v cargo-cache:/root/.cargo \
         -v "$PWD:/volume" \
         --rm -it clux/muslrust cargo build --release
@@ -87,15 +87,15 @@ musl-build() {
 }
 
 howto() {
-    docker run --rm -it pbzweihander/howto $*
+    sudo docker run --rm -it pbzweihander/howto $*
 }
 
 rd() {
     cargo doc
     PORT=${*:-8080}
     BASENAME=$(basename "$PWD")
-    if ! docker ps | grep $BASENAME-doc > /dev/null; then
-        docker run \
+    if ! sudo docker ps | grep $BASENAME-doc > /dev/null; then
+        sudo docker run \
             --rm -itd \
             -p $PORT:8080 \
             -v $PWD/target/doc:/tmp \
