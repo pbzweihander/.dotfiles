@@ -145,3 +145,7 @@ alias xp='xclip -o -selection clipboard'
 # hangul-misstypings
 alias ㅊㅇ=cd
 alias ㅣㄴ=ls
+
+# sudo vim
+alias svim="sudo -E vim"
+
