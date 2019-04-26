@@ -160,3 +160,6 @@ colorscheme snazzy
 let g:SnazzyTransparent = 1
 let g:lightline = { 'colorscheme': 'snazzy', }
 
+" editorconfig
+let g:EditorConfig_core_mode = 'external_command'
+
