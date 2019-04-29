@@ -64,15 +64,15 @@ alias jctl='sudo journalctl'
 # Docker
 #
 
-alias dk="sudo docker"
+alias dk="sudo -E docker"
 
 # docker-compose
-alias dc="sudo docker-compose"
+alias dc="sudo -E docker-compose"
 
 # docker-swarm
-alias ds="sudo docker service"
-alias dst="sudo docker stack"
-alias dsw="sudo docker swarm"
+alias ds="sudo -E docker service"
+alias dst="sudo -E docker stack"
+alias dsw="sudo -E docker swarm"
 
 # dockviz
 alias dockviz="sudo docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
