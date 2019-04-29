@@ -64,38 +64,27 @@ alias jctl='sudo journalctl'
 # Docker
 #
 
-alias dk="sudo -E docker"
+if groups | grep -qw docker; then
+    alias dk="docker"
+    alias dc="docker-compose"
+    alias ds="docker service"
+    alias dst="docker stack"
+    alias dsw="docker swarm"
+else
+    alias dk="sudo -E docker"
+    alias dc="sudo -E docker-compose"
+    alias ds="sudo -E docker service"
+    alias dst="sudo -E docker stack"
+    alias dsw="sudo -E docker swarm"
+fi
 
-# docker-compose
-alias dc="sudo -E docker-compose"
-
-# docker-swarm
-alias ds="sudo -E docker service"
-alias dst="sudo -E docker stack"
-alias dsw="sudo -E docker swarm"
-
-# dockviz
-alias dockviz="sudo docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
-
-# utilities
-musl-build() {
-    sudo docker run \
-        -v cargo-cache:/root/.cargo \
-        -v "$PWD:/volume" \
-        --rm -it clux/muslrust cargo build --release
-    sudo chown -R $USER:$USER target
-}
-
-howto() {
-    sudo docker run --rm -it pbzweihander/howto $*
-}
-
+# rustdoc
 rd() {
     cargo doc
     PORT=${*:-8080}
     BASENAME=$(basename "$PWD")
-    if ! sudo docker ps | grep $BASENAME-doc > /dev/null; then
-        sudo docker run \
+    if ! docker ps | grep $BASENAME-doc > /dev/null; then
+        docker run \
             --rm -itd \
             -p $PORT:8080 \
             -v $PWD/target/doc:/tmp \
