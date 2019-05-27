@@ -58,6 +58,7 @@ fi
 
 # systemctl
 alias sctl='sudo systemctl'
+alias usctl='systemctl --user'
 alias jctl='sudo journalctl'
 
 #
