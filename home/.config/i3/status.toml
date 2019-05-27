@@ -1,0 +1,46 @@
+theme = "slick"
+icons = "awesome"
+
+[[block]]
+block = "focused_window"
+
+[[block]]
+block = "toggle"
+text = "monitor"
+command_state = "xrandr | grep DP1\\ connected\\ 19 | grep -v eDP1"
+command_on = "xrandr --output DP1 --above eDP1 --auto"
+command_off = "xrandr --output DP1 --off"
+interval = 10
+
+[[block]]
+block = "pacman"
+
+[[block]]
+block = "cpu"
+
+[[block]]
+block = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "temperature"
+collapsed = false
+
+[[block]]
+block = "net"
+device = "wlp2s0"
+ssid = true
+speed_up = false
+speed_down = false
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "battery"
+driver = "upower"
+format = "{percentage}"
+
+[[block]]
+block = "time"
