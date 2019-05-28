@@ -35,6 +35,9 @@ speed_up = false
 speed_down = false
 
 [[block]]
+block = "backlight"
+
+[[block]]
 block = "sound"
 
 [[block]]
