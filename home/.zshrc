@@ -37,10 +37,6 @@ if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
     zplug 'voronkovich/gitignore.plugin.zsh'
 
     zplug load
-
-    if ! zplug check; then
-        zplug install
-    fi
 else
     PS1='%n@%m:%~%(!.#.$) '
 fi
