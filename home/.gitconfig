@@ -3,7 +3,7 @@
 	name = pbzweihander
 	email = pbzweihander@gmail.com
 [core]
-	editor = micro
+	editor = vim
 	pager = less -+XF -Qc
 	excludesfile = ~/.gitexclude
 	fscache = yes
