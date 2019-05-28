@@ -136,6 +136,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym Print exec scrot 'Screenshot from %Y-%m-%d %H-%M-%S.png' -e 'mv "$f" ~/Pictures/'
+bindsym Control+Print exec gnome-screenshot -i
+
 mode "resize" {
     bindsym h resize shrink width 10 px or 10 ppt
     bindsym j resize grow height 10 px or 10 ppt
@@ -163,7 +166,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-set $Locker i3lock -e -c 000000 && sleep 1
+set $Locker scrot /tmp/lock-screen.png && convert /tmp/lock-screen.png -scale 2% -scale 5000% /tmp/lock-screen.png && i3lock -e -i /tmp/lock-screen.png && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
