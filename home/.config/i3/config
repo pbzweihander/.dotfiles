@@ -173,7 +173,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-set $Locker scrot /tmp/lock-screen.png && convert /tmp/lock-screen.png -scale 2% -scale 5000% /tmp/lock-screen.png && i3lock -e -i /tmp/lock-screen.png && sleep 1
+set $Locker ~/utils/lock.sh
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
