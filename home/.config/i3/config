@@ -31,7 +31,7 @@ font pango:Meslo LG S 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec WINIT_HIDPI_FACTOR=1.0 alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
