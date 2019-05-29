@@ -14,8 +14,7 @@ if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
     zplug "zplug/zplug", hook-build: "zplug --self-manage"
 
     zplug "pbzweihander/truck"
-    #zplug "simnalamburt/cgitc"
-    zplug "pbzweihander/cgitc", at:fixed-interpolation
+    zplug "pbzweihander/cgitc"
     zplug "simnalamburt/zsh-expand-all"
 
     zplug "zsh-users/zsh-completions"
