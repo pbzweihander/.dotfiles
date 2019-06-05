@@ -21,6 +21,7 @@ set noshowmode
 set nofoldenable
 set noswapfile
 set nowrap
+set showcmd
 
 " Indentation
 set cindent
