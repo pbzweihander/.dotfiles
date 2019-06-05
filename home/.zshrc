@@ -110,12 +110,16 @@ if [ -f ~/.fzf.zsh ]; then
 fi
 
 if [ -d ~/.pyenv ]; then
-    export PATH="/home/thomas/.pyenv/bin:$PATH"
+    export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
 
     if hash pyenv-virtualenv 2> /dev/null; then
         eval "$(pyenv virtualenv-init -)"
     fi
+fi
+
+if [ -d ~/.poetry ]; then
+    export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
 if hash virtualenvwrapper.sh 2> /dev/null; then
