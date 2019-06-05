@@ -1,0 +1,4 @@
+remove mod1 = Alt_R
+keycode 108 = Hangul
+remove control = Control_R
+keycode 105 = Hangul_Hanja
