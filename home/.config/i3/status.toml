@@ -5,14 +5,6 @@ icons = "awesome"
 block = "focused_window"
 
 [[block]]
-block = "toggle"
-text = "monitor"
-command_state = "xrandr | grep DP1\\ connected\\ 1920x1200"
-command_on = "xrandr --output DP1 --above eDP1 --auto"
-command_off = "xrandr --output DP1 --off"
-interval = 10
-
-[[block]]
 block = "pacman"
 
 [[block]]
