@@ -4,6 +4,9 @@ if [[ -a /proc/version ]] && grep -q Microsoft /proc/version; then
   unsetopt BG_NICE
 fi
 
+RPROMPT='%*'
+EDITOR=vim
+
 #
 # zplug
 #
@@ -12,6 +15,8 @@ if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
     source ~/.zplug/init.zsh
 
     zplug "zplug/zplug", hook-build: "zplug --self-manage"
+
+    zplug "plugins/vi-mode", from:oh-my-zsh
 
     zplug "pbzweihander/truck"
     zplug "pbzweihander/cgitc"
@@ -28,12 +33,13 @@ if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
         zplug "mafredri/zsh-async"
         zplug "sindresorhus/pure", use:pure.zsh, as:theme
     else
-        zplug 'plugins/shrink-path', from:oh-my-zsh
-        zplug 'simnalamburt/shellder', as:theme
+        zplug "plugins/shrink-path", from:oh-my-zsh
+        zplug "simnalamburt/shellder", as:theme
         export DEFAULT_USER="$USER"
     fi
 
-    zplug 'voronkovich/gitignore.plugin.zsh'
+    zplug "voronkovich/gitignore.plugin.zsh"
+    zplug "rupa/z", use:z.sh
 
     zplug load
 else
