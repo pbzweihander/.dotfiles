@@ -52,8 +52,6 @@ set wildmode=longest,full
 " Key Mappings
 "
 
-let g:mapleader = ","
-
 " Easy Home/End
 inoremap <C-a> <ESC>I
 inoremap <C-e> <ESC>A
