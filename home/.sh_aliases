@@ -51,8 +51,11 @@ else
     alias lh='ls --color=auto --group-directories-first -AlhF'
 fi
 
-# no vi!
-if hash vim 2>/dev/null; then
+# neovim or vim
+if hash nvim 2>/dev/null; then
+    alias vim=nvim
+    alias vi=nvim
+elif hash vim 2>/dev/null; then
     alias vi=vim
 fi
 
@@ -128,9 +131,14 @@ alias mi=micro
 # amp
 alias am=amp
 
-# xclip
-alias xc='xclip -i -selection clipboard'
-alias xp='xclip -o -selection clipboard'
+# clipboard
+if hash wl-copy 2>/dev/null; then
+    alias xc='wl-copy'
+    alias xp='wl-paste'
+else
+    alias xc='xclip -i -selection clipboard'
+    alias xp='xclip -o -selection clipboard'
+fi
 
 # hangul-misstypings
 alias ㅊㅇ=cd
