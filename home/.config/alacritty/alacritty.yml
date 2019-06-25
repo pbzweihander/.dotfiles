@@ -89,19 +89,19 @@ tabspaces: 4
 font:
   # Normal (roman) font face
   normal:
-    family: Meslo LG S
+    family: Victor Mono SemiBold
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
   # Bold font face
   bold:
-    family: Meslo LG S
+    family: Victor Mono SemiBold
     # The `style` can be specified to pick a specific face.
     #style: Bold
 
   # Italic font face
   italic:
-    family: Meslo LG S
+    family: Victor Mono SemiBold
     # The `style` can be specified to pick a specific face.
     #style: Italic
 
@@ -120,12 +120,6 @@ font:
   glyph_offset:
     x: 0
     y: 0
-
-# Display the time it takes to redraw each frame.
-render_timer: false
-
-# Keep the log file after quitting Alacritty.
-persistent_logging: false
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
