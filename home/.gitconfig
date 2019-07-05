@@ -3,8 +3,8 @@
 	name = pbzweihander
 	email = pbzweihander@gmail.com
 [core]
-	editor = vim
-	pager = less -+XF -Qc
+	editor = nvim
+	pager = less -XFQc
 	excludesfile = ~/.gitexclude
 	fscache = yes
 	autocrlf = no
@@ -17,6 +17,7 @@
 [diff]
 	renames = copies
 	tool = vimdiff
+	compactionHeuristic = true
 [difftool]
 	prompt = no
 [fetch]
@@ -38,3 +39,9 @@
 	smudge = git-lfs smudge -- %f
 [alias]
 	g = "log --graph --pretty=\"format:%C(auto)%h%d %s%x1b[38;5;022m% GS%x1b[0m\""
+[pager]
+	log = /usr/share/git/diff-highlight/diff-highlight | less
+	show = /usr/share/git/diff-highlight/diff-highlight | less
+	diff = /usr/share/git/diff-highlight/diff-highlight | less
+[interactive]
+	diffFilter = /usr/share/git/diff-highlight/diff-highlight
