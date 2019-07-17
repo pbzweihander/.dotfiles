@@ -46,3 +46,4 @@ $RECYCLE.BIN/
 Session.vim
 
 .node-version
+.python-version
