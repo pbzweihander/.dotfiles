@@ -11,9 +11,16 @@ set $term alacritty
 set $floating_term alacritty --class floatingAlacritty
 set $menu rofi -theme Adapta-Nokto -show run | xargs swaymsg exec
 
-set $lock grim /tmp/lock-screen.png &&\
-        convert /tmp/lock-screen.png -scale 2.5% -scale 4000% /tmp/lock-screen.png &&\
-        swaylock -f -e -i /tmp/lock-screen.png -c 000000
+set $lock for OUTPUT in $(swaymsg -rt get_outputs | jq -r .[].name); do \
+        grim -o $OUTPUT /tmp/lock-screen-${OUTPUT}.png &&\
+        convert \
+            /tmp/lock-screen-${OUTPUT}.png \
+            -scale 2.5% \
+            -scale 4000% \
+            /tmp/lock-screen-${OUTPUT}.png &&\
+        echo -i ${OUTPUT}:/tmp/lock-screen-${OUTPUT}.png; done |\
+        xargs swaylock -fec 000000 &&\
+        rm -f /tmp/lock-screen-*.png
 set $capture grim "$(xdg-user-dir PICTURES)/$(date +'Screenshot from %Y-%m-%d %H-%M-%S.png')"
 set $capture_region grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/$(date +'Screenshot from %Y-%m-%d %H-%M-%S.png')"
 set $alsamixer alacritty --class floatingAlsamixer -e alsamixer
