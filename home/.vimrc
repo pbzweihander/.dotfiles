@@ -2,26 +2,24 @@
 " General Configs
 "
 
-set t_ut=
 scriptencoding utf-8
 set encoding=utf-8
 set fileencoding=utf-8
 set shell=/bin/bash
-set diffopt+=iwhite,vertical
 set pastetoggle=<F8>
 set scrolloff=3
-set switchbuf+=usetab,split
 set startofline
-set splitbelow
+set splitbelow splitright
 set nobackup
+set noswapfile
 if !has('nvim')
     set nocompatible
 endif
 set noshowmode
 set nofoldenable
-set noswapfile
 set nowrap
 set showcmd
+set signcolumn=yes
 
 " Indentation
 set cindent
@@ -38,6 +36,7 @@ set ignorecase
 set smartcase
 set hlsearch
 set nowrapscan
+set incsearch
 
 " Line Number Column
 set number
@@ -45,8 +44,6 @@ set cursorline
 " Pair Matching
 set matchpairs+=<:>
 set showmatch
-" Wildmenu
-set wildmode=longest,full
 
 "
 " Key Mappings
@@ -60,37 +57,35 @@ nnoremap <C-e> $
 vnoremap <C-a> ^
 vnoremap <C-e> $
 " Easy Delete Key
-vnoremap <backspace> "_d
-" Easy Newline Insert
-nnoremap <CR> o<ESC>
+vnoremap <silent> <backspace> "_d
 " Easy Indentation
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
+vnoremap <silent> <Tab> >gv
+vnoremap <silent> <S-Tab> <gv
 " Easy Splitting
 nnoremap <silent> <C-_> :split<CR>
 nnoremap <silent> <C-\> :vertical split<CR>
 " Easy Navigation
-nnoremap <silent> <C-h> <C-w><C-h>
-nnoremap <silent> <C-j> <C-w><C-j>
-nnoremap <silent> <C-k> <C-w><C-k>
-nnoremap <silent> <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
 " Tab Navigations
-nnoremap <a-t> :tabnew<CR>
-nnoremap <a-T> :-tabnew<CR>
-nnoremap <a-1> 1gt
-nnoremap <a-2> 2gt
-nnoremap <a-3> 3gt
-nnoremap <a-4> 4gt
-nnoremap <a-5> 5gt
-nnoremap <a-6> 6gt
-nnoremap <a-7> 7gt
-nnoremap <a-8> 8gt
-nnoremap <a-9> 9gt
+nnoremap <silent> <a-t> :tabnew<CR>
+nnoremap <silent> <a-T> :-tabnew<CR>
+nnoremap <silent> <a-1> 1gt
+nnoremap <silent> <a-2> 2gt
+nnoremap <silent> <a-3> 3gt
+nnoremap <silent> <a-4> 4gt
+nnoremap <silent> <a-5> 5gt
+nnoremap <silent> <a-6> 6gt
+nnoremap <silent> <a-7> 7gt
+nnoremap <silent> <a-8> 8gt
+nnoremap <silent> <a-9> 9gt
 " Line Moving
-nnoremap <S-Up> :m-2<CR>
-nnoremap <S-Down> :m+<CR>
-inoremap <S-Up> <Esc>:m-2<CR>
-inoremap <S-Down> <Esc>:m+<CR>
+nnoremap <silent> <S-Up> :m-2<CR>
+nnoremap <silent> <S-Down> :m+<CR>
+inoremap <silent> <S-Up> <Esc>:m-2<CR>
+inoremap <silent> <S-Down> <Esc>:m+<CR>
 
 "
 " Plugins
@@ -104,167 +99,126 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-endwise'
     Plug 'tpope/vim-sensible'
-    Plug 'tpope/vim-obsession'
-    Plug 'godlygeek/tabular'
     Plug 'vim-utils/vim-interruptless'
     Plug 'junegunn/gv.vim'
-    Plug 'justinmk/vim-dirvish'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'easymotion/vim-easymotion'
+    Plug 'airblade/vim-gitgutter'
     Plug '~/.fzf'
+    Plug 'junegunn/fzf.vim'
 
     " Visual
-    Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'Yggdroot/indentLine'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'connorholyday/vim-snazzy'
 
-    " Syntax
-    Plug 'vim-scripts/indentpython.vim'
-    "Plug 'scrooloose/syntastic'
-    Plug 'nvie/vim-flake8'
-    Plug 'rust-lang/rust.vim'
-    Plug 'isobit/vim-caddyfile'
-    autocmd BufNewFile,BufRead *.Caddyfile set syntax=caddyfile
+    " Languages
+    Plug 'leafgarland/typescript-vim'
 
-    " Auto completion
-    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+    " Language server and Auto completion
+    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+    if has('nvim')
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+        Plug 'Shougo/deoplete.nvim'
+        Plug 'roxma/nvim-yarp'
+        Plug 'roxma/vim-hug-neovim-rpc'
+    endif
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 
-" vim-fugitive
-nnoremap <leader>g :Git
+"
+" Plugin Configs
+"
 
-" vim-indent-guides
-nmap <leader>i <Plug>IndentGuidesToggle
-let g:indent_guides_auto_colors=0
-let g:indent_guides_start_level=2
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_default_mapping=0
+" Persistent history
+if has('persistent_undo')
+  let vimdir='$HOME/.vim'
+  let &runtimepath.=','.vimdir
+  let vimundodir=expand(vimdir.'/undodir')
+  call system('mkdir -p '.vimundodir)
+
+  let &undodir=vimundodir
+  set undofile
+endif
+
+" indentLine
+nnoremap <silent> <leader>i :IndentLinesToggle<CR>
+let g:indentLine_char='▏'
 
 " vim-better-whitespace
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
 
 " mundo.vim
 let g:mundo_right = 1
-nnoremap <leader>m :MundoToggle<CR>
-
-" Python Syntax
-let python_highlight_all=1
-syntax on
+nnoremap <silent> <leader>m :MundoToggle<CR>
 
 " theme
 colorscheme snazzy
 let g:SnazzyTransparent = 1
-"let g:lightline = { 'colorscheme': 'snazzy', }
+
+" lightline
+let g:lightline = {
+    \ 'colorscheme': 'snazzy',
+    \ 'active': {
+    \   'left': [
+    \     [ 'mode', 'paste' ],
+    \     [ 'gitbranch', 'readonly', 'filename', 'modified', 'lcstatus' ],
+    \   ],
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head',
+    \   'lcstatus': 'LanguageClient#serverStatusMessage',
+    \ },
+    \ }
 
 " editorconfig
 let g:EditorConfig_core_mode = 'external_command'
 
-"
-" coc
-"
-set hidden
-set nowritebackup
-set shortmess+=c
-set signcolumn=yes
+" language-server
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'python': ['~/.pyenv/shims/pyls'],
+    \ 'javascript': ['~/.yarn/bin/typescript-language-server', '--stdio'],
+    \ 'typescript': ['~/.yarn/bin/typescript-language-server', '--stdio'],
+    \ }
 
-let g:coc_start_at_startup = 0
+nnoremap <silent> <F1> :call LanguageClient_contextMenu()<CR>
+inoremap <silent> <F1> <ESC>:call LanguageClient_contextMenu()<CR>
+nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F12> :call LanguageClient#textDocument_references()<CR>
+inoremap <silent> <F12> <ESC>:call LanguageClient#textDocument_references()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+inoremap <silent> <F2> <ESC>:call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent> <leader>f :call LanguageClient#textDocument_formatting()<CR>
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" deoplete
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = '/usr/bin/python'
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" fzf
+let g:fzf_action = {
+    \ 'ctrl-q': 'wall | bdelete',
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-v': 'vsplit',
+    \ }
+nnoremap <silent> <leader><Tab> :Files<CR>
+nnoremap <silent> <leader><leader><Tab> :Files!<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader><leader>b: Buffers!<CR>
+nnoremap <leader>r :Rg<space>
+nnoremap <leader><leader>r :Rg!<space>
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" gv
+nnoremap <silent> <leader>g :GV<CR>
+nnoremap <silent> <leader><leader>g :GV!<CR>
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <c-cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-
-" Add diagnostic info for https://github.com/itchyny/lightline.vim
-let g:lightline = {
-      \ 'colorscheme': 'snazzy',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ }
-
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" gitgutter
+nnoremap <silent> <leader>G :GitGutterToggle<CR>
