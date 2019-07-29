@@ -1,5 +1,4 @@
 # vim: sw=4
-
 set $mod Mod4
 
 set $left h
@@ -11,16 +10,16 @@ set $term alacritty
 set $floating_term alacritty --class floatingAlacritty
 set $menu rofi -theme Adapta-Nokto -show run | xargs swaymsg exec
 
-set $lock for OUTPUT in $(swaymsg -rt get_outputs | jq -r .[].name); do \
-        grim -o $OUTPUT /tmp/lock-screen-${OUTPUT}.png &&\
-        convert \
-            /tmp/lock-screen-${OUTPUT}.png \
-            -scale 2.5% \
-            -scale 4000% \
-            /tmp/lock-screen-${OUTPUT}.png &&\
-        echo -i ${OUTPUT}:/tmp/lock-screen-${OUTPUT}.png; done |\
-        xargs swaylock -fec 000000 &&\
-        rm -f /tmp/lock-screen-*.png
+set $lock 'for OUTPUT in $(swaymsg -rt get_outputs | jq -r .[].name); do \
+    grim -o $OUTPUT /tmp/lock-screen-${OUTPUT}.png &&\
+    convert \
+        /tmp/lock-screen-${OUTPUT}.png \
+        -scale 2.5% \
+        -scale 4000% \
+        /tmp/lock-screen-${OUTPUT}.png &&\
+    echo -i ${OUTPUT}:/tmp/lock-screen-${OUTPUT}.png; done |\
+    xargs swaylock -fec 000000 &&\
+    rm -f /tmp/lock-screen-*.png'
 set $capture grim "$(xdg-user-dir PICTURES)/$(date +'Screenshot from %Y-%m-%d %H-%M-%S.png')"
 set $capture_region grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/$(date +'Screenshot from %Y-%m-%d %H-%M-%S.png')"
 set $alsamixer alacritty --class floatingAlsamixer -e alsamixer
@@ -230,9 +229,9 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 exec swayidle -w \
-         timeout 600 '$lock' \
+         timeout 600 $lock \
          timeout 900 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
-         before-sleep '$lock'
+         before-sleep $lock
 exec mako
 exec nimf
