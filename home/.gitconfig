@@ -4,7 +4,7 @@
 	email = pbzweihander@gmail.com
 [core]
 	editor = nvim
-	pager = less -XFQc
+	pager = less -+XF -Qc
 	excludesfile = ~/.gitexclude
 	fscache = yes
 	autocrlf = no
@@ -40,8 +40,8 @@
 [alias]
 	g = "log --graph --pretty=\"format:%C(auto)%h%d %s%x1b[38;5;022m% GS%x1b[0m\""
 [pager]
-	log = /usr/share/git/diff-highlight/diff-highlight | less
-	show = /usr/share/git/diff-highlight/diff-highlight | less
-	diff = /usr/share/git/diff-highlight/diff-highlight | less
+	log = /usr/share/git/diff-highlight/diff-highlight | less -+XF -Qc
+	show = /usr/share/git/diff-highlight/diff-highlight | less -+XF -Qc
+	diff = /usr/share/git/diff-highlight/diff-highlight | less -+XF -Qc
 [interactive]
 	diffFilter = /usr/share/git/diff-highlight/diff-highlight
