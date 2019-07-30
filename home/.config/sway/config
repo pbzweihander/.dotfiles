@@ -7,6 +7,7 @@ set $up k
 set $right l
 
 set $term alacritty
+set $x_term WAYLAND_DISPLAY= WINIT_HIDPI_FACTOR=1.0 alacritty
 set $floating_term alacritty --class floatingAlacritty
 set $menu rofi -theme Adapta-Nokto -show run | xargs swaymsg exec
 
@@ -20,8 +21,8 @@ set $lock 'for OUTPUT in $(swaymsg -rt get_outputs | jq -r .[].name); do \
     echo -i ${OUTPUT}:/tmp/lock-screen-${OUTPUT}.png; done |\
     xargs swaylock -fec 000000 &&\
     rm -f /tmp/lock-screen-*.png'
-set $capture grim "$(xdg-user-dir PICTURES)/$(date +'Screenshot from %Y-%m-%d %H-%M-%S.png')"
-set $capture_region grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/$(date +'Screenshot from %Y-%m-%d %H-%M-%S.png')"
+set $capture grim "$(xdg-user-dir PICTURES)/screenshots/$(date +'Screenshot from %Y-%m-%d %H-%M-%S.png')"
+set $capture_region grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshots/$(date +'Screenshot from %Y-%m-%d %H-%M-%S.png')"
 set $alsamixer alacritty --class floatingAlsamixer -e alsamixer
 set $nmtui alacritty --class floatingNmtui -e nmtui
 set $spotify_command dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player
@@ -67,6 +68,8 @@ output eDP-1 {
 }
 
 bar {
+    tray_output none
+
     position top
     font pango:Meslo LG S, Noto Sans Mono CJK KR, FontAwesome 13
 
@@ -75,6 +78,7 @@ bar {
 
 
 bindsym $mod+Return exec $term
+bindsym $mod+Ctrl+Return exec $x_term
 bindsym $mod+Shift+Return exec $floating_term
 
 bindsym $mod+Shift+q kill
