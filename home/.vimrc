@@ -20,6 +20,7 @@ set nofoldenable
 set nowrap
 set showcmd
 set signcolumn=yes
+set colorcolumn=79,99
 
 " Indentation
 set cindent
@@ -86,6 +87,8 @@ nnoremap <silent> <S-Up> :m-2<CR>
 nnoremap <silent> <S-Down> :m+<CR>
 inoremap <silent> <S-Up> <Esc>:m-2<CR>
 inoremap <silent> <S-Down> <Esc>:m+<CR>
+" Buffer Navigations
+nnoremap <silent> <leader>B :b #<CR>
 
 "
 " Plugins
@@ -99,6 +102,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-endwise'
     Plug 'tpope/vim-sensible'
+    Plug 'tpope/vim-obsession'
     Plug 'vim-utils/vim-interruptless'
     Plug 'junegunn/gv.vim'
     Plug 'editorconfig/editorconfig-vim'
@@ -117,12 +121,12 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
 
     " Language server and Auto completion
     Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'ncm2/ncm2'
+    Plug 'roxma/nvim-yarp'
+    Plug 'ncm2/ncm2-bufword'
+    Plug 'ncm2/ncm2-path'
+    if has('nvim-0.4')
+        Plug 'ncm2/float-preview.nvim'
     endif
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
@@ -130,6 +134,8 @@ call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 "
 " Plugin Configs
 "
+
+let g:python3_host_prog = '/usr/bin/python'
 
 " Persistent history
 if has('persistent_undo')
@@ -165,12 +171,14 @@ let g:lightline = {
     \ 'active': {
     \   'left': [
     \     [ 'mode', 'paste' ],
-    \     [ 'gitbranch', 'readonly', 'filename', 'modified', 'lcstatus' ],
+    \     [ 'filename', 'modified', 'gitbranch', 'readonly' ],
+    \     [ 'lcstatus', 'obsessionstatus' ],
     \   ],
     \ },
     \ 'component_function': {
     \   'gitbranch': 'fugitive#head',
     \   'lcstatus': 'LanguageClient#serverStatusMessage',
+    \   'obsessionstatus': 'ObsessionStatus',
     \ },
     \ }
 
@@ -184,6 +192,7 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript': ['~/.yarn/bin/typescript-language-server', '--stdio'],
     \ 'typescript': ['~/.yarn/bin/typescript-language-server', '--stdio'],
     \ }
+let g:LanguageClient_useFloatingHover = 1
 
 nnoremap <silent> <F1> :call LanguageClient_contextMenu()<CR>
 inoremap <silent> <F1> <ESC>:call LanguageClient_contextMenu()<CR>
@@ -194,13 +203,15 @@ inoremap <silent> <F12> <ESC>:call LanguageClient#textDocument_references()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 inoremap <silent> <F2> <ESC>:call LanguageClient#textDocument_rename()<CR>
 nnoremap <silent> <leader>f :call LanguageClient#textDocument_formatting()<CR>
+nnoremap <silent> <leader>* :call LanguageClient#textDocument_documentHighlight()<CR>
+nnoremap <silent> <leader>e :call LanguageClient#explainErrorAtPoint()<CR>
 
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/usr/bin/python'
+" ncm2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
 
 " fzf
 let g:fzf_action = {
@@ -222,3 +233,10 @@ nnoremap <silent> <leader><leader>g :GV!<CR>
 
 " gitgutter
 nnoremap <silent> <leader>G :GitGutterToggle<CR>
+
+" vim-obsession
+nnoremap <silent> <leader>o :Obsess<CR>
+nnoremap <silent> <leader>O :Obsess!<CR>
+
+" float-preview
+let g:float_preview#docked = 1
