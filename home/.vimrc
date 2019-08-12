@@ -70,6 +70,11 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
+" Easy Resize
+nnoremap <silent> <C-A-h> :vertical resize +2<CR>
+nnoremap <silent> <C-A-j> :resize +2<CR>
+nnoremap <silent> <C-A-k> :resize -2<CR>
+nnoremap <silent> <C-A-l> :vertical resize -2<CR>
 " Tab Navigations
 nnoremap <silent> <a-t> :tabnew<CR>
 nnoremap <silent> <a-T> :-tabnew<CR>
@@ -89,6 +94,14 @@ inoremap <silent> <S-Up> <Esc>:m-2<CR>
 inoremap <silent> <S-Down> <Esc>:m+<CR>
 " Buffer Navigations
 nnoremap <silent> <leader>B :b #<CR>
+" Easy delete
+inoremap <A-BS> <C-w>
+
+"
+" Filetype specific
+"
+
+autocmd FileType json setlocal sw=2 sts=2 et
 
 "
 " Plugins
@@ -101,6 +114,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'tpope/vim-git'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-endwise'
+    Plug 'rstacruz/vim-closer'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-obsession'
     Plug 'vim-utils/vim-interruptless'
@@ -110,6 +124,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug '~/.fzf'
     Plug 'junegunn/fzf.vim'
+    Plug 'vim-scripts/BufOnly.vim'
 
     " Visual
     Plug 'Yggdroot/indentLine'
@@ -117,7 +132,9 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'connorholyday/vim-snazzy'
 
     " Languages
-    Plug 'leafgarland/typescript-vim'
+    Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'cespare/vim-toml'
+    Plug 'elzr/vim-json'
 
     " Language server and Auto completion
     Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
@@ -149,6 +166,7 @@ if has('persistent_undo')
 endif
 
 " indentLine
+autocmd FileType markdown let g:indentLine_enabled=0
 nnoremap <silent> <leader>i :IndentLinesToggle<CR>
 let g:indentLine_char='▏'
 
@@ -166,24 +184,60 @@ colorscheme snazzy
 let g:SnazzyTransparent = 1
 
 " lightline
-let g:lightline = {
-    \ 'colorscheme': 'snazzy',
-    \ 'active': {
+let g:lightline = {}
+let g:lightline.colorscheme = 'snazzy'
+let g:lightline.active = {
     \   'left': [
     \     [ 'mode', 'paste' ],
-    \     [ 'filename', 'modified', 'gitbranch', 'readonly' ],
-    \     [ 'lcstatus', 'obsessionstatus' ],
+    \     [ 'filename', 'readonly' ],
+    \     [ 'truncate_here' ],
     \   ],
-    \ },
-    \ 'component_function': {
+    \   'right': [
+    \     [ 'lineinfo' ],
+    \     [ 'percent' ],
+    \     [ 'gitbranch', 'fileformat', 'fileencoding', 'filetype' ],
+    \   ],
+    \ }
+let g:lightline.component = {
+    \   'truncate_here': '%<',
+    \ }
+let g:lightline.component_visible_condition = {
+    \   'truncate_here': 0,
+    \ }
+let g:lightline.component_type = {
+    \   'truncate_here': 'raw',
+    \ }
+let g:lightline.component_function = {
+    \   'readonly': 'LightlineReadonly',
+    \   'filename': 'LightlineFilename',
+    \   'fileformat': 'LightlineFileformat',
+    \   'fileencoding': 'LightlineFileencoding',
+    \   'filetype': 'LightlineFiletype',
     \   'gitbranch': 'fugitive#head',
     \   'lcstatus': 'LanguageClient#serverStatusMessage',
-    \   'obsessionstatus': 'ObsessionStatus',
-    \ },
     \ }
 
-" editorconfig
-let g:EditorConfig_core_mode = 'external_command'
+function! LightlineReadonly()
+  return &readonly && &filetype !=# 'help' ? 'RO' : ''
+endfunction
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 90 ? &fileformat : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 100 ? &fileencoding : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
 
 " language-server
 let g:LanguageClient_serverCommands = {
@@ -191,11 +245,12 @@ let g:LanguageClient_serverCommands = {
     \ 'python': ['~/.pyenv/shims/pyls'],
     \ 'javascript': ['~/.yarn/bin/typescript-language-server', '--stdio'],
     \ 'typescript': ['~/.yarn/bin/typescript-language-server', '--stdio'],
+    \ 'typescript.tsx': ['~/.yarn/bin/typescript-language-server', '--stdio'],
     \ }
 let g:LanguageClient_useFloatingHover = 1
 
-nnoremap <silent> <F1> :call LanguageClient_contextMenu()<CR>
-inoremap <silent> <F1> <ESC>:call LanguageClient_contextMenu()<CR>
+nnoremap <F1> :call LanguageClient_contextMenu()<CR>
+inoremap <F1> <ESC>:call LanguageClient_contextMenu()<CR>
 nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F12> :call LanguageClient#textDocument_references()<CR>
@@ -208,8 +263,11 @@ nnoremap <silent> <leader>e :call LanguageClient#explainErrorAtPoint()<CR>
 
 " ncm2
 autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
 
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+
+inoremap <silent> <CR> <C-R>=pumvisible() ? "\<c-y>\n" : "\n"<CR><Plug>DiscretionaryEnd
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
@@ -240,3 +298,10 @@ nnoremap <silent> <leader>O :Obsess!<CR>
 
 " float-preview
 let g:float_preview#docked = 1
+
+" BufOnly.vim
+command! -nargs=? -complete=buffer -bang Bo
+    \ :call BufOnly('<args>', '<bang>')
+
+" vim-json
+let g:vim_json_syntax_conceal = 0
