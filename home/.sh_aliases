@@ -56,11 +56,17 @@ if hash nvim 2>/dev/null; then
     alias nvi=nvim
     alias vim=nvim
     alias vi=nvim
+
     alias nvis="nvim -S Session.vim"
     alias vis="nvim -S Session.vim"
+
+    alias snvi="sudo -E nvim"
+    alias svi="sudo -E nvim"
 elif hash vim 2>/dev/null; then
     alias vi=vim
     alias vis="vim -S Session.vim"
+
+    alias svi="sudo -E vim"
 fi
 
 # systemctl
@@ -147,7 +153,3 @@ fi
 # hangul-misstypings
 alias ㅊㅇ=cd
 alias ㅣㄴ=ls
-
-# sudo vim
-alias svim="sudo -E vim"
-
