@@ -16,8 +16,6 @@ if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
 
     zplug "zplug/zplug", hook-build: "zplug --self-manage"
 
-    zplug "plugins/vi-mode", from:oh-my-zsh
-
     zplug "pbzweihander/truck"
     zplug "pbzweihander/cgitc"
     zplug "simnalamburt/zsh-expand-all"
@@ -136,6 +134,10 @@ fi
 
 if [ -d ~/.poetry ]; then
     export PATH="$HOME/.poetry/bin:$PATH"
+fi
+
+if which ruby >/dev/null && which gem >/dev/null; then
+    PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
 # keybinding
