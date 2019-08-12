@@ -1,5 +1,11 @@
-#!/bin/sh -e
-scrot /tmp/lock-screen.png
-convert /tmp/lock-screen.png -scale 2.5% -scale 4000% /tmp/lock-screen.png
-i3lock -e -i /tmp/lock-screen.png -c 000000
-sleep 1
+#!/usr/bin/bash -e
+for OUTPUT in $(swaymsg -rt get_outputs | jq -r .[].name); do \
+    grim -o $OUTPUT /tmp/lock-screen-${OUTPUT}.png &&\
+    convert \
+        /tmp/lock-screen-${OUTPUT}.png \
+        -scale 2.5% \
+        -scale 4000% \
+        /tmp/lock-screen-${OUTPUT}.png &&\
+    echo -i ${OUTPUT}:/tmp/lock-screen-${OUTPUT}.png; done |\
+    xargs swaylock -fec 000000 &&\
+    rm -f /tmp/lock-screen-*.png
