@@ -71,10 +71,10 @@ nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 " Easy Resize
-nnoremap <silent> <C-A-h> :vertical resize +2<CR>
-nnoremap <silent> <C-A-j> :resize +2<CR>
-nnoremap <silent> <C-A-k> :resize -2<CR>
-nnoremap <silent> <C-A-l> :vertical resize -2<CR>
+nnoremap <silent> <C-A-h> :vertical resize -2<CR>
+nnoremap <silent> <C-A-j> :resize -2<CR>
+nnoremap <silent> <C-A-k> :resize +2<CR>
+nnoremap <silent> <C-A-l> :vertical resize +2<CR>
 " Tab Navigations
 nnoremap <silent> <a-t> :tabnew<CR>
 nnoremap <silent> <a-T> :-tabnew<CR>
@@ -93,7 +93,7 @@ nnoremap <silent> <S-Down> :m+<CR>
 inoremap <silent> <S-Up> <Esc>:m-2<CR>
 inoremap <silent> <S-Down> <Esc>:m+<CR>
 " Buffer Navigations
-nnoremap <silent> <leader>B :b #<CR>
+nnoremap <silent> <Tab><Tab> :b #<CR>
 " Easy delete
 inoremap <A-BS> <C-w>
 
@@ -102,6 +102,7 @@ inoremap <A-BS> <C-w>
 "
 
 autocmd FileType json setlocal sw=2 sts=2 et
+autocmd FileType yaml setlocal sw=2 sts=2 et
 
 "
 " Plugins
@@ -135,6 +136,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'cespare/vim-toml'
     Plug 'elzr/vim-json'
+    Plug 'hashivim/vim-terraform'
 
     " Language server and Auto completion
     Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
@@ -267,7 +269,7 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 set shortmess+=c
 
-inoremap <silent> <CR> <C-R>=pumvisible() ? "\<c-y>\n" : "\n"<CR><Plug>DiscretionaryEnd
+imap <silent> <CR> <C-R>=pumvisible() ? "\<c-y>\n" : "\n"<CR><Plug>DiscretionaryEnd
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
@@ -280,8 +282,8 @@ let g:fzf_action = {
     \ }
 nnoremap <silent> <leader><Tab> :Files<CR>
 nnoremap <silent> <leader><leader><Tab> :Files!<CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader><leader>b: Buffers!<CR>
+nnoremap <silent> <leader>q :Buffers<CR>
+nnoremap <silent> <leader><leader>q :Buffers!<CR>
 nnoremap <leader>r :Rg<space>
 nnoremap <leader><leader>r :Rg!<space>
 
