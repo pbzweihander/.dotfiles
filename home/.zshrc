@@ -4,8 +4,13 @@ if [[ -a /proc/version ]] && grep -q Microsoft /proc/version; then
   unsetopt BG_NICE
 fi
 
-RPROMPT='%*'
-EDITOR=vim
+export RPROMPT='%*'
+if command -v nvim >/dev/null; then
+    export EDITOR=nvim
+else
+    export EDITOR=vim
+fi
+STARSHIP=$(command -v starship)
 
 #
 # zplug
@@ -27,13 +32,15 @@ if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
     bindkey '^[[A' history-substring-search-up
     bindkey '^[[B' history-substring-search-down
 
-    if is-at-least 5.2.0; then
-        zplug "mafredri/zsh-async"
-        zplug "sindresorhus/pure", use:pure.zsh, as:theme
-    else
-        zplug "plugins/shrink-path", from:oh-my-zsh
-        zplug "simnalamburt/shellder", as:theme
-        export DEFAULT_USER="$USER"
+    if [ "$STARSHIP" = "" ]; then
+        if is-at-least 5.2.0; then
+            zplug "mafredri/zsh-async"
+            zplug "sindresorhus/pure", use:pure.zsh, as:theme
+        else
+            zplug "plugins/shrink-path", from:oh-my-zsh
+            zplug "simnalamburt/shellder", as:theme
+            export DEFAULT_USER="$USER"
+        fi
     fi
 
     zplug "voronkovich/gitignore.plugin.zsh"
@@ -45,31 +52,34 @@ else
 fi
 
 #
-# zsh-sensible
+# Configs
 #
-stty stop undef
 
 setopt auto_cd histignorealldups sharehistory
 zstyle ':completion:*' menu select
 
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
+
+export KEYTIMEOUT=1
+bindkey -M vicmd "^a" beginning-of-line
+bindkey -M vicmd "^e" end-of-line
 
 #
-# zsh-substring-completion
+# Plugin Configs
 #
+
+# zsh-sensible
+stty stop undef
+
+# zsh-substring-completion
 setopt complete_in_word
 setopt always_to_end
-WORDCHARS=''
+export WORDCHARS=''
 zmodload -i zsh/complist
 
-# Substring completion
 zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-#
-# zshrc
-#
 
 # aliases
 if [ -f ~/.sh_aliases ]; then
@@ -113,11 +123,6 @@ if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
 
-if hash virtualenvwrapper.sh 2> /dev/null; then
-    export WORKON_HOME=$HOME/.venvs
-    source virtualenvwrapper.sh
-fi
-
 if [ -d ~/.pyenv ]; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
@@ -136,7 +141,7 @@ if [ -d ~/.poetry ]; then
     export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
-if which ruby >/dev/null && which gem >/dev/null; then
+if command -v ruby >/dev/null && command -v gem >/dev/null; then
     PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
@@ -158,4 +163,9 @@ export BAT_PAGER="less -RF"
 # local settings
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
+fi
+
+# starship
+if [ "$STARSHIP" != "" ]; then
+    eval "$(starship init zsh)"
 fi
