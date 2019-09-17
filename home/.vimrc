@@ -243,7 +243,7 @@ endfunction
 
 " language-server
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'rust': ['~/.cargo/bin/rls'],
     \ 'python': ['~/.pyenv/shims/pyls'],
     \ 'javascript': ['~/.yarn/bin/typescript-language-server', '--stdio'],
     \ 'typescript': ['~/.yarn/bin/typescript-language-server', '--stdio'],
