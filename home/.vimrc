@@ -136,11 +136,12 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'hashivim/vim-terraform'
 
     " Language server and Auto completion
-    Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-    Plug 'ncm2/ncm2'
-    Plug 'roxma/nvim-yarp'
-    Plug 'ncm2/ncm2-bufword'
-    Plug 'ncm2/ncm2-path'
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'prabirshrestha/asyncomplete-buffer.vim'
+    Plug 'prabirshrestha/asyncomplete-file.vim'
     if has('nvim-0.4')
         Plug 'ncm2/float-preview.nvim'
     endif
@@ -238,36 +239,98 @@ function! LightlineFiletype()
   return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
-" language-server
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rls'],
-    \ 'python': ['~/.pyenv/shims/pyls'],
-    \ 'javascript': ['~/.yarn/bin/typescript-language-server', '--stdio'],
-    \ 'typescript': ['~/.yarn/bin/typescript-language-server', '--stdio'],
-    \ 'typescript.tsx': ['~/.yarn/bin/typescript-language-server', '--stdio'],
-    \ }
-let g:LanguageClient_useFloatingHover = 1
+" vim-lsp
+if executable('pyls')
+    " Use flake8 with https://github.com/emanspeaks/pyls-flake8
+    au User lsp_setup call lsp#register_server({
+        \     'name': 'pyls',
+        \     'cmd': ['pyls'],
+        \     'whitelist': ['python'],
+        \     'workspace_config': {
+        \         'pyls': {
+        \             'configurationSources': ["flake8"],
+        \             'plugins': {
+        \                 'mccabe': { 'enabled': v:false },
+        \                 'pyflakes': { 'enabled': v:false },
+        \                 'pycodestyle': { 'enabled': v:false },
+        \             },
+        \         },
+        \     },
+        \ })
+endif
 
-nnoremap <F1> :call LanguageClient_contextMenu()<CR>
-inoremap <F1> <ESC>:call LanguageClient_contextMenu()<CR>
-nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F12> :call LanguageClient#textDocument_references()<CR>
-inoremap <silent> <F12> <ESC>:call LanguageClient#textDocument_references()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-inoremap <silent> <F2> <ESC>:call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> <leader>f :call LanguageClient#textDocument_formatting()<CR>
-nnoremap <silent> <leader>* :call LanguageClient#textDocument_documentHighlight()<CR>
-nnoremap <silent> <leader>e :call LanguageClient#explainErrorAtPoint()<CR>
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \     'name': 'rls',
+        \     'cmd': {server_info->['rls']},
+        \     'workspace_config': {'rust': {'clippy_preference': 'on'}},
+        \     'whitelist': ['rust'],
+        \ })
+endif
 
-" ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \     'name': 'typescript-language-server',
+        \     'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \     'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \     'whitelist': ['typescript', 'typescript.tsx'],
+        \ })
 
-set completeopt=noinsert,menuone,noselect
+
+    au User lsp_setup call lsp#register_server({
+        \     'name': 'javascript support using typescript-language-server',
+        \     'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \     'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+        \     'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
+        \ })
+endif
+
+nnoremap <F1> :LspCodeAction<CR>
+inoremap <F1> <ESC>:LspCodeAction<CR>
+nnoremap <silent> gh :LspHover<CR>
+nnoremap <silent> gd :LspDefinition<CR>
+nnoremap <silent> gD :LspPeekDefinition<CR>
+nnoremap <silent> gc :LspDeclaration<CR>
+nnoremap <silent> gC :LspPeekDeclaration<CR>
+nnoremap <silent> <F12> :LspReferences<CR>
+inoremap <silent> <F12> <ESC>:LspReferences<CR>
+nnoremap <silent> <F2> :LspRename<CR>
+inoremap <silent> <F2> <ESC>:LspRename<CR>
+nnoremap <silent> <leader>f :LspDocumentFormat<CR>
+vnoremap <silent> <leader>f :LspDocumentRangeFormat<CR>
+nnoremap <silent> <leader>e :LspNextError<CR>
+
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_highlight_references_enabled = 1
+
+highlight link LspWarningHighlight Normal
+
+" asyncomplete
+set completeopt=noinsert,menuone,noselect,preview
 set shortmess+=c
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+imap <C-Space> <Plug>(asyncomplete_force_refresh)
+
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \     'name': 'buffer',
+    \     'whitelist': ['*'],
+    \     'completor': function('asyncomplete#sources#buffer#completor'),
+    \     'config': {
+    \         'max_buffer_size': 5000000,
+    \     },
+    \ }))
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \     'name': 'file',
+    \     'whitelist': ['*'],
+    \     'priority': 10,
+    \     'completor': function('asyncomplete#sources#file#completor'),
+    \ }))
 
 " fzf
 let g:fzf_action = {
