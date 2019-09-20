@@ -112,10 +112,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'itchyny/lightline.vim'
 
     Plug 'simnalamburt/vim-mundo'
-    Plug 'tpope/vim-git'
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-endwise'
-    Plug 'rstacruz/vim-closer'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-obsession'
     Plug 'vim-utils/vim-interruptless'
@@ -189,34 +186,34 @@ let g:SnazzyTransparent = 1
 let g:lightline = {}
 let g:lightline.colorscheme = 'snazzy'
 let g:lightline.active = {
-    \   'left': [
-    \     [ 'mode', 'paste' ],
-    \     [ 'filename', 'readonly' ],
-    \     [ 'truncate_here' ],
-    \   ],
-    \   'right': [
-    \     [ 'lineinfo' ],
-    \     [ 'percent' ],
-    \     [ 'gitbranch', 'fileformat', 'fileencoding', 'filetype' ],
-    \   ],
+    \     'left': [
+    \         [ 'mode', 'paste' ],
+    \         [ 'filename', 'readonly' ],
+    \         [ 'truncate_here' ],
+    \     ],
+    \     'right': [
+    \         [ 'lineinfo' ],
+    \         [ 'percent' ],
+    \         [ 'gitbranch', 'fileformat', 'fileencoding', 'filetype' ],
+    \     ],
     \ }
 let g:lightline.component = {
-    \   'truncate_here': '%<',
+    \     'truncate_here': '%<',
     \ }
 let g:lightline.component_visible_condition = {
-    \   'truncate_here': 0,
+    \     'truncate_here': 0,
     \ }
 let g:lightline.component_type = {
-    \   'truncate_here': 'raw',
+    \     'truncate_here': 'raw',
     \ }
 let g:lightline.component_function = {
-    \   'readonly': 'LightlineReadonly',
-    \   'filename': 'LightlineFilename',
-    \   'fileformat': 'LightlineFileformat',
-    \   'fileencoding': 'LightlineFileencoding',
-    \   'filetype': 'LightlineFiletype',
-    \   'gitbranch': 'fugitive#head',
-    \   'lcstatus': 'LanguageClient#serverStatusMessage',
+    \     'readonly': 'LightlineReadonly',
+    \     'filename': 'LightlineFilename',
+    \     'fileformat': 'LightlineFileformat',
+    \     'fileencoding': 'LightlineFileencoding',
+    \     'filetype': 'LightlineFiletype',
+    \     'gitbranch': 'fugitive#head',
+    \     'lcstatus': 'LanguageClient#serverStatusMessage',
     \ }
 
 function! LightlineReadonly()
@@ -269,16 +266,14 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 set shortmess+=c
 
-imap <silent> <CR> <C-R>=pumvisible() ? "\<c-y>\n" : "\n"<CR><Plug>DiscretionaryEnd
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " fzf
 let g:fzf_action = {
-    \ 'ctrl-q': 'wall | bdelete',
-    \ 'ctrl-t': 'tab split',
-    \ 'ctrl-x': 'split',
-    \ 'ctrl-v': 'vsplit',
+    \     'ctrl-t': 'tab split',
+    \     'ctrl-x': 'split',
+    \     'ctrl-v': 'vsplit',
     \ }
 nnoremap <silent> <leader><Tab> :Files<CR>
 nnoremap <silent> <leader><leader><Tab> :Files!<CR>
