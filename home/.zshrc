@@ -4,7 +4,6 @@ if [[ -a /proc/version ]] && grep -q Microsoft /proc/version; then
   unsetopt BG_NICE
 fi
 
-export RPROMPT='%*'
 if command -v nvim >/dev/null; then
     export EDITOR=nvim
 else
@@ -33,6 +32,7 @@ if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
     bindkey '^[[B' history-substring-search-down
 
     if [ "$STARSHIP" = "" ]; then
+        export RPROMPT='%*'
         if is-at-least 5.2.0; then
             zplug "mafredri/zsh-async"
             zplug "sindresorhus/pure", use:pure.zsh, as:theme
