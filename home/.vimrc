@@ -307,12 +307,13 @@ let g:lsp_highlight_references_enabled = 1
 highlight link LspWarningHighlight Normal
 
 " asyncomplete
-set completeopt=noinsert,menuone,noselect,preview
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=noinsert,menuone,noselect
 set shortmess+=c
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 
 imap <C-Space> <Plug>(asyncomplete_force_refresh)
 
