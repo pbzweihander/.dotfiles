@@ -5,13 +5,11 @@ prompt_order = [
     "git_branch",
     "git_state",
     "git_status",
-    "package",
+    "aws",
     "nodejs",
     "ruby",
     "rust",
     "python",
-    "golang",
-    "nix_shell",
     "cmd_duration",
     "battery",
     "time",
@@ -20,11 +18,11 @@ prompt_order = [
     "character",
 ]
 
+[aws]
+disabled = false
+
 [character]
 use_symbol_for_status = true
-
-[cmd_duration]
-prefix = "foo"
 
 [directory]
 truncation_length = 3
