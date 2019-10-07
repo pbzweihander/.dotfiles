@@ -45,3 +45,4 @@ format = "{percentage}"
 
 [[block]]
 block = "time"
+format = "%_m/%_d %_H:%_M %a"
