@@ -142,6 +142,9 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
     Plug 'prabirshrestha/asyncomplete-file.vim'
+    Plug 'tsufeki/asyncomplete-fuzzy-match', {
+        \ 'do': 'cargo build --release',
+        \ }
     if has('nvim-0.4')
         Plug 'ncm2/float-preview.nvim'
     endif
