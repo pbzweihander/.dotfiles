@@ -307,7 +307,15 @@ let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_highlight_references_enabled = 1
 
-highlight link LspWarningHighlight Normal
+let g:lsp_signs_hint = {'text': '➤'}
+let g:lsp_signs_information = {'text': 'ℹ'}
+let g:lsp_signs_warning = {'text': '⚠'}
+let g:lsp_signs_error = {'text': '✗'}
+
+highlight LspHintHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
+highlight LspInformationHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
+highlight LspWarningHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
+highlight LspErrorHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
 
 " asyncomplete
 let g:asyncomplete_auto_completeopt = 0
