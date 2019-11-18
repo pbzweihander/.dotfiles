@@ -48,41 +48,39 @@ fi
 STARSHIP=$(command -v starship)
 
 #
-# zplug
+# zplugin
 #
-autoload -U is-at-least
-if is-at-least 4.3.9 && [[ -f ~/.zplug/init.zsh ]]; then
-    source ~/.zplug/init.zsh
+if [[ -f ~/.zplugin/bin/zplugin.zsh ]]; then
+    source ~/.zplugin/bin/zplugin.zsh
 
-    zplug "zplug/zplug", hook-build: "zplug --self-manage"
+    zplugin light pbzweihander/truck
+    zplugin light simnalamburt/cgitc
+    zplugin light simnalamburt/zsh-expand-all
 
-    zplug "pbzweihander/truck"
-    zplug "pbzweihander/cgitc"
-    zplug "simnalamburt/zsh-expand-all"
-
-    zplug "zsh-users/zsh-completions"
-    zplug "zsh-users/zsh-autosuggestions"
-    zplug "zsh-users/zsh-syntax-highlighting"
-    zplug "zsh-users/zsh-history-substring-search"
+    zplugin light zsh-users/zsh-completions
+    zplugin light zsh-users/zsh-autosuggestions
+    zplugin light zsh-users/zsh-syntax-highlighting
+    zplugin light zsh-users/zsh-history-substring-search
     bindkey '^[[A' history-substring-search-up
     bindkey '^[[B' history-substring-search-down
 
     if [ "$STARSHIP" = "" ]; then
         export RPROMPT='%*'
+        autoload -Uz is-at-least
         if is-at-least 5.2.0; then
-            zplug "mafredri/zsh-async"
-            zplug "sindresorhus/pure", use:pure.zsh, as:theme
+            zplugin ice pick"async.zsh" src"pure.zsh"
+            zplugin light sindresorhus/pure
         else
-            zplug "plugins/shrink-path", from:oh-my-zsh
-            zplug "simnalamburt/shellder", as:theme
+            zplugin light simnalamburt/shellder
             export DEFAULT_USER="$USER"
         fi
     fi
 
-    zplug "voronkovich/gitignore.plugin.zsh"
-    zplug "rupa/z", use:z.sh
+    zplugin light voronkovich/gitignore.plugin.zsh
+    zplugin ice src"z.sh"
+    zplugin light rupa/z
 
-    zplug load
+    autoload -Uz compinit && compinit
 else
     PS1='%n@%m:%~%(!.#.$) '
 fi
