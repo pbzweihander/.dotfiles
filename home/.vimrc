@@ -377,3 +377,15 @@ command! -nargs=? -complete=buffer -bang Bo
 
 " vim-json
 let g:vim_json_syntax_conceal = 0
+
+" alt
+function! AltCommand(path, vim_command)
+  let l:alternate = system("alt " . a:path)
+  if empty(l:alternate)
+    echo "No alternate file for " . a:path . " exists!"
+  else
+    exec a:vim_command . " " . l:alternate
+  endif
+endfunction
+
+nnoremap <leader>. :call AltCommand(expand('%'), ':e')<cr>
