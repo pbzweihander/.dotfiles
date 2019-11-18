@@ -134,6 +134,8 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'cespare/vim-toml'
     Plug 'elzr/vim-json'
     Plug 'hashivim/vim-terraform'
+    Plug 'nirum-lang/nirum.vim'
+    Plug 'neovimhaskell/haskell-vim'
 
     " Language server and Auto completion
     Plug 'prabirshrestha/async.vim'
@@ -285,6 +287,14 @@ if executable('typescript-language-server')
         \     'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
         \     'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
         \     'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
+        \ })
+endif
+
+if executable('hie-wrapper')
+    au User lsp_setup call lsp#register_server({
+        \     'name': 'hie',
+        \     'cmd': {server_info->['hie-wrapper']},
+        \     'whitelist': ['haskell'],
         \ })
 endif
 
