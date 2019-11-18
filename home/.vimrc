@@ -96,6 +96,18 @@ inoremap <silent> <S-Down> <Esc>:m+<CR>
 nnoremap <silent> <Tab><Tab> :b #<CR>
 " Easy delete
 inoremap <A-BS> <C-w>
+" Remove highlight
+nnoremap <silent> ,<Space> :noh<CR>
+" Easy save
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <ESC>:w<CR>
+
+"
+" Commands
+"
+
+" save with sudo
+cmap w!! %!sudo tee > /dev/null %
 
 "
 " Filetype specific
@@ -112,9 +124,6 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'itchyny/lightline.vim'
 
     Plug 'simnalamburt/vim-mundo'
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-sensible'
-    Plug 'tpope/vim-obsession'
     Plug 'vim-utils/vim-interruptless'
     Plug 'junegunn/gv.vim'
     Plug 'editorconfig/editorconfig-vim'
@@ -123,6 +132,15 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug '~/.fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'vim-scripts/BufOnly.vim'
+    Plug 'google/vim-searchindex'
+    Plug 'kshenoy/vim-signature'
+
+    " The Pope
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-sensible'
+    Plug 'tpope/vim-obsession'
+    Plug 'tpope/vim-vinegar'
+    Plug 'tpope/vim-commentary'
 
     " Visual
     Plug 'Yggdroot/indentLine'
@@ -399,3 +417,10 @@ function! AltCommand(path, vim_command)
 endfunction
 
 nnoremap <leader>. :call AltCommand(expand('%'), ':e')<cr>
+
+" vim-commentary
+nnoremap <C-/> gcc
+inoremap <C-/> <ESC>gcca
+
+" vim-vinegar
+nnoremap = <C-^>
