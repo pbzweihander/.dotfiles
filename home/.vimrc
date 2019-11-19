@@ -156,18 +156,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'neovimhaskell/haskell-vim'
 
     " Language server and Auto completion
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    Plug 'prabirshrestha/asyncomplete-buffer.vim'
-    Plug 'prabirshrestha/asyncomplete-file.vim'
-    Plug 'tsufeki/asyncomplete-fuzzy-match', {
-        \ 'do': 'cargo build --release',
-        \ }
-    if has('nvim-0.4')
-        Plug 'ncm2/float-preview.nvim'
-    endif
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 
@@ -213,6 +202,7 @@ let g:lightline.active = {
     \     'left': [
     \         [ 'mode', 'paste' ],
     \         [ 'filename', 'readonly' ],
+    \         [ 'cocstatus', 'currentfunction' ],
     \         [ 'truncate_here' ],
     \     ],
     \     'right': [
@@ -237,7 +227,8 @@ let g:lightline.component_function = {
     \     'fileencoding': 'LightlineFileencoding',
     \     'filetype': 'LightlineFiletype',
     \     'gitbranch': 'fugitive#head',
-    \     'lcstatus': 'LanguageClient#serverStatusMessage',
+    \     'cocstatus': 'coc#status',
+    \     'currentfunction': 'CocCurrentFunction'
     \ }
 
 function! LightlineReadonly()
@@ -262,115 +253,62 @@ function! LightlineFiletype()
   return winwidth(0) > 80 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
-" vim-lsp
-if executable('pyls')
-    " Use flake8 with https://github.com/emanspeaks/pyls-flake8
-    au User lsp_setup call lsp#register_server({
-        \     'name': 'pyls',
-        \     'cmd': ['pyls'],
-        \     'whitelist': ['python'],
-        \     'workspace_config': {
-        \         'pyls': {
-        \             'configurationSources': ["flake8"],
-        \             'plugins': {
-        \                 'mccabe': { 'enabled': v:false },
-        \                 'pyflakes': { 'enabled': v:false },
-        \                 'pycodestyle': { 'enabled': v:false },
-        \             },
-        \         },
-        \     },
-        \ })
-endif
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
 
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \     'name': 'rls',
-        \     'cmd': {server_info->['rls']},
-        \     'workspace_config': {'rust': {'clippy_preference': 'on'}},
-        \     'whitelist': ['rust'],
-        \ })
-endif
-
-if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-        \     'name': 'typescript-language-server',
-        \     'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \     'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-        \     'whitelist': ['typescript', 'typescript.tsx'],
-        \ })
-
-
-    au User lsp_setup call lsp#register_server({
-        \     'name': 'javascript support using typescript-language-server',
-        \     'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \     'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
-        \     'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
-        \ })
-endif
-
-if executable('hie-wrapper')
-    au User lsp_setup call lsp#register_server({
-        \     'name': 'hie',
-        \     'cmd': {server_info->['hie-wrapper']},
-        \     'whitelist': ['haskell'],
-        \ })
-endif
-
-nnoremap <F1> :LspCodeAction<CR>
-inoremap <F1> <ESC>:LspCodeAction<CR>
-nnoremap <silent> gh :LspHover<CR>
-nnoremap <silent> gd :LspDefinition<CR>
-nnoremap <silent> gD :LspPeekDefinition<CR>
-nnoremap <silent> gc :LspDeclaration<CR>
-nnoremap <silent> gC :LspPeekDeclaration<CR>
-nnoremap <silent> <F12> :LspReferences<CR>
-inoremap <silent> <F12> <ESC>:LspReferences<CR>
-nnoremap <silent> <F2> :LspRename<CR>
-inoremap <silent> <F2> <ESC>:LspRename<CR>
-nnoremap <silent> <leader>f :LspDocumentFormat<CR>
-vnoremap <silent> <leader>f :LspDocumentRangeFormat<CR>
-nnoremap <silent> <leader>e :LspNextError<CR>
-
-let g:lsp_signs_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_highlight_references_enabled = 1
-
-let g:lsp_signs_hint = {'text': '➤'}
-let g:lsp_signs_information = {'text': 'ℹ'}
-let g:lsp_signs_warning = {'text': '⚠'}
-let g:lsp_signs_error = {'text': '✗'}
-
-highlight LspHintHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
-highlight LspInformationHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
-highlight LspWarningHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
-highlight LspErrorHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
-
-" asyncomplete
-let g:asyncomplete_auto_completeopt = 0
+" coc.nvim
+set updatetime=100
 set completeopt=noinsert,menuone,noselect
 set shortmess+=c
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-imap <C-Space> <Plug>(asyncomplete_force_refresh)
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \     'name': 'buffer',
-    \     'whitelist': ['*'],
-    \     'completor': function('asyncomplete#sources#buffer#completor'),
-    \     'config': {
-    \         'max_buffer_size': 5000000,
-    \     },
-    \ }))
+inoremap <silent><expr> <c-space> coc#refresh()
 
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-    \     'name': 'file',
-    \     'whitelist': ['*'],
-    \     'priority': 10,
-    \     'completor': function('asyncomplete#sources#file#completor'),
-    \ }))
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+nmap <silent> <F1> :<C-u>CocList<cr>
+imap <silent> <F1> <Esc>:<C-u>CocList<cr>
+nmap <silent> <F2> <Plug>(coc-rename)
+imap <silent> <F2> <ESC><Plug>(coc-rename)
+nmap <silent> <leader>f <Plug>(coc-format)
+xmap <silent> <leader>f <Plug>(coc-format-selected)
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>ac <Plug>(coc-codeaction)
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nnoremap <silent> <leader><leader><Space>  :<C-u>CocList<cr>
+nnoremap <silent> <leader><leader>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader><leader>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader><leader>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader><leader>p  :<C-u>CocListResume<CR>
 
 " fzf
 let g:fzf_action = {
