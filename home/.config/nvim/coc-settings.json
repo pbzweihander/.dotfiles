@@ -1,0 +1,52 @@
+{
+  "diagnostic": {
+    "errorSign": "✗",
+    "warningSign": "⚠",
+    "infoSign": "ℹ",
+    "hintSign": "➤"
+  },
+  "languageserver": {
+    "tsserver": {
+      "command": "typescript-language-server",
+      "args": ["--stdio"],
+      "rootPatterns": [
+        "package.json",
+        "tsconfig.json"
+      ],
+      "filetypes": [
+        "javascript",
+        "javascript.jsx",
+        "javascriptreact",
+        "typescript",
+        "typescript.tsx",
+        "typescriptreact"
+      ]
+    },
+    "rls": {
+      "command": "rls",
+      "filetypes": ["rust"]
+    },
+    "pyls": {
+      "command": "~/.local/bin/pyls",
+      "filetypes": ["python"]
+    },
+    "haskell": {
+      "command": "hie-wrapper",
+      "rootPatterns": [
+        "stack.yaml",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ],
+      "initializationOptions": {
+        "languageServerHaskell": {
+          "hlintOn": true
+        }
+      }
+    }
+  }
+}
