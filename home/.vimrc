@@ -20,7 +20,7 @@ set nofoldenable
 set nowrap
 set showcmd
 set signcolumn=yes
-set colorcolumn=79,99
+set colorcolumn=79,99,119
 
 " Indentation
 set cindent
@@ -43,7 +43,6 @@ set incsearch
 set number
 set cursorline
 " Pair Matching
-set matchpairs+=<:>
 set showmatch
 
 "
@@ -101,20 +100,19 @@ nnoremap <silent> ,<Space> :noh<CR>
 " Easy save
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <ESC>:w<CR>
+" Visual to search
+vnoremap // "vy/\V<C-R>=escape(@v,'/\')<CR><CR>
 
 "
 " Commands
 "
 
 " save with sudo
-cmap w!! %!sudo tee > /dev/null %
-
-"
-" Filetype specific
-"
-
-autocmd FileType json setlocal sw=2 sts=2 et
-autocmd FileType yaml setlocal sw=2 sts=2 et
+if has('nvim')
+    cmap w!! w suda://%
+else
+    cmap w!! w !sudo tee %
+endif
 
 "
 " Plugins
@@ -135,6 +133,9 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'google/vim-searchindex'
     Plug 'kshenoy/vim-signature'
     Plug 'psliwka/vim-smoothie'
+    if has('nvim')
+        Plug 'lambdalisue/suda.vim'
+    endif
 
     " The Pope
     Plug 'tpope/vim-fugitive'
@@ -152,12 +153,14 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'cespare/vim-toml'
     Plug 'elzr/vim-json'
+    Plug 'neoclide/jsonc.vim'
     Plug 'hashivim/vim-terraform'
     Plug 'nirum-lang/nirum.vim'
     Plug 'neovimhaskell/haskell-vim'
 
     " Language server and Auto completion
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 
@@ -317,6 +320,17 @@ let g:fzf_action = {
     \     'ctrl-x': 'split',
     \     'ctrl-v': 'vsplit',
     \ }
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(
+    \     <q-args>,
+    \     fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}),
+    \     <bang>0)
+command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \     'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>),
+    \     1,
+    \     fzf#vim#with_preview(),
+    \     <bang>0)
 nnoremap <silent> <leader><Tab> :Files<CR>
 nnoremap <silent> <leader><leader><Tab> :Files!<CR>
 nnoremap <silent> <leader>q :Buffers<CR>
@@ -363,3 +377,15 @@ inoremap <C-/> <ESC>gcca
 
 " vim-vinegar
 nnoremap = <C-^>
+
+"
+" Filetype specific
+"
+
+autocmd FileType json setlocal sw=2 sts=2 et
+autocmd FileType yaml setlocal sw=2 sts=2 et
+autocmd Filetype sql setlocal sw=2 sts=2 et
+autocmd FileType python setlocal indentkeys-=<:>
+autocmd FileType python setlocal indentkeys-=:
+autocmd FileType terraform nnoremap <silent> <leader>f :TerraformFmt<cr>
+autocmd FileType rust setlocal matchpairs+=<:>
