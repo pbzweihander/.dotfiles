@@ -1,7 +1,3 @@
-#
-# basic commands
-#
-
 alias rm='rm -i'
 alias rmf='rm -f'
 alias rmr='rm -ir'
@@ -74,10 +70,7 @@ alias sctl='sudo systemctl'
 alias usctl='systemctl --user'
 alias jctl='sudo journalctl'
 
-#
 # Docker
-#
-
 if groups | grep -qw docker; then
     alias dk="docker"
     alias dc="docker-compose"
@@ -91,6 +84,9 @@ else
     alias dst="sudo -E docker stack"
     alias dsw="sudo -E docker swarm"
 fi
+
+# dockviz
+alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 
 # rustdoc
 rd() {
@@ -108,32 +104,20 @@ rd() {
     xdg-open http://localhost:$PORT/$(echo $BASENAME | sed -e 's/-/_/g')/index.html || true
 }
 
-#
-# Gnome
-#
+# pcmanfm
+alias p.='pcmanfm . &'
 
-# nautilus
-alias n.='nautilus . &'
-
-# evince
-ev() {
-    evince $* &
+# zathura
+za() {
+    zathura $* &
 }
-
-#
-# etc
-#
 
 # arch package managers
 alias ya=yay
-alias pk=yay
-alias pc=pacman
+alias pc="sudo pacman"
 
 # vscode
 alias c.='code . &'
-
-# godot
-alias g.='godot-mono -e > /dev/null 2> /dev/null &'
 
 # micro
 alias mi=micro
@@ -153,3 +137,46 @@ fi
 # hangul-misstypings
 alias ㅊㅇ=cd
 alias ㅣㄴ=ls
+
+# git
+function git_current_branch {
+    git branch | grep \* | cut -d ' ' -f2
+}
+
+alias gdo='git diff origin/$(git_current_branch)'
+alias gpsup='git push -u origin $(git_current_branch)'
+alias gp!!='git push --force-with-lease --no-verify'
+alias grh1='git reset HEAD~1'
+alias gsm='git switch master'
+
+# python
+alias py=python
+alias pyvenv="pyenv virtualenv"
+
+# aws cli
+alias saws="AWS_PROFILE=spoqa aws"
+alias ssaws="AWS_PROFILE=spoqa-seoul aws"
+alias uaws="AWS_PROFILE=upnl aws"
+alias paws="AWS_PROFILE=private aws"
+
+# terraform
+alias tf="terraform"
+alias stf="AWS_PROFILE=spoqa terraform"
+alias utf="AWS_PROFILE=upnl terraform"
+alias ptf="AWS_PROFILE=private terraform"
+
+# sway
+function tcp {
+    swaymsg exec "alacritty --working-directory $PWD"
+}
+function tcpx {
+    swaymsg exec "WAYLAND_DISPLAY= WINIT_HIDPI_FACTOR=1.0 alacritty --working-directory $PWD"
+}
+
+# kubernetes
+alias k=kubectl
+alias ktx=kubectx
+alias kns=kubens
+
+# etc
+alias mkdoc="pushd docs && make html && popd"
