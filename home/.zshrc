@@ -45,44 +45,39 @@ if command -v nvim >/dev/null; then
 else
     export EDITOR=vim
 fi
-STARSHIP=$(command -v starship)
 
 #
-# zplugin
+# zinit
 #
-if [[ -f ~/.zplugin/bin/zplugin.zsh ]]; then
-    source ~/.zplugin/bin/zplugin.zsh
+export PS1='%n@%m:%~%(!.#.$) '
+if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
+    source ~/.zinit/bin/zinit.zsh
 
-    zplugin light pbzweihander/truck
-    zplugin light simnalamburt/cgitc
-    zplugin light simnalamburt/zsh-expand-all
+    zinit ice wait'!0' pick"async.zsh" src"pure.zsh"
+    zinit light sindresorhus/pure
 
-    zplugin light zsh-users/zsh-completions
-    zplugin light zsh-users/zsh-autosuggestions
-    zplugin light zsh-users/zsh-syntax-highlighting
-    zplugin light zsh-users/zsh-history-substring-search
-    bindkey '^[[A' history-substring-search-up
-    bindkey '^[[B' history-substring-search-down
+    zinit ice wait svn as'completion' mv'git-completion.zsh -> _git' id-as'git-completion'
+    zinit snippet https://github.com/git/git/trunk/contrib/completion/
+    zinit ice wait blockf atpull'zinit creinstall -q .'
+    zinit light zsh-users/zsh-completions
+    zinit ice wait atload'_zsh_autosuggest_start'
+    zinit light zsh-users/zsh-autosuggestions
+    zinit ice wait
+    zinit light zsh-users/zsh-history-substring-search
+    zinit ice wait atinit'zpcompinit; zpcdreplay'
+    zinit light zsh-users/zsh-syntax-highlighting
 
-    if [ "$STARSHIP" = "" ]; then
-        export RPROMPT='%*'
-        autoload -Uz is-at-least
-        if is-at-least 5.2.0; then
-            zplugin ice pick"async.zsh" src"pure.zsh"
-            zplugin light sindresorhus/pure
-        else
-            zplugin light simnalamburt/shellder
-            export DEFAULT_USER="$USER"
-        fi
-    fi
+    zinit ice wait
+    zinit light pbzweihander/truck
+    zinit ice wait
+    zinit light simnalamburt/cgitc
+    zinit ice wait
+    zinit light simnalamburt/zsh-expand-all
 
-    zplugin light voronkovich/gitignore.plugin.zsh
-    zplugin ice src"z.sh"
-    zplugin light rupa/z
-
-    autoload -Uz compinit && compinit
-else
-    PS1='%n@%m:%~%(!.#.$) '
+    zinit ice wait
+    zinit light voronkovich/gitignore.plugin.zsh
+    zinit ice wait src"z.sh"
+    zinit light rupa/z
 fi
 
 #
@@ -123,6 +118,11 @@ fi
 # Plugin Configs
 #
 
+# pure
+autoload -Uz colors && colors
+export RPROMPT="%{$fg[blue]%}%(1j.✦%j.) %{$fg[yellow]%}%*%{$reset_color%}"
+export PURE_GIT_UNTRACKED_DIRTY=0
+
 # zsh-sensible
 stty stop undef
 
@@ -133,6 +133,11 @@ export WORDCHARS=''
 zmodload -i zsh/complist
 
 zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 #
 # External programs
@@ -163,9 +168,9 @@ if command -v nodenv >/dev/null; then
     eval "$(nodenv init -)"
 fi
 
-# bat
-export BAT_THEME="Sublime Snazzy"
-export BAT_PAGER="less -RF"
+if [ -f ~/.config/broot/launcher/bash/br ]; then
+    source ~/.config/broot/launcher/bash/br
+fi
 
 #
 # Etc
@@ -174,9 +179,4 @@ export BAT_PAGER="less -RF"
 # local settings
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
-fi
-
-# starship
-if [ "$STARSHIP" != "" ]; then
-    eval "$(starship init zsh)"
 fi
