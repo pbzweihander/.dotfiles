@@ -1,0 +1,127 @@
+// vim: ft=jsonc et ts=2 sts=2 sw=2
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-center": [
+    "sway/window"
+  ],
+  "modules-right": [
+    "idle_inhibitor",
+    "cpu",
+    "memory",
+    "temperature",
+    "network",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "clock"
+  ],
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>",
+    "tooltip": false
+  },
+  "sway/window": {
+    "tooltip": false
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "tooltip": false
+  },
+  "clock": {
+    "format": "{:%_m/%_d %_H:%_M %a}",
+    "tooltip": false
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "{}% ",
+    "tooltip": false
+  },
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C {icon}",
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ],
+    "tooltip": false
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}% {icon}",
+    "format-icons": [
+      "",
+      ""
+    ],
+    "tooltip": false
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip": false
+  },
+  "network": {
+    "interface": "wlp2*",
+    "format-wifi": "{essid} ",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "tooltip": false
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon}{format_source}",
+    "format-bluetooth": "{volume}% {icon}{format_source}",
+    "format-bluetooth-muted": " {icon}{format_source}",
+    "format-muted": "{format_source}",
+    "format-source": "", // " {volume}% ",
+    "format-source-muted": " ",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol",
+    "tooltip": false
+  }
+}
