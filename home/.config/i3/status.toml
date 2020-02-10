@@ -8,10 +8,7 @@ block = "focused_window"
 block = "pacman"
 
 [[block]]
-block = "music"
-player = "spotify"
-buttons = ["play", "next"]
-marquee = false
+block = "load"
 
 [[block]]
 block = "cpu"
@@ -40,7 +37,6 @@ block = "sound"
 
 [[block]]
 block = "battery"
-driver = "upower"
 format = "{percentage}"
 
 [[block]]

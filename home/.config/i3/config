@@ -1,5 +1,4 @@
 # vim: sw=4
-
 set $mod Mod4
 
 set $left h
@@ -8,6 +7,7 @@ set $up k
 set $right l
 
 set $term WINIT_HIDPI_FACTOR=1.0 alacritty
+set $floating_term alacritty --class floatingAlacritty
 set $menu rofi -theme Adapta-Nokto -show run | xargs i3-msg exec
 
 set $lock scrot /tmp/lock-screen.png &&\
@@ -16,6 +16,10 @@ set $lock scrot /tmp/lock-screen.png &&\
         sleep 1
 set $capture scrot "$(xdg-user-dir PICTURES)/Screenshot from %Y-%m-%d %H-%M-%S.png"
 set $capture_region gnome-screenshot -i
+set $alsamixer alacritty --class floatingAlsamixer -e alsamixer
+set $nmtui alacritty --class floatingNmtui -e nmtui
+set $spotify_tui alacritty --class floatingSpotifytui -e spt
+set $floating_pcmanfm pcmanfm --class=floatingPCManFM
 
 set $ws1 "1"
 set $ws2 "2"
@@ -34,9 +38,31 @@ focus_follows_mouse no
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [instance="floatingAlacritty"] floating enable
+for_window [instance="floatingAlsamixer"] floating enable
+for_window [instance="floatingNmtui"] floating enable
+for_window [instance="floatingSpotifytui"] floating enable
+for_window [class="floatingPCManFM"] floating enable
 
-font pango:DejaVu Sans Mono 8
+font pango:Meslo LG S, Noto Sans Mono CJK KR 10
 
+input type:touchpad {
+    natural_scroll enabled
+    click_method clickfinger
+    dwt disabled
+}
+
+input type:keyboard {
+    xkb_options "ctrl:nocaps,korean:ralt_hangul,korean:rctrl_hanja"
+}
+
+output DP-1 {
+    pos 0 0
+}
+
+output eDP-1 {
+    pos 0 1200
+}
 
 bar {
     position top
@@ -47,12 +73,13 @@ bar {
 
 
 bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $floating_term
 
 bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec $menu
 
-floating_modifier $mod
+floating_modifier $mod normal
 
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+c reload
@@ -143,10 +170,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
-bindsym $mod+p exec --no-startup-id xrandr --output DP1 --above eDP1 --auto
-bindsym $mod+Shift+p exec --no-startup-id xrandr --output DP1 --off
-
-bindsym $mod+o exec --no-startup-id ~/utils/hangul-key.sh
+bindsym $mod+o exec $alsamixer
+bindsym $mod+p exec $nmtui
+bindsym $mod+m exec $spotify_tui
+bindsym $mod+i exec $floating_pcmanfm
 
 bindsym --release $mod+button2 kill
 bindsym $mod+button3 floating toggle
@@ -192,4 +219,6 @@ mode "$mode_system" {
 }
 bindsym $mod+Escape mode "$mode_system"
 
-exec --no-startup-id xautolock -time 10 -locker $Locker
+exec --no-startup-id xautolock -time 10 -locker $lock
+exec mako
+exec nimf
