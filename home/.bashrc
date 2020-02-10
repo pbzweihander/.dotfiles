@@ -104,6 +104,10 @@ if [ -f ~/.fzf.bash ]; then
     source ~/.fzf.bash
 fi
 
+if [ -f ~/.config/broot/launcher/bash/br ]; then
+    source ~/.config/broot/launcher/bash/br
+fi
+
 # local settings
 if [ -f ~/.bashrc.local ]; then
     source ~/.bashrc.local
