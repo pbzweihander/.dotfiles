@@ -53,11 +53,27 @@ export PS1='%n@%m:%~%(!.#.$) '
 if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
     source ~/.zinit/bin/zinit.zsh
 
+    zinit ice wait
+    zinit light jonmosco/kube-ps1
     zinit ice wait'!0' pick"async.zsh" src"pure.zsh"
     zinit light sindresorhus/pure
 
-    zinit ice wait svn as'completion' mv'git-completion.zsh -> _git' id-as'git-completion'
-    zinit snippet https://github.com/git/git/trunk/contrib/completion/
+    zinit ice wait
+    zinit light pbzweihander/truck
+    zinit ice wait
+    zinit light simnalamburt/cgitc
+    zinit ice wait
+    zinit light simnalamburt/zsh-expand-all
+    zinit ice wait pick".kubectl_aliases"
+    zinit light ahmetb/kubectl-aliases
+
+    zinit ice wait
+    zinit light voronkovich/gitignore.plugin.zsh
+    zinit ice wait src"z.sh"
+    zinit light rupa/z
+
+    zinit ice wait as'completion' id-as'git-completion'
+    zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
     zinit ice wait blockf atpull'zinit creinstall -q .'
     zinit light zsh-users/zsh-completions
     zinit ice wait atload'_zsh_autosuggest_start'
@@ -66,18 +82,13 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
     zinit light zsh-users/zsh-history-substring-search
     zinit ice wait atinit'zpcompinit; zpcdreplay'
     zinit light zsh-users/zsh-syntax-highlighting
-
-    zinit ice wait
-    zinit light pbzweihander/truck
-    zinit ice wait
-    zinit light simnalamburt/cgitc
-    zinit ice wait
-    zinit light simnalamburt/zsh-expand-all
-
-    zinit ice wait
-    zinit light voronkovich/gitignore.plugin.zsh
-    zinit ice wait src"z.sh"
-    zinit light rupa/z
+    zinit light-mode wait has"helm" for \
+        id-as"helm-completion" \
+        as"completion" \
+        atclone"helm completion zsh > _helm" \
+        atpull"%atclone" \
+        run-atpull \
+            zdharma/null
 fi
 
 #
@@ -114,13 +125,23 @@ if [ -f ~/.zsh_aliases ]; then
     source ~/.zsh_aliases
 fi
 
+# rprompt
+autoload -Uz colors && colors
+
+function terraform_prompt() {
+    if [ -d .terraform ]; then
+        workspace="$(command terraform workspace show 2>/dev/null)"
+        echo "${workspace}%{$reset_color%} "
+    fi
+}
+
+export RPROMPT='$(terraform_prompt)'"%{$fg[blue]%}%(1j.✦%j.) %{$fg[yellow]%}%*%{$reset_color%}"
+
 #
 # Plugin Configs
 #
 
 # pure
-autoload -Uz colors && colors
-export RPROMPT="%{$fg[blue]%}%(1j.✦%j.) %{$fg[yellow]%}%*%{$reset_color%}"
 export PURE_GIT_UNTRACKED_DIRTY=0
 
 # zsh-sensible
@@ -138,6 +159,31 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+# kube-ps1
+function kube_ps1_or_not {
+    if command -v kube_ps1 > /dev/null; then
+        kube_ps1
+    fi
+}
+function get_cluster() {
+    if [ "$1" = "minikube" ]; then
+        echo ''
+    elif [[ "$1" == arn:aws:eks:* ]]; then
+        echo "$1" | cut -d/ -f2
+    else
+        echo "$1"
+    fi
+}
+
+export KUBE_PS1_NS_ENABLE=false
+export KUBE_PS1_PREFIX=''
+export KUBE_PS1_SYMBOL_ENABLE=false
+export KUBE_PS1_SUFFIX=''
+export KUBE_PS1_CLUSTER_FUNCTION=get_cluster
+export KUBE_PS1_NAMESPACE_FUNCTION=get_namespace
+
+export RPROMPT='$(kube_ps1_or_not) '$RPROMPT
 
 #
 # External programs
