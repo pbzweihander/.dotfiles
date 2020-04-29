@@ -161,6 +161,8 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     " Language server and Auto completion
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
+    Plug 'liuchengxu/vista.vim'
+    Plug 'mattn/vim-lsp-settings'
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'prabirshrestha/asyncomplete-buffer.vim'
@@ -168,7 +170,6 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'tsufeki/asyncomplete-fuzzy-match', {
         \ 'do': 'cargo build --release',
         \ }
-    Plug 'liuchengxu/vista.vim'
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 
@@ -269,51 +270,6 @@ function! NearestMethodOrFunction()
 endfunction
 
 " vim-lsp
-if executable('pyls')
-    " Use flake8 with https://github.com/emanspeaks/pyls-flake8
-    au User lsp_setup call lsp#register_server({
-        \     'name': 'pyls',
-        \     'cmd': ['pyls'],
-        \     'whitelist': ['python'],
-        \     'workspace_config': {
-        \         'pyls': {
-        \             'configurationSources': ["flake8"],
-        \             'plugins': {
-        \                 'mccabe': { 'enabled': v:false },
-        \                 'pyflakes': { 'enabled': v:false },
-        \                 'pycodestyle': { 'enabled': v:false },
-        \             },
-        \         },
-        \     },
-        \ })
-endif
-
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \     'name': 'rls',
-        \     'cmd': {server_info->['rls']},
-        \     'workspace_config': {'rust': {'clippy_preference': 'on'}},
-        \     'whitelist': ['rust'],
-        \ })
-endif
-
-if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-        \     'name': 'typescript-language-server',
-        \     'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \     'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-        \     'whitelist': ['typescript', 'typescript.tsx'],
-        \ })
-
-
-    au User lsp_setup call lsp#register_server({
-        \     'name': 'javascript support using typescript-language-server',
-        \     'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \     'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
-        \     'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact'],
-        \ })
-endif
-
 nnoremap <F1> :LspCodeAction<CR>
 inoremap <F1> <ESC>:LspCodeAction<CR>
 nnoremap <silent> K :LspHover<CR>
@@ -440,7 +396,7 @@ nnoremap <leader><leader>v :Vista finder<CR>
 let g:vista_default_executive = 'vim_lsp'
 let g:vista_fzf_preview = ['right:50%']
 
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+autocmd User lsp_buffer_enabled call vista#RunForNearestMethodOrFunction()
 
 "
 " Filetype specific
@@ -449,6 +405,8 @@ autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 autocmd BufNewFile,BufRead *.yaml.example set ft=yaml
 autocmd FileType json setlocal sw=2 sts=2 et
 autocmd FileType yaml setlocal sw=2 sts=2 et
+autocmd FileType yaml setlocal indentkeys-=<:>
+autocmd FileType yaml setlocal indentkeys-=:
 autocmd Filetype sql setlocal sw=2 sts=2 et
 autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
