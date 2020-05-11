@@ -145,9 +145,14 @@ function git_current_branch {
 
 alias gdo='git diff origin/$(git_current_branch)'
 alias gpsup='git push -u origin $(git_current_branch)'
+alias gc!!='git commit -v --amend --no-verify'
+alias gca!!='git commit -v -a --amend --no-verify'
 alias gp!!='git push --force-with-lease --no-verify'
 alias grh1='git reset HEAD~1'
 alias gsm='git switch master'
+alias grbu='git rebase upstream/$(git_current_branch)'
+alias grbum='git rebase upstream/master'
+alias grbud='git rebase upstream/develop'
 
 # python
 alias py=python
