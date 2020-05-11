@@ -6,15 +6,15 @@ set $down j
 set $up k
 set $right l
 
-set $term WINIT_HIDPI_FACTOR=1.0 alacritty
-set $floating_term alacritty --class floatingAlacritty
-set $menu rofi -theme Adapta-Nokto -show run | xargs i3-msg exec
+set $term WINIT_X11_SCALE_FACTOR=1.0 alacritty
+set $floating_term WINIT_X11_SCALE_FACTOR=1.0 alacritty --class floatingAlacritty
+set $menu GDK_BACKEND=x11 ulauncher
 
 set $lock scrot /tmp/lock-screen.png &&\
         convert /tmp/lock-screen.png -scale 2.5% -scale 4000% /tmp/lock-screen.png &&\
         i3lock -e -i /tmp/lock-screen.png -c 000000 &&\
         sleep 1
-set $capture scrot "$(xdg-user-dir PICTURES)/Screenshot from %Y-%m-%d %H-%M-%S.png"
+set $capture scrot "$(xdg-user-dir PICTURES)/screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png"
 set $capture_region gnome-screenshot -i
 set $alsamixer alacritty --class floatingAlsamixer -e alsamixer
 set $nmtui alacritty --class floatingNmtui -e nmtui
@@ -44,33 +44,7 @@ for_window [instance="floatingNmtui"] floating enable
 for_window [instance="floatingSpotifytui"] floating enable
 for_window [class="floatingPCManFM"] floating enable
 
-font pango:Meslo LG S, Noto Sans Mono CJK KR 10
-
-input type:touchpad {
-    natural_scroll enabled
-    click_method clickfinger
-    dwt disabled
-}
-
-input type:keyboard {
-    xkb_options "ctrl:nocaps,korean:ralt_hangul,korean:rctrl_hanja"
-}
-
-output DP-1 {
-    pos 0 0
-}
-
-output eDP-1 {
-    pos 0 1200
-}
-
-bar {
-    position top
-    font pango:DejaVu Sans Mono, FontAwesome 12
-
-    status_command i3status-rs ~/.config/i3/status.toml
-}
-
+font pango:Victor Mono, Noto Sans Mono CJK KR 10
 
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $floating_term
@@ -78,8 +52,6 @@ bindsym $mod+Shift+Return exec $floating_term
 bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec $menu
-
-floating_modifier $mod normal
 
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+c reload
@@ -219,6 +191,7 @@ mode "$mode_system" {
 }
 bindsym $mod+Escape mode "$mode_system"
 
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id xautolock -time 10 -locker $lock
-exec mako
-exec nimf
+exec --no-startup-id dunst
+exec --no-startup-id nimf
