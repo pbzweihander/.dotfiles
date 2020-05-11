@@ -126,7 +126,7 @@ alias mi=micro
 alias am=amp
 
 # clipboard
-if hash wl-copy 2>/dev/null; then
+if [[ "$(loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}')" = 'wayland' ]]; then
     alias xc='wl-copy'
     alias xp='wl-paste'
 else
