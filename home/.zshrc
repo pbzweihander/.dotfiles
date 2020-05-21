@@ -1,3 +1,12 @@
+stty stop undef
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 [[ -o interactive ]] || return
 
 if [[ -a /proc/version ]] && grep -q Microsoft /proc/version; then
@@ -36,11 +45,11 @@ if [ -d ~/.nodenv/bin ]; then
     export PATH="$HOME/.nodenv/bin:$PATH"
 fi
 
-if command -v ruby >/dev/null && command -v gem >/dev/null; then
+if [ $+command[ruby] ] && [ $+command[gem] ]; then
     export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
-if command -v nvim >/dev/null; then
+if [ $+command[nvim] ]; then
     export EDITOR=nvim
 else
     export EDITOR=vim
@@ -53,10 +62,8 @@ export PS1='%n@%m:%~%(!.#.$) '
 if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
     source ~/.zinit/bin/zinit.zsh
 
-    zinit ice wait
-    zinit light jonmosco/kube-ps1
-    zinit ice wait'!0' pick"async.zsh" src"pure.zsh"
-    zinit light sindresorhus/pure
+    zinit ice depth=1
+    zinit light romkatv/powerlevel10k
 
     zinit ice wait
     zinit light pbzweihander/truck
@@ -144,9 +151,6 @@ export RPROMPT='$(terraform_prompt)'"%{$fg[blue]%}%(1j.✦%j.) %{$fg[yellow]%}%*
 # pure
 export PURE_GIT_UNTRACKED_DIRTY=0
 
-# zsh-sensible
-stty stop undef
-
 # zsh-substring-completion
 setopt complete_in_word
 setopt always_to_end
@@ -161,11 +165,6 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # kube-ps1
-function kube_ps1_or_not {
-    if command -v kube_ps1 > /dev/null; then
-        kube_ps1
-    fi
-}
 function get_cluster() {
     if [ "$1" = "minikube" ]; then
         echo ''
@@ -181,9 +180,6 @@ export KUBE_PS1_PREFIX=''
 export KUBE_PS1_SYMBOL_ENABLE=false
 export KUBE_PS1_SUFFIX=''
 export KUBE_PS1_CLUSTER_FUNCTION=get_cluster
-export KUBE_PS1_NAMESPACE_FUNCTION=get_namespace
-
-export RPROMPT='$(kube_ps1_or_not) '$RPROMPT
 
 #
 # External programs
@@ -198,19 +194,19 @@ if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
 
-if command -v pyenv >/dev/null; then
+if [ $+command[pyenv] ]; then
     eval "$(pyenv init -)"
 
-    if command -v pyenv-virtualenv >/dev/null; then
+    if [ $+command[pyenv-virtualenv] ]; then
         eval "$(pyenv virtualenv-init -)"
     fi
-    if command -v pyenv-virtualenvwrapper >/dev/null; then
+    if [ $+command[pyenv-virtualenvwrapper] ]; then
         export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-        pyenv virtualenvwrapper
+        pyenv virtualenvwrapper_lazy
     fi
 fi
 
-if command -v nodenv >/dev/null; then
+if [ $+command[nodenv] ]; then
     eval "$(nodenv init -)"
 fi
 
@@ -226,3 +222,6 @@ fi
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
