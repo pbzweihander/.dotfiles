@@ -164,23 +164,6 @@ bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-# kube-ps1
-function get_cluster() {
-    if [ "$1" = "minikube" ]; then
-        echo ''
-    elif [[ "$1" == arn:aws:eks:* ]]; then
-        echo "$1" | cut -d/ -f2
-    else
-        echo "$1"
-    fi
-}
-
-export KUBE_PS1_NS_ENABLE=false
-export KUBE_PS1_PREFIX=''
-export KUBE_PS1_SYMBOL_ENABLE=false
-export KUBE_PS1_SUFFIX=''
-export KUBE_PS1_CLUSTER_FUNCTION=get_cluster
-
 #
 # External programs
 #
