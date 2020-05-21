@@ -10,16 +10,18 @@ set $term WINIT_X11_SCALE_FACTOR=1.0 alacritty
 set $floating_term WINIT_X11_SCALE_FACTOR=1.0 alacritty --class floatingAlacritty
 set $menu GDK_BACKEND=x11 ulauncher
 
-set $lock scrot /tmp/lock-screen.png &&\
+set $lock scrot -o /tmp/lock-screen.png &&\
         convert /tmp/lock-screen.png -scale 2.5% -scale 4000% /tmp/lock-screen.png &&\
         i3lock -e -i /tmp/lock-screen.png -c 000000 &&\
-        sleep 1
+        sleep 1 &&\
+        rm -f /tmp/lock-screen.png
 set $capture scrot "$(xdg-user-dir PICTURES)/screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png"
-set $capture_region gnome-screenshot -i
-set $alsamixer alacritty --class floatingAlsamixer -e alsamixer
-set $nmtui alacritty --class floatingNmtui -e nmtui
-set $spotify_tui alacritty --class floatingSpotifytui -e spt
+set $capture_region import "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
+set $pavucontrol pavucontrol
+set $nmtui WINIT_X11_SCALE_FACTOR=1.0 alacritty --class floatingNmtui -e nmtui
+set $spotify_tui WINIT_X11_SCALE_FACTOR=1.0 alacritty --class floatingSpotifytui -e spt
 set $floating_pcmanfm pcmanfm --class=floatingPCManFM
+set $autorandr_change autorandr --change
 
 set $ws1 "1"
 set $ws2 "2"
@@ -39,7 +41,7 @@ focus_follows_mouse no
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [instance="floatingAlacritty"] floating enable
-for_window [instance="floatingAlsamixer"] floating enable
+for_window [instance="pavucontrol"] floating enable
 for_window [instance="floatingNmtui"] floating enable
 for_window [instance="floatingSpotifytui"] floating enable
 for_window [class="floatingPCManFM"] floating enable
@@ -131,7 +133,7 @@ bindsym $mod+minus move scratchpad
 bindsym $mod+equal scratchpad show
 
 bindsym Print exec $capture
-bindsym Control+Print exec $capture_region
+bindsym --release Control+Print exec $capture_region
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%
@@ -142,13 +144,21 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
-bindsym $mod+o exec $alsamixer
+bindsym $mod+o exec $pavucontrol
 bindsym $mod+p exec $nmtui
 bindsym $mod+m exec $spotify_tui
 bindsym $mod+i exec $floating_pcmanfm
+bindsym $mod+x exec $autorandr_change
 
 bindsym --release $mod+button2 kill
 bindsym $mod+button3 floating toggle
+
+bindsym $mod+F1 exec --no-startup-id pacmd list-sinks | rg '^\s*\* index: (\d+)\s*$' -r '$1' | xargs -I'{}' pactl set-sink-mute {} toggle
+bindsym $mod+F2 exec --no-startup-id pacmd list-sinks | rg '^\s*\* index: (\d+)\s*$' -r '$1' | xargs -I'{}' sh -c "pactl set-sink-mute {} false && pactl set-sink-volume {} -5%"
+bindsym $mod+F3 exec --no-startup-id pacmd list-sinks | rg '^\s*\* index: (\d+)\s*$' -r '$1' | xargs -I'{}' sh -c "pactl set-sink-mute {} false && pactl set-sink-volume {} +5%"
+bindsym $mod+F4 exec --no-startup-id playerctl previous
+bindsym $mod+F5 exec --no-startup-id playerctl play-pause
+bindsym $mod+F6 exec --no-startup-id playerctl next
 
 mode "resize" {
     bindsym $left resize shrink width 10 px or 10 ppt
@@ -195,3 +205,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id xautolock -time 10 -locker $lock
 exec --no-startup-id dunst
 exec --no-startup-id nimf
+exec --no-startup-id picom
