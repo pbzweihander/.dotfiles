@@ -13,6 +13,52 @@ if [[ -a /proc/version ]] && grep -q Microsoft /proc/version; then
   unsetopt BG_NICE
 fi
 
+#
+# Configs
+#
+
+setopt auto_cd histignorealldups sharehistory
+zstyle ':completion:*' menu select
+
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
+
+# keybinding
+export KEYTIMEOUT=1
+bindkey -M vicmd "^a" beginning-of-line
+bindkey -M vicmd "^e" end-of-line
+bindkey '^[[H' beginning-of-line
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[4~' end-of-line
+bindkey '^[[3~' delete-char
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;3D' backward-word
+
+#
+# Plugin Configs
+#
+
+# zsh-substring-completion
+setopt complete_in_word
+setopt always_to_end
+export WORDCHARS=''
+zmodload -i zsh/complist
+
+zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# zsh-autosuggestions
+typeset -g ZSH_AUTOSUGGEST_USE_ASYNC=1
+typeset -g ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
 # paths
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:$PATH"
 
@@ -53,6 +99,15 @@ if [ $+command[nvim] ]; then
     export EDITOR=nvim
 else
     export EDITOR=vim
+fi
+
+# aliases
+if [ -f ~/.sh_aliases ]; then
+    source ~/.sh_aliases
+fi
+
+if [ -f ~/.zsh_aliases ]; then
+    source ~/.zsh_aliases
 fi
 
 #
@@ -97,72 +152,6 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
         run-atpull \
             zdharma/null
 fi
-
-#
-# Configs
-#
-
-setopt auto_cd histignorealldups sharehistory
-zstyle ':completion:*' menu select
-
-export HISTSIZE=10000
-export SAVEHIST=10000
-export HISTFILE=~/.zsh_history
-
-# keybinding
-export KEYTIMEOUT=1
-bindkey -M vicmd "^a" beginning-of-line
-bindkey -M vicmd "^e" end-of-line
-bindkey '^[[H' beginning-of-line
-bindkey '^[[1~' beginning-of-line
-bindkey '^[[F' end-of-line
-bindkey '^[[4~' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[[1;5C' forward-word
-bindkey '^[[1;3C' forward-word
-bindkey '^[[1;5D' backward-word
-bindkey '^[[1;3D' backward-word
-
-# aliases
-if [ -f ~/.sh_aliases ]; then
-    source ~/.sh_aliases
-fi
-
-if [ -f ~/.zsh_aliases ]; then
-    source ~/.zsh_aliases
-fi
-
-# rprompt
-autoload -Uz colors && colors
-
-function terraform_prompt() {
-    if [ -d .terraform ]; then
-        workspace="$(command terraform workspace show 2>/dev/null)"
-        echo "${workspace}%{$reset_color%} "
-    fi
-}
-
-export RPROMPT='$(terraform_prompt)'"%{$fg[blue]%}%(1j.✦%j.) %{$fg[yellow]%}%*%{$reset_color%}"
-
-#
-# Plugin Configs
-#
-
-# pure
-export PURE_GIT_UNTRACKED_DIRTY=0
-
-# zsh-substring-completion
-setopt complete_in_word
-setopt always_to_end
-export WORDCHARS=''
-zmodload -i zsh/complist
-
-zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
 
 #
 # External programs
