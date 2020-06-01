@@ -25,6 +25,7 @@ export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
 
 # keybinding
+bindkey -v
 export KEYTIMEOUT=1
 bindkey -M vicmd "^a" beginning-of-line
 bindkey -M vicmd "^e" end-of-line
