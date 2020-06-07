@@ -136,6 +136,9 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     if has('nvim')
         Plug 'lambdalisue/suda.vim'
     endif
+    Plug 'skywind3000/vim-quickui'
+    Plug 'APZelos/blamer.nvim'
+    Plug 'AndrewRadev/splitjoin.vim'
 
     " The Pope
     Plug 'tpope/vim-fugitive'
@@ -298,6 +301,14 @@ highlight LspInformationHighlight cterm=underline ctermbg=235 gui=underline guib
 highlight LspWarningHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
 highlight LspErrorHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
 
+if executable('hie')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'hie',
+        \ 'cmd': {server_info->['hie-wrapper', '--lsp']},
+        \ 'whitelist': ['haskell'],
+        \ })
+endif
+
 " asyncomplete
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=noinsert,menuone,noselect
@@ -398,6 +409,10 @@ let g:vista_fzf_preview = ['right:50%']
 
 autocmd User lsp_buffer_enabled call vista#RunForNearestMethodOrFunction()
 
+" blamer.nvim
+let g:blamer_enabled = 1
+let g:blamer_show_in_visual_modes = 0
+
 "
 " Filetype specific
 "
@@ -412,3 +427,4 @@ autocmd FileType python setlocal indentkeys-=<:>
 autocmd FileType python setlocal indentkeys-=:
 autocmd FileType terraform nnoremap <silent> <leader>f :TerraformFmt<cr>
 autocmd FileType rust setlocal matchpairs+=<:>
+autocmd FileType markdown DisableStripWhitespaceOnSave
