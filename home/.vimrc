@@ -120,7 +120,6 @@ endif
 
 try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'itchyny/lightline.vim'
-
     Plug 'simnalamburt/vim-mundo'
     Plug 'vim-utils/vim-interruptless'
     Plug 'junegunn/gv.vim'
@@ -139,6 +138,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'skywind3000/vim-quickui'
     Plug 'APZelos/blamer.nvim'
     Plug 'AndrewRadev/splitjoin.vim'
+    Plug 'vimwiki/vimwiki'
 
     " The Pope
     Plug 'tpope/vim-fugitive'
@@ -413,6 +413,25 @@ autocmd User lsp_buffer_enabled call vista#RunForNearestMethodOrFunction()
 let g:blamer_enabled = 1
 let g:blamer_show_in_visual_modes = 0
 
+" vimwiki
+filetype plugin on
+syntax on
+
+let wiki = {}
+let wiki.path = '~/pbzweihander.github.io/wiki/'
+let wiki.ext = '.md'
+
+let internal_wiki = {}
+let internal_wiki.path = '~/internal_wiki/'
+let internal_wiki.syntax = 'markdown'
+let internal_wiki.ext = '.md'
+let internal_wiki.path_html = '~/internal_wiki/out/'
+let internal_wiki.custom_wiki2html = 'vimwiki_markdown'
+
+let g:vimwiki_list = [wiki, internal_wiki]
+let g:vimwiki_conceallevel = 0
+let g:vimwiki_global_ext = 0
+
 "
 " Filetype specific
 "
@@ -428,3 +447,4 @@ autocmd FileType python setlocal indentkeys-=:
 autocmd FileType terraform nnoremap <silent> <leader>f :TerraformFmt<cr>
 autocmd FileType rust setlocal matchpairs+=<:>
 autocmd FileType markdown DisableStripWhitespaceOnSave
+autocmd FileType vimwiki setlocal conceallevel=0
