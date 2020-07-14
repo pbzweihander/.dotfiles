@@ -61,13 +61,13 @@
   # Right prompt segments.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
+    kubecontext
     terraform
     rust_version
     nodenv
     virtualenv
     # =========================[ Line #2 ]=========================
     newline                   # \n
-    kubecontext
     status
     background_jobs
     time
