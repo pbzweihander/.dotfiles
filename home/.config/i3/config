@@ -12,8 +12,9 @@ set $menu GDK_BACKEND=x11 ulauncher
 
 set $lock scrot -o /tmp/lock-screen.png &&\
         convert /tmp/lock-screen.png -scale 2.5% -scale 4000% /tmp/lock-screen.png &&\
-        i3lock -e -i /tmp/lock-screen.png -c 000000 &&\
-        sleep 1 &&\
+        killall -SIGUSR1 dunst &&\
+        i3lock  -ne -i /tmp/lock-screen.png -c 000000 &&\
+        killall -SIGUSR2 dunst &&\
         rm -f /tmp/lock-screen.png
 set $capture scrot "$(xdg-user-dir PICTURES)/screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png"
 set $capture_region import "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
@@ -48,12 +49,12 @@ for_window [class="floatingPCManFM"] floating enable
 
 font pango:Victor Mono, Noto Sans Mono CJK KR 10
 
-bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec $floating_term
+bindsym $mod+Return exec --no-startup-id $term
+bindsym $mod+Shift+Return exec --no-startup-id $floating_term
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec $menu
+bindsym $mod+d exec --no-startup-id $menu
 
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+c reload
@@ -132,7 +133,7 @@ bindsym $mod+z focus child
 bindsym $mod+minus move scratchpad
 bindsym $mod+equal scratchpad show
 
-bindsym Print exec $capture
+bindsym --release Print exec --no-startup-id $capture
 bindsym --release Control+Print exec $capture_region
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5%
@@ -144,11 +145,11 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
-bindsym $mod+o exec $pavucontrol
-bindsym $mod+p exec $nmtui
-bindsym $mod+m exec $spotify_tui
-bindsym $mod+i exec $floating_pcmanfm
-bindsym $mod+x exec $autorandr_change
+bindsym $mod+o exec --no-startup-id $pavucontrol
+bindsym $mod+p exec --no-startup-id $nmtui
+bindsym $mod+m exec --no-startup-id $spotify_tui
+bindsym $mod+i exec --no-startup-id $floating_pcmanfm
+bindsym $mod+x exec --no-startup-id $autorandr_change
 
 bindsym --release $mod+button2 kill
 bindsym $mod+button3 floating toggle
@@ -202,7 +203,9 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id xautolock -time 10 -locker $lock
+exec_always --no-startup-id $HOME/.fehbg
+exec --no-startup-id xautolock -detectsleep -time 5 -locker 'sh -c \"$lock\"'
+exec --no-startup-id xss-lock -- sh -c "$lock"
 exec --no-startup-id dunst
 exec --no-startup-id nimf
 exec --no-startup-id picom
