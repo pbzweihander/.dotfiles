@@ -69,6 +69,7 @@ fi
 alias sctl='sudo systemctl'
 alias usctl='systemctl --user'
 alias jctl='sudo journalctl'
+alias bctl=bluetoothctl
 
 # Docker
 if groups | grep -qw docker; then
@@ -149,10 +150,16 @@ alias gc!!='git commit -v --amend --no-verify'
 alias gca!!='git commit -v -a --amend --no-verify'
 alias gp!!='git push --force-with-lease --no-verify'
 alias grh1='git reset HEAD~1'
+alias grhs='git reset --soft'
+alias grhs1='git reset --soft HEAD~1'
+alias grhsd='git reset --soft HEAD'
 alias gsm='git switch master'
+alias grbo='git rebase origin/$(git_current_branch)'
 alias grbu='git rebase upstream/$(git_current_branch)'
 alias grbum='git rebase upstream/master'
 alias grbud='git rebase upstream/develop'
+alias grbim='git rebase -i master'
+alias grbium='git rebase -i upstream/master'
 
 # python
 alias py=python
@@ -161,26 +168,33 @@ alias pyvenv="pyenv virtualenv"
 # aws cli
 alias saws="AWS_PROFILE=spoqa aws"
 alias ssaws="AWS_PROFILE=spoqa-seoul aws"
+alias daws="AWS_PROFILE=dodo-point aws"
 alias uaws="AWS_PROFILE=upnl aws"
 alias paws="AWS_PROFILE=private aws"
 
 # terraform
 alias tf="terraform"
 alias stf="AWS_PROFILE=spoqa terraform"
+alias dtf="AWS_PROFILE=dodo-point terraform"
 alias utf="AWS_PROFILE=upnl terraform"
 alias ptf="AWS_PROFILE=private terraform"
 
 # sway
 function tcp {
-    swaymsg exec "alacritty --working-directory $PWD"
+    if [[ "$(loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}')" = 'wayland' ]]; then
+        swaymsg exec "alacritty --working-directory $PWD"
+    else
+        i3-msg exec "alacritty --working-directory $PWD"
+    fi
 }
 function tcpx {
-    swaymsg exec "WAYLAND_DISPLAY= WINIT_HIDPI_FACTOR=1.0 alacritty --working-directory $PWD"
+    swaymsg exec "WAYLAND_DISPLAY= WINIT_X11_SCALE_FACTOR=1.0 alacritty --working-directory $PWD"
 }
 
 # kubernetes
 alias k=kubectl
 alias ktx=kubectx
+alias ktc="kubectx -c"
 alias kns=kubens
 
 # etc
