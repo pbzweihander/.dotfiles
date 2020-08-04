@@ -45,6 +45,9 @@ set cursorline
 " Pair Matching
 set showmatch
 
+filetype plugin on
+syntax on
+
 "
 " Key Mappings
 "
@@ -162,17 +165,18 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'neovimhaskell/haskell-vim'
 
     " Language server and Auto completion
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/vim-lsp'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'fannheyward/coc-sql', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
     Plug 'liuchengxu/vista.vim'
-    Plug 'mattn/vim-lsp-settings'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    Plug 'prabirshrestha/asyncomplete-buffer.vim'
-    Plug 'prabirshrestha/asyncomplete-file.vim'
-    Plug 'tsufeki/asyncomplete-fuzzy-match', {
-        \ 'do': 'cargo build --release',
-        \ }
 
 call plug#end() | catch /^Vim\%((\a\+)\)\=:E117/ | endtry
 
@@ -272,69 +276,65 @@ function! NearestMethodOrFunction()
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
-" vim-lsp
-nnoremap <F1> :LspCodeAction<CR>
-inoremap <F1> <ESC>:LspCodeAction<CR>
-nnoremap <silent> K :LspHover<CR>
-nnoremap <silent> gd :LspDefinition<CR>
-nnoremap <silent> gD :LspPeekDefinition<CR>
-nnoremap <silent> gf :LspDeclaration<CR>
-nnoremap <silent> gF :LspPeekDeclaration<CR>
-nnoremap <silent> gr :LspReferences<CR>
-nnoremap <silent> <F2> :LspRename<CR>
-inoremap <silent> <F2> <ESC>:LspRename<CR>
-nnoremap <silent> <leader>f :LspDocumentFormat<CR>
-vnoremap <silent> <leader>f :LspDocumentRangeFormat<CR>
-nnoremap <silent> <leader>e :LspNextError<CR>
-
-let g:lsp_signs_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_highlight_references_enabled = 1
-
-let g:lsp_signs_hint = {'text': '➤'}
-let g:lsp_signs_information = {'text': 'ℹ'}
-let g:lsp_signs_warning = {'text': '⚠'}
-let g:lsp_signs_error = {'text': '✗'}
-
-highlight LspHintHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
-highlight LspInformationHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
-highlight LspWarningHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
-highlight LspErrorHighlight cterm=underline ctermbg=235 gui=underline guibg=#192224 guisp=#192224
-
-if executable('hie')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'hie',
-        \ 'cmd': {server_info->['hie-wrapper', '--lsp']},
-        \ 'whitelist': ['haskell'],
-        \ })
-endif
-
-" asyncomplete
-let g:asyncomplete_auto_completeopt = 0
-set completeopt=noinsert,menuone,noselect
+" coc.nvim
+set updatetime=100
+set completeopt=preview,noinsert,menuone,noselect
 set shortmess+=c
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+let g:coc_disable_startup_warning = 1
 
-imap <C-Space> <Plug>(asyncomplete_force_refresh)
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-    \     'name': 'buffer',
-    \     'whitelist': ['*'],
-    \     'completor': function('asyncomplete#sources#buffer#completor'),
-    \     'config': {
-    \         'max_buffer_size': 5000000,
-    \     },
-    \ }))
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-    \     'name': 'file',
-    \     'whitelist': ['*'],
-    \     'priority': 10,
-    \     'completor': function('asyncomplete#sources#file#completor'),
-    \ }))
+inoremap <silent><expr> <c-space> coc#refresh()
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+nmap <silent> <F1> :<C-u>CocList<cr>
+imap <silent> <F1> <Esc>:<C-u>CocList<cr>
+nmap <silent> <F2> <Plug>(coc-rename)
+imap <silent> <F2> <ESC><Plug>(coc-rename)
+nmap <silent> <leader>f <Plug>(coc-format)
+xmap <silent> <leader>f <Plug>(coc-format-selected)
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>ac <Plug>(coc-codeaction)
+
+nmap <silent> <C-c> <Plug>(coc-cursors-position)
+nmap <silent> <C-x> <Plug>(coc-cursors-word)*
+xmap <silent> <C-x> <Plug>(coc-cursors-range)
+nmap <leader>x  <Plug>(coc-cursors-operator)
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+highlight link CocCursorRange NONE
+highlight CocCursorRange guibg=#b16286 guifg=#ebdbb2
+
+" coc-yank
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 " fzf
 let g:fzf_action = {
@@ -404,19 +404,17 @@ nnoremap = <C-^>
 nnoremap <leader>v :Vista!!<CR>
 nnoremap <leader><leader>v :Vista finder<CR>
 
-let g:vista_default_executive = 'vim_lsp'
+let g:vista_default_executive = 'coc'
 let g:vista_fzf_preview = ['right:50%']
 
-autocmd User lsp_buffer_enabled call vista#RunForNearestMethodOrFunction()
+" autocmd User lsp_buffer_enabled call vista#RunForNearestMethodOrFunction()
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " blamer.nvim
 let g:blamer_enabled = 1
 let g:blamer_show_in_visual_modes = 0
 
 " vimwiki
-filetype plugin on
-syntax on
-
 let wiki = {}
 let wiki.path = '~/pbzweihander.github.io/wiki/'
 let wiki.ext = '.md'
