@@ -1,0 +1,24 @@
+Font=Victor Mono
+FontHeight=14
+Locale=C
+Charset=UTF-8
+CopyOnSelect=no
+Term=xterm-256color
+CursorType=block
+
+Black=35,35,35
+White=255,255,255
+Red=255,92,87
+Green=90,247,142
+Blue=87,199,255
+Cyan=154,237,254
+Magenta=255,106,193
+Yellow=243,249,157
+BoldBlack=68,68,68
+BoldWhite=255,255,255
+BoldRed=255,92,87
+BoldGreen=90,247,142
+BoldBlue=87,199,255
+BoldCyan=154,237,254
+BoldMagenta=255,106,193
+BoldYellow=243,249,157
