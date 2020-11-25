@@ -137,14 +137,8 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
 
     zinit ice wait as'completion' id-as'git-completion'
     zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
-    zinit ice wait blockf atpull'zinit creinstall -q .'
-    zinit light zsh-users/zsh-completions
-    zinit ice wait atload'_zsh_autosuggest_start'
-    zinit light zsh-users/zsh-autosuggestions
     zinit ice wait
     zinit light zsh-users/zsh-history-substring-search
-    zinit ice wait atinit'zpcompinit; zpcdreplay'
-    zinit light zsh-users/zsh-syntax-highlighting
     zinit light-mode wait has"helm" for \
         id-as"helm-completion" \
         as"completion" \
@@ -152,6 +146,13 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
         atpull"%atclone" \
         run-atpull \
             zdharma/null
+    zinit wait for \
+        atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+            zdharma/fast-syntax-highlighting \
+        blockf \
+            zsh-users/zsh-completions \
+        atload"!_zsh_autosuggest_start" \
+            zsh-users/zsh-autosuggestions
 fi
 
 #
