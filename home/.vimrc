@@ -450,3 +450,5 @@ autocmd FileType terraform nnoremap <silent> <leader>f :TerraformFmt<cr>
 autocmd FileType rust setlocal matchpairs+=<:>
 autocmd FileType markdown DisableStripWhitespaceOnSave
 autocmd FileType vimwiki setlocal conceallevel=0
+autocmd FileType scss setlocal sw=2 sts=2 et
+autocmd FileType css setlocal sw=2 sts=2 et
