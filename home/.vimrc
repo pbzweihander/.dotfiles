@@ -117,6 +117,10 @@ else
     cmap w!! w !sudo tee %
 endif
 
+" Mistypings
+command Q :q
+command Qa :qa
+
 "
 " Plugins
 "
