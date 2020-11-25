@@ -153,6 +153,13 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
             zsh-users/zsh-completions \
         atload"!_zsh_autosuggest_start" \
             zsh-users/zsh-autosuggestions
+
+    zinit wait for \
+        pbzweihander/zsh-nodenv-lazy
+    export ZSH_PYENV_LAZY_VIRTUALENV="true"
+    export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+    zinit wait for \
+        davidparsson/zsh-pyenv-lazy
 fi
 
 #
@@ -166,22 +173,6 @@ fi
 
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
-fi
-
-if [ $+command[pyenv] ]; then
-    eval "$(pyenv init -)"
-
-    if [ $+command[pyenv-virtualenv] ]; then
-        eval "$(pyenv virtualenv-init -)"
-    fi
-    if [ $+command[pyenv-virtualenvwrapper] ]; then
-        export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-        pyenv virtualenvwrapper_lazy
-    fi
-fi
-
-if [ $+command[nodenv] ]; then
-    eval "$(nodenv init -)"
 fi
 
 if [ -f ~/.config/broot/launcher/bash/br ]; then
