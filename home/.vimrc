@@ -337,6 +337,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 highlight link CocCursorRange NONE
 highlight CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
+autocmd FileType python call coc#config('python', {'pythonPath': system('pyenv which python | tr -d \\n')})
+
 " coc-yank
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
