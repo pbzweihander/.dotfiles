@@ -92,6 +92,10 @@ if [ -d ~/.nodenv/bin ]; then
     export PATH="$HOME/.nodenv/bin:$PATH"
 fi
 
+if [ -d ~/.tfenv/bin ]; then
+    export PATH="$HOME/.tfenv/bin:$PATH"
+fi
+
 if [ $+command[ruby] ] && [ $+command[gem] ]; then
     export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
@@ -121,44 +125,24 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
     zinit ice depth=1
     zinit light romkatv/powerlevel10k
 
-    zinit ice wait
-    zinit light pbzweihander/truck
-    zinit ice wait
-    zinit light simnalamburt/cgitc
-    zinit ice wait
-    zinit light simnalamburt/zsh-expand-all
-    zinit ice wait pick".kubectl_aliases"
-    zinit light ahmetb/kubectl-aliases
-
-    zinit ice wait
-    zinit light voronkovich/gitignore.plugin.zsh
-    zinit ice wait src"z.sh"
-    zinit light rupa/z
-
-    zinit ice wait as'completion' id-as'git-completion'
-    zinit snippet https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh
-    zinit ice wait
-    zinit light zsh-users/zsh-history-substring-search
-    zinit light-mode wait has"helm" for \
-        id-as"helm-completion" \
-        as"completion" \
-        atclone"helm completion zsh > _helm" \
-        atpull"%atclone" \
-        run-atpull \
-            zdharma/null
-    zinit wait for \
-        atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-            zdharma/fast-syntax-highlighting \
-        blockf \
-            zsh-users/zsh-completions \
-        atload"!_zsh_autosuggest_start" \
-            zsh-users/zsh-autosuggestions
-
-    zinit wait for \
-        pbzweihander/zsh-nodenv-lazy
     export ZSH_PYENV_LAZY_VIRTUALENV="true"
     export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-    zinit wait for \
+
+    zinit wait lucid light-mode for \
+        pbzweihander/truck \
+        simnalamburt/cgitc \
+        simnalamburt/zsh-expand-all \
+        pick".kubectl_aliases" ahmetb/kubectl-aliases \
+        voronkovich/gitignore.plugin.zsh \
+        src"z.sh" rupa/z \
+        as'completion' id-as'git-completion' https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh \
+        zsh-users/zsh-history-substring-search \
+        has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull zdharma/null \
+        has"poetry" id-as"poetry-completion" as"completion" atclone"poetry completions zsh > _poetry" atpull"%atclone" run-atpull zdharma/null \
+        atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
+        atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
+        blockf zsh-users/zsh-completions \
+        pbzweihander/zsh-nodenv-lazy \
         davidparsson/zsh-pyenv-lazy
 fi
 
