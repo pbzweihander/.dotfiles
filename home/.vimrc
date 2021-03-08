@@ -313,7 +313,7 @@ function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call CocAction('doHover')
+    call CocActionAsync('doHover')
   endif
 endfunction
 
@@ -338,6 +338,9 @@ highlight link CocCursorRange NONE
 highlight CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
 autocmd FileType python call coc#config('python', {'pythonPath': system('pyenv which python | tr -d \\n')})
+
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : smoothie#forwards()
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : smoothie#backwards()
 
 " coc-yank
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
