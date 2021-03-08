@@ -46,6 +46,7 @@ for_window [instance="pavucontrol"] floating enable
 for_window [instance="floatingNmtui"] floating enable
 for_window [instance="floatingSpotifytui"] floating enable
 for_window [class="floatingPCManFM"] floating enable
+for_window [instance="emoji-keyboard"] floating enable
 
 font pango:Victor Mono, Noto Sans Mono CJK KR 10
 
@@ -192,8 +193,8 @@ set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) re
 mode "$mode_system" {
     bindsym l exec --no-startup-id $lock, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $lock && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $lock && systemctl hibernate, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
