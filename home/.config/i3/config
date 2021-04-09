@@ -208,5 +208,6 @@ exec_always --no-startup-id $HOME/.fehbg
 exec --no-startup-id xautolock -detectsleep -time 5 -locker 'sh -c \"$lock\"'
 exec --no-startup-id xss-lock -- sh -c "$lock"
 exec --no-startup-id dunst
-exec --no-startup-id nimf
+exec --no-startup-id kime-xim
+exec --no-startup-id kime-indicator
 exec --no-startup-id picom
