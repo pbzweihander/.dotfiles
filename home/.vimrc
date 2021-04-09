@@ -174,8 +174,8 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
     Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
     Plug 'fannheyward/coc-sql', {'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
     Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
