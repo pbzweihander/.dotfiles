@@ -1,0 +1,32 @@
+{
+  "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
+  "python.pythonPath": "~/.pyenv/shims/python",
+  "python.formatting.autopep8Path": "~/.local/bin/autopep8",
+  "python.formatting.provider": "autopep8",
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Path": "~/.local/bin/flake8",
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    }
+  }
+}
