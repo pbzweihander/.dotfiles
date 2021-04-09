@@ -8,7 +8,8 @@ set $right l
 
 set $term WINIT_X11_SCALE_FACTOR=1.0 alacritty
 set $floating_term WINIT_X11_SCALE_FACTOR=1.0 alacritty --class floatingAlacritty
-set $menu GDK_BACKEND=x11 ulauncher
+set $launcher $HOME/.config/rofi/bin/launcher_colorful
+set $powermenu $HOME/.config/rofi/bin/powermenu
 
 set $lock scrot -o /tmp/lock-screen.png &&\
         convert /tmp/lock-screen.png -scale 2.5% -scale 4000% /tmp/lock-screen.png &&\
@@ -55,7 +56,7 @@ bindsym $mod+Shift+Return exec --no-startup-id $floating_term
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec --no-startup-id $menu
+bindsym $mod+d exec --no-startup-id $launcher
 
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+c reload
@@ -201,7 +202,7 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Escape mode "$mode_system"
+bindsym $mod+Escape exec --no-startup-id $powermenu
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id $HOME/.fehbg
