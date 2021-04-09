@@ -281,6 +281,7 @@ function! NearestMethodOrFunction()
 endfunction
 
 " coc.nvim
+let g:coc_node_path = "/usr/bin/node"
 set updatetime=100
 set completeopt=preview,noinsert,menuone,noselect
 set shortmess+=c
