@@ -88,10 +88,6 @@ if [ -d ~/.yarn/bin ]; then
     export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
-if [ -d ~/.nodenv/bin ]; then
-    export PATH="$HOME/.nodenv/bin:$PATH"
-fi
-
 if [ -d ~/.tfenv/bin ]; then
     export PATH="$HOME/.tfenv/bin:$PATH"
 fi
@@ -139,10 +135,10 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
         zsh-users/zsh-history-substring-search \
         has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull zdharma/null \
         has"poetry" id-as"poetry-completion" as"completion" atclone"poetry completions zsh > _poetry" atpull"%atclone" run-atpull zdharma/null \
+        has"fnm" id-as"fnm-completion" as"completion" atclone"fnm completions --shell zsh > _fnm" atpull"%atclone" run-atpull zdharma/null \
         atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
         atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
         blockf zsh-users/zsh-completions \
-        pbzweihander/zsh-nodenv-lazy \
         davidparsson/zsh-pyenv-lazy
 fi
 
@@ -161,6 +157,10 @@ fi
 
 if [ -f ~/.config/broot/launcher/bash/br ]; then
     source ~/.config/broot/launcher/bash/br
+fi
+
+if [ $+command[fnm] ]; then
+    eval "$(fnm env --use-on-cd)"
 fi
 
 #
