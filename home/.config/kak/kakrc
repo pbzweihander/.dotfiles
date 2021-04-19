@@ -1,0 +1,243 @@
+# vim: sw=2
+
+# rulers
+add-highlighter global/ number-lines -hlcursor -separator " " -min-digits 3
+
+set-option -add global ui_options ncurses_assistant=none
+set-option global scrolloff 3,5
+set-option global tabstop 4
+
+# Plugins
+evaluate-commands %sh{
+  plugins="$kak_config/plugins"
+  mkdir -p "$plugins"
+  [ ! -e "$plugins/plug.kak" ] && \
+    git clone -q https://github.com/andreyorst/plug.kak.git "$plugins/plug.kak"
+  printf "%s\n" "source '$plugins/plug.kak/rc/plug.kak'"
+}
+plug "andreyorst/plug.kak" noload
+plug "andreyorst/fzf.kak" config %{
+  map global normal <c-p> ': fzf-mode<ret>'
+}
+plug "danr/kakoune-easymotion" config %{
+  map global user , ": enter-user-mode easymotion<ret>" -docstring "enter easy motion mode"
+}
+plug "kak-lsp/kak-lsp" do %{
+  cargo install --locked --force --path .
+} config %{
+  set-option -add global lsp_cmd " -c %val{config}/kak-lsp.toml"
+  set-option global lsp_hover_anchor true
+  set-option global lsp_auto_highlight_references true
+  lsp-enable
+  lsp-auto-signature-help-enable
+  lsp-stop-on-exit-enable
+
+  map global user k ': lsp-hover<ret>' -docstring 'lsp hover'
+  map global user ] ': lsp-find-error --include-warnings<ret>' -docstring 'lsp find next error or warning'
+  map global user [ ': lsp-find-error --previous --include-warnings<ret>' -docstring 'lsp find previous error or warning'
+  map global user a ': lsp-code-actions<ret>' -docstring 'lsp code actions'
+  map global user f ': lsp-formatting<ret>' -docstring 'lsp formatting'
+  map global user <space> ': enter-user-mode lsp<ret>' -docstring 'enter lsp mode'
+  map global normal <F2> ': lsp-rename-prompt<ret>' -docstring 'lsp rename'
+  map global insert <F2> '<esc>: lsp-rename-prompt<ret>' -docstring 'lsp rename'
+
+  hook global WinSetOption filetype=python %{
+    set-option global lsp_server_configuration "python.pythonPath='%sh{pyenv which python}'"
+    set-option -add global lsp_server_configuration python.linting.flake8Enabled=true
+  }
+}
+plug "andreyorst/powerline.kak" defer powerline %{
+  powerline-format global 'mode_info bufname lsp git filetype position line_column'
+  powerline-separator none
+
+  # snazzy theme
+  set-option global powerline_color07 "rgb:3a3d4d" # fg: mode-info
+  set-option global powerline_color08 "rgb:57c7ff" # base background
+  set-option global powerline_color00 "rgb:eff0eb" # fg: bufname
+  set-option global powerline_color03 "rgb:44485b" # bg: bufname
+  set-option global powerline_color10 "rgb:858db5" # fg: filetype
+  set-option global powerline_color11 "rgb:3a3d4d" # bg: filetype
+  set-option global powerline_color02 "rgb:858db5" # fg: git
+  set-option global powerline_color04 "rgb:3a3d4d" # bg: git
+  set-option global powerline_color05 "rgb:a8b4ea" # fg: position
+  set-option global powerline_color01 "rgb:44485b" # bg: position
+  set-option global powerline_color06 "rgb:3a3d4d" # fg: line-column, lsp
+  set-option global powerline_color09 "rgb:949ecc" # bg: line-column, lsp
+} config %{
+  powerline-start
+}
+plug "andreyorst/smarttab.kak" defer smarttab %{
+  set-option global softtabstop 4
+} config %{
+  hook global WinSetOption .* %{ expandtab }
+}
+
+# Disable mouse
+set-option -add global ui_options ncurses_enable_mouse=false
+
+# Is it wayland now?
+declare-option bool is_wayland %sh{
+  if test -n "$WAYLAND_DISPLAY"; then
+    echo 'true'
+  else
+    echo 'false'
+  fi
+}
+
+# `user y`, `user p`, `user P` for system clipboard
+declare-option str system_clipboard_copy_cmd %sh{
+  if [ "$kak_opt_is_wayland" = 'true' ]; then
+    printf 'wl-copy'
+  else
+    printf 'xclip -i -selection clipboard'
+  fi
+}
+declare-option str system_clipboard_paste_cmd %sh{
+  if [ "$kak_opt_is_wayland" = 'true' ]; then
+    printf 'wl-paste -t text'
+  else
+    printf 'xclip -o -selection clipboard'
+  fi
+}
+map global user y %sh{ echo "<a-|> $kak_opt_system_clipboard_copy_cmd<ret>" } -docstring 'copy to system clipboard'
+map global user p %sh{ echo "<a-!> $kak_opt_system_clipboard_paste_cmd<ret>" } -docstring 'paste before from system clipboard'
+map global user P %sh{ echo "! $kak_opt_system_clipboard_paste_cmd<ret>" } -docstring 'paste before from system clipboard'
+
+# `user c` to comment line
+map global user c ':comment-line<ret>' -docstring 'comment line'
+
+# Use tab for completion
+hook global InsertCompletionShow .* %{
+  try %{
+    execute-keys -draft 'h<a-K>\h<ret>'
+    map window insert <tab> <c-n>
+    map window insert <s-tab> <c-p>
+  }
+}
+hook global InsertCompletionHide .* %{
+  unmap window insert <tab> <c-n>
+  unmap window insert <s-tab> <c-p>
+}
+
+# Load editorconfig and modeline when buffer is created
+hook global BufCreate .* %{
+  try editorconfig-load
+  try modeline-parse
+}
+
+# Show whitespaces
+set-face global Whitespace rgb:333333,default
+
+# Try ; first, then <space>
+define-command combined-space -docstring 'try ; first, then <space>.' %{
+  execute-keys %sh{
+    leftover=$(printf '%s' "$kak_selections_desc" | sed -E 's/([0-9.]+),\1 *//g')
+  if [ -z "$leftover" ]; then
+    printf '<space>'
+  else
+    printf ';'
+  fi
+  }
+}
+map global normal <space> ': combined-space<ret>' -docstring 'reduce selections to their cursor'
+
+# Change cursor color when focus in/out
+hook global FocusIn .* %{
+  unset-face window PrimaryCursor
+}
+hook global FocusOut .* %{
+  set-face window PrimaryCursor white,black+F
+}
+
+# whichwrap
+hook global NormalKey h %{
+    try %{
+        execute-keys <a-k>$<ret> l
+    }
+}
+hook global NormalKey l %{
+    try %{
+        execute-keys <a-k>^<ret>h
+    }
+}
+
+# Typos
+alias global W write
+alias global Q quit
+
+# Split
+map global normal <a-ret> ': new<ret>' -docstring 'split a new window'
+
+# quit all
+alias global qa kill
+
+# gitgutter
+hook global BufWritePost .* %{ git show-diff }
+
+# easy save
+map global normal <c-s> ': w<ret>'
+
+# snazzy theme
+# code
+set-face global value rgb:f3f99f,default
+set-face global type rgb:9aedfe,default+b
+set-face global identifier rgb:57c7ff,default+b
+set-face global string rgb:f3f99f,default
+set-face global error rgb:ff5c57,rgb:282a36
+set-face global keyword rgb:ff6bc1,default+b
+set-face global comment rgb:606580,default+i
+set-face global meta rgb:f3f99f,default
+set-face global module string
+set-face global operator default
+set-face global variable default
+set-face global attribute identifier
+set-face global function identifier
+set-face global builtin identifier
+# text
+set-face global title default,default+b
+set-face global header default
+set-face global mono default
+set-face global block default
+set-face global link rgb:57c7ff,default
+set-face global bullet default
+set-face global list default
+set-face global bold default,default+b
+set-face global italic default,default+i
+# kakoune UI
+set-face global Default rgb:eff0eb,rgb:272935
+set-face global PrimarySelection rgb:192224,rgb:f9f9ff
+set-face global SecondarySelection rgb:606580,rgb:f9f9ff
+set-face global PrimaryCursor rgb:192224,rgb:97979b
+set-face global SecondaryCursor rgb:606580,rgb:97979b
+set-face global MatchingChar rgb:f3f99d,rgb:a1a6a8
+set-face global Search rgb:282a36,rgb:f3f99d
+set-face global Whitespace default,rgb:ff5c57
+set-face global BufferPadding rgb:333333,default
+set-face global LineNumbers rgb:606580,default
+set-face global LineNumberCursor rgb:f3f99d,default
+set-face global MenuForeground rgb:5af78e,rgb:393c4c
+set-face global MenuBackground default,rgb:393c4c
+set-face global MenuInfo default,default
+set-face global Information default,rgb:393c4c
+set-face global Error rgb:ff5c57,rgb:282a36
+set-face global StatusLine rgb:eff0eb,rgb:393c4c
+set-face global StatusLineInfo rgb:878fb5,rgb:393c4c
+set-face global StatusLineValue rgb:878fb5,rgb:393c4c
+set-face global StatusLineMode rgb:393c4c,rgb:57c7ff
+set-face global StatusCursor rgb:192224,rgb:97979b
+set-face global Prompt rgb:f0f0ef,rgb:44485a
+# cursor line
+add-highlighter global/ line '%val{cursor_line}' default,rgb:3a3d4d
+# columns
+add-highlighter global/ column 79 default,rgb:3a3d4d
+add-highlighter global/ column 80 default,rgb:3a3d4d
+add-highlighter global/ column 81 default,rgb:3a3d4d
+add-highlighter global/ column 119 default,rgb:3a3d4d
+add-highlighter global/ column 120 default,rgb:3a3d4d
+add-highlighter global/ column 121 default,rgb:3a3d4d
+# lsp
+set-face global DiagnosticError error
+set-face global DiagnosticWarning rgb:9aedfe,default
+set-face global Reference default,rgb:3a3d4d
+# EasyMotion workaround https://github.com/danr/kakoune-easymotion/issues/27#issuecomment-731768320
+set-face global EasyMotionForeground rgb:fdf6e3,rgb:268bd2+fg
