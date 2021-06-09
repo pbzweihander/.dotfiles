@@ -1,4 +1,10 @@
-font="Meslo LG S, Noto Sans Mono CJK KR 15"
-background-color=#285577CC
-border-color=#4C7899EE
+font=Meslo LG S, Noto Sans Mono CJK KR 15
+background-color=#285577ee
+text-color=#eff0ebcc
+border-color=#f1f1f0ee
 border-radius=5
+width=400
+height=500
+padding=10
+format=<b>%s</b> - %a\n%b
+ignore-timeout=1
