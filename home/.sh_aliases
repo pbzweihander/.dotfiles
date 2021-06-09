@@ -65,6 +65,10 @@ elif hash vim 2>/dev/null; then
     alias svi="sudo -E vim"
 fi
 
+# kakoune
+alias ka=kak
+alias ska="sudo -E kak"
+
 # systemctl
 alias sctl='sudo systemctl'
 alias usctl='systemctl --user'
