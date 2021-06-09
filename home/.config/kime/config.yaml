@@ -1,102 +1,112 @@
 ---
-default_category: Latin
-global_category_state: false
-icon_color: White
-global_hotkeys:
-  # Super-Space:
-  #   behavior:
-  #     Toggle:
-  #     - Hangul
-  #     - Latin
-  #   result: Consume
-  Super-Period:
-    behavior:
-      Mode: Emoji
-    result: ConsumeIfProcessed
-  Esc:
-    behavior:
-      Switch: Latin
-    result: Bypass
-  # Muhenkan:
-  #   behavior:
-  #     Toggle:
-  #     - Hangul
-  #     - Latin
-  #   result: Consume
-  C-AltR:
-    behavior:
-      Switch: Latin
-    result: Consume
-  S-AltR:
-    behavior:
-      Switch: Hangul
-    result: Consume
-  AltR:
-    behavior:
-      Toggle:
-      - Hangul
-      - Latin
-    result: Consume
-  C-Hangul:
-    behavior:
-      Switch: Latin
-    result: Consume
-  S-Hangul:
-    behavior:
-      Switch: Hangul
-    result: Consume
-  Hangul:
-    behavior:
-      Toggle:
-      - Hangul
-      - Latin
-    result: Consume
-category_hotkeys:
-  Hangul:
-    ControlR:
-      behavior:
-        Mode: Hanja
-      result: Consume
-    HangulHanja:
-      behavior:
-        Mode: Hanja
-      result: Consume
-    # F9:
+daemon:
+  modules:
+    - Wayland
+    - Indicator
+    - Xim
+indicator:
+  icon_color: Black
+engine:
+  default_category: Latin
+  global_category_state: false
+  icon_color: White
+  global_hotkeys:
+    # Super-Space:
     #   behavior:
-    #     Mode: Hanja
-    #   result: ConsumeIfProcessed
-mode_hotkeys:
-  # Math:
-  #   Enter:
-  #     behavior: Commit
-  #     result: ConsumeIfProcessed
-  #   Tab:
-  #     behavior: Commit
-  #     result: ConsumeIfProcessed
-  Hanja:
-    Enter:
-      behavior: Commit
+    #     Toggle:
+    #     - Hangul
+    #     - Latin
+    #   result: Consume
+    Super-Period:
+      behavior:
+        Mode: Emoji
       result: ConsumeIfProcessed
-    Tab:
-      behavior: Commit
+    M-Period:
+      behavior:
+        Mode: Emoji
       result: ConsumeIfProcessed
-  Emoji:
-    Enter:
-      behavior: Commit
-      result: ConsumeIfProcessed
-    Tab:
-      behavior: Commit
-      result: ConsumeIfProcessed
-xim_preedit_font:
-- Noto Sans Mono CJK KR
-- 17.0
-latin:
-  layout: Qwerty
-hangul:
-  layout: dubeolsik
-  word_commit: false
-  addons:
-    # all:
-    # - ComposeChoseongSsang
-    dubeolsik:
-    - TreatJongseongAsChoseong
+    Esc:
+      behavior:
+        Switch: Latin
+      result: Bypass
+    # Muhenkan:
+    #   behavior:
+    #     Toggle:
+    #     - Hangul
+    #     - Latin
+    #   result: Consume
+    C-AltR:
+      behavior:
+        Switch: Latin
+      result: Consume
+    S-AltR:
+      behavior:
+        Switch: Hangul
+      result: Consume
+    AltR:
+      behavior:
+        Toggle:
+        - Hangul
+        - Latin
+      result: Consume
+    C-Hangul:
+      behavior:
+        Switch: Latin
+      result: Consume
+    S-Hangul:
+      behavior:
+        Switch: Hangul
+      result: Consume
+    Hangul:
+      behavior:
+        Toggle:
+        - Hangul
+        - Latin
+      result: Consume
+  category_hotkeys:
+    Hangul:
+      ControlR:
+        behavior:
+          Mode: Hanja
+        result: Consume
+      HangulHanja:
+        behavior:
+          Mode: Hanja
+        result: Consume
+      # F9:
+      #   behavior:
+      #     Mode: Hanja
+      #   result: ConsumeIfProcessed
+  mode_hotkeys:
+    # Math:
+    #   Enter:
+    #     behavior: Commit
+    #     result: ConsumeIfProcessed
+    #   Tab:
+    #     behavior: Commit
+    #     result: ConsumeIfProcessed
+    Hanja:
+      Enter:
+        behavior: Commit
+        result: ConsumeIfProcessed
+      Tab:
+        behavior: Commit
+        result: ConsumeIfProcessed
+    Emoji:
+      Enter:
+        behavior: Commit
+        result: ConsumeIfProcessed
+      Tab:
+        behavior: Commit
+        result: ConsumeIfProcessed
+  xim_preedit_font:
+  - Noto Sans Mono CJK KR
+  - 17.0
+  latin:
+    layout: Qwerty
+  hangul:
+    layout: dubeolsik
+    word_commit: false
+    addons:
+      dubeolsik:
+      - TreatJongseongAsChoseong
