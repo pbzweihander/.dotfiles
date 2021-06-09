@@ -37,7 +37,7 @@
     "tooltip": false
   },
   "clock": {
-    "format": "{:%_m/%_d %_H:%_M %a}",
+    "format": "{:%m/%d %H:%M %a}",
     "tooltip": false
   },
   "cpu": {

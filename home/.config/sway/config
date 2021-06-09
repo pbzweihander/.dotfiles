@@ -1,4 +1,6 @@
 # vim: sw=4
+exec --no-startup-id export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
+
 set $mod Mod4
 
 set $left h
@@ -7,23 +9,14 @@ set $up k
 set $right l
 
 set $term alacritty
-set $x_term WAYLAND_DISPLAY= WINIT_HIDPI_FACTOR=1.0 alacritty
 set $floating_term alacritty --class floatingAlacritty
-set $menu GDK_BACKEND=x11 ulauncher
+set $launcher sirula
+set $powermenu $HOME/.config/rofi/bin/powermenu
 
-set $lock 'for OUTPUT in $(swaymsg -rt get_outputs | jq -r .[].name); do \
-    grim -o $OUTPUT /tmp/lock-screen-${OUTPUT}.png &&\
-    convert \
-        /tmp/lock-screen-${OUTPUT}.png \
-        -scale 2.5% \
-        -scale 4000% \
-        /tmp/lock-screen-${OUTPUT}.png &&\
-    echo -i ${OUTPUT}:/tmp/lock-screen-${OUTPUT}.png; done |\
-    xargs swaylock -fec 000000 &&\
-    rm -f /tmp/lock-screen-*.png'
+set $lock lock.sh
 set $capture grim "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
 set $capture_region grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
-set $alsamixer alacritty --class floatingAlsamixer -e alsamixer
+set $pavucontrol pavucontrol
 set $nmtui alacritty --class floatingNmtui -e nmtui
 set $spotify_tui alacritty --class floatingSpotifytui -e spt
 set $floating_pcmanfm pcmanfm --class=floatingPCManFM
@@ -50,6 +43,7 @@ for_window [app_id="floatingAlsamixer"] floating enable
 for_window [app_id="floatingNmtui"] floating enable
 for_window [app_id="floatingSpotifytui"] floating enable
 for_window [class="floatingPCManFM"] floating enable
+for_window [title="Firefox — Sharing Indicator"] floating enable
 
 font pango:Victor Mono, Noto Sans Mono CJK KR 10
 
@@ -83,13 +77,12 @@ bar {
 }
 
 
-bindsym $mod+Return exec $term
-bindsym $mod+Ctrl+Return exec $x_term
-bindsym $mod+Shift+Return exec $floating_term
+bindsym $mod+Return exec --no-startup-id $term
+bindsym $mod+Shift+Return exec --no-startup-id $floating_term
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec $menu
+bindsym $mod+d exec --no-startup-id $launcher
 
 floating_modifier $mod normal
 
@@ -169,8 +162,8 @@ bindsym $mod+z focus child
 bindsym $mod+minus move scratchpad
 bindsym $mod+equal scratchpad show
 
-bindsym Print exec $capture
-bindsym Control+Print exec $capture_region
+bindsym --release Control+Print exec --no-startup-id $capture
+bindsym --release Print exec $capture_region
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%
@@ -184,10 +177,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 bindsym Shift+XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym Shift+XF86MonBrightnessDown exec --no-startup-id light -U 5
 
-bindsym $mod+o exec $alsamixer
-bindsym $mod+p exec $nmtui
-bindsym $mod+m exec $spotify_tui
-bindsym $mod+i exec $floating_pcmanfm
+bindsym $mod+o exec --no-startup-id $pavucontrol
+bindsym $mod+p exec --no-startup-id $nmtui
+bindsym $mod+m exec --no-startup-id $spotify_tui
+bindsym $mod+i exec --no-startup-id $floating_pcmanfm
 
 bindsym --release $mod+button2 kill
 bindsym $mod+button3 floating toggle
@@ -223,7 +216,7 @@ set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) re
 mode "$mode_system" {
     bindsym l exec --no-startup-id $lock, mode "default"
     bindsym e exec --no-startup-id swaymsg exit, mode "default"
-    bindsym s exec --no-startup-id $lock && systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym h exec --no-startup-id systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
@@ -233,5 +226,4 @@ mode "$mode_system" {
 }
 bindsym $mod+Escape mode "$mode_system"
 
-exec "systemctl --user import-environment; systemctl --user start sway-session.target"
-exec nimf
+exec_always "systemctl --user import-environment; systemctl --user start sway-session.target"
