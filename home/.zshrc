@@ -4,7 +4,7 @@ stty stop undef
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 [[ -o interactive ]] || return
@@ -143,24 +143,27 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
         sed 's/alias k\(\w*\)a\(\w\?\)=/alias k\1ap\2=/g' .kubectl_aliases > .kubectl_aliases_mod
     }
 
+    function __zshrc_pyenv_rehash_background {
+        command pyenv rehash >/dev/null &!
+    }
+
     zinit wait lucid for \
         pick"zsh-expand-all.zsh" simnalamburt/zsh-expand-all \
         voronkovich/gitignore.plugin.zsh \
-        has"pyenv" id-as"pyenv" atclone"pyenv init - > pyenv.zsh" atpull"%atclone" run-atpull pick"pyenv.zsh" nocompile"!" zdharma/null \
-        if"[ -d ~/.pyenv/plugins/pyenv-virtualenv/ ]" id-as"pyenv-virtualenv" atclone"pyenv virtualenv-init - > pyenv-virtualenv.zsh" atpull"%atclone" run-atpull pick"pyenv-virtualenv.zsh" nocompile"!" zdharma/null \
+        has"pyenv" id-as"pyenv" atclone"pyenv init - --no-rehash zsh > pyenv.zsh" atpull"%atclone" run-atpull pick"pyenv.zsh" nocompile"!" atload"__zshrc_pyenv_rehash_background" zdharma/null
 
     # aliases
     zinit wait lucid for \
         pbzweihander/truck \
         atclone"__zshrc_cgitc_patch" atpull"%atclone" run-atpull pick"init.mod.zsh" simnalamburt/cgitc \
-        atclone"__zshrc_kubectl_aliases_patch" atpull"%atclone" run-atpull pick".kubectl_aliases_mod" nocompile"!" ahmetb/kubectl-aliases \
+        atclone"__zshrc_kubectl_aliases_patch" atpull"%atclone" run-atpull pick".kubectl_aliases_mod" nocompile"!" ahmetb/kubectl-aliases
 
     # completions
     zinit wait lucid for \
-        id-as"git-completion" as"completion" mv"git-completion* -> _git" https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh \
+        id-as"git-completion" as"completion" mv"git-completion -> _git" nocompile https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh \
         has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull zdharma/null \
         has"poetry" id-as"poetry-completion" as"completion" atclone"poetry completions zsh > _poetry" atpull"%atclone" run-atpull zdharma/null \
-        has"fnm" id-as"fnm-completion" as"completion" atclone"fnm completions --shell zsh > _fnm" atpull"%atclone" run-atpull zdharma/null \
+        has"fnm" id-as"fnm-completion" as"completion" atclone"fnm completions --shell zsh > _fnm" atpull"%atclone" run-atpull zdharma/null
 
     # last group
     zinit wait lucid for \
