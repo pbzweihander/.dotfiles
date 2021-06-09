@@ -1,0 +1,10 @@
+[Unit]
+Description=Korean IME
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/kime -D --log info
+
+[Install]
+WantedBy=sway-session.target
