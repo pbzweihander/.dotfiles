@@ -39,6 +39,8 @@ bindkey '^[[1;3C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;3D' backward-word
 
+export KAKOUNE_POSIX_SHELL=/usr/bin/dash
+
 #
 # Plugin Configs
 #
@@ -51,10 +53,15 @@ zmodload -i zsh/complist
 
 zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
+# zsh-history-substring-search
+function __zshrc_zsh_history_substring_search_bindkey {
+    # lazily config bindkey
+    # https://github.com/zsh-users/zsh-syntax-highlighting/issues/411#issuecomment-317077561
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+    bindkey -M vicmd 'k' history-substring-search-up
+    bindkey -M vicmd 'j' history-substring-search-down
+}
 
 # zsh-autosuggestions
 typeset -g ZSH_AUTOSUGGEST_USE_ASYNC=1
@@ -84,6 +91,10 @@ if [ -d ~/.pyenv ]; then
     export PATH="$PYENV_ROOT/bin:$PATH"
 fi
 
+if [ -d ~/.pyenv/plugins/pyenv-virtualenv/ ]; then
+    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+fi
+
 if [ -d ~/.yarn/bin ]; then
     export PATH="$HOME/.yarn/bin:$PATH"
 fi
@@ -96,7 +107,9 @@ if [ $+command[ruby] ] && [ $+command[gem] ]; then
     export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
-if [ $+command[nvim] ]; then
+if [ $+command[kak] ]; then
+    export EDITOR=kak
+elif [ $+command[nvim] ]; then
     export EDITOR=nvim
 else
     export EDITOR=vim
@@ -118,28 +131,43 @@ export PS1='%n@%m:%~%(!.#.$) '
 if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
     source ~/.zinit/bin/zinit.zsh
 
-    zinit ice depth=1
-    zinit light romkatv/powerlevel10k
+    zinit depth=1 light-mode for romkatv/powerlevel10k
 
-    export ZSH_PYENV_LAZY_VIRTUALENV="true"
-    export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+    function __zshrc_cgitc_patch {
+        sed 's/master/$(git_main_branch)/g' abbreviations > abbreviations.mod
+        sed 's/master/$(git_main_branch)/g' abbreviations.zsh > abbreviations.mod.zsh
+        sed 's/abbreviations/abbreviations.mod/' init.zsh > init.mod.zsh
+    }
 
-    zinit wait lucid light-mode for \
-        pbzweihander/truck \
-        simnalamburt/cgitc \
-        simnalamburt/zsh-expand-all \
-        pick".kubectl_aliases" ahmetb/kubectl-aliases \
+    function __zshrc_kubectl_aliases_patch {
+        sed 's/alias k\(\w*\)a\(\w\?\)=/alias k\1ap\2=/g' .kubectl_aliases > .kubectl_aliases_mod
+    }
+
+    zinit wait lucid for \
+        pick"zsh-expand-all.zsh" simnalamburt/zsh-expand-all \
         voronkovich/gitignore.plugin.zsh \
-        src"z.sh" rupa/z \
-        as'completion' id-as'git-completion' https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh \
-        zsh-users/zsh-history-substring-search \
+        has"pyenv" id-as"pyenv" atclone"pyenv init - > pyenv.zsh" atpull"%atclone" run-atpull pick"pyenv.zsh" nocompile"!" zdharma/null \
+        if"[ -d ~/.pyenv/plugins/pyenv-virtualenv/ ]" id-as"pyenv-virtualenv" atclone"pyenv virtualenv-init - > pyenv-virtualenv.zsh" atpull"%atclone" run-atpull pick"pyenv-virtualenv.zsh" nocompile"!" zdharma/null \
+
+    # aliases
+    zinit wait lucid for \
+        pbzweihander/truck \
+        atclone"__zshrc_cgitc_patch" atpull"%atclone" run-atpull pick"init.mod.zsh" simnalamburt/cgitc \
+        atclone"__zshrc_kubectl_aliases_patch" atpull"%atclone" run-atpull pick".kubectl_aliases_mod" nocompile"!" ahmetb/kubectl-aliases \
+
+    # completions
+    zinit wait lucid for \
+        id-as"git-completion" as"completion" mv"git-completion* -> _git" https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh \
         has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull zdharma/null \
         has"poetry" id-as"poetry-completion" as"completion" atclone"poetry completions zsh > _poetry" atpull"%atclone" run-atpull zdharma/null \
         has"fnm" id-as"fnm-completion" as"completion" atclone"fnm completions --shell zsh > _fnm" atpull"%atclone" run-atpull zdharma/null \
+
+    # last group
+    zinit wait lucid for \
         atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
-        atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
-        blockf zsh-users/zsh-completions \
-        davidparsson/zsh-pyenv-lazy
+        atload"__zshrc_zsh_history_substring_search_bindkey" zsh-users/zsh-history-substring-search \
+        blockf atpull"zinit creinstall -q ." zsh-users/zsh-completions \
+        atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions
 fi
 
 #
@@ -153,10 +181,6 @@ fi
 
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
-fi
-
-if [ -f ~/.config/broot/launcher/bash/br ]; then
-    source ~/.config/broot/launcher/bash/br
 fi
 
 if [ $+command[fnm] ]; then
