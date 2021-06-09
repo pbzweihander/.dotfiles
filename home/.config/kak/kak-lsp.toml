@@ -1,0 +1,187 @@
+snippet_support = true
+verbosity = 2
+
+# Semantic tokens support
+# See https://microsoft.github.io/language-server-protocol/specifications/specification-current/#textDocument_semanticTokens
+# for the default list of tokens and modifiers.
+# However, many language servers implement their own values.
+# Make sure to check the output of `lsp-capabilities` and each server's documentation and source code as well.
+# Examples:
+# - TypeScript: https://github.com/microsoft/vscode-languageserver-node/blob/2645fb54ea1e764aff71dee0ecc8aceff3aabf56/client/src/common/semanticTokens.ts#L58
+# - Rust Analyzer: https://github.com/rust-analyzer/rust-analyzer/blob/f6da603c7fe56c19a275dc7bab1f30fe1ad39707/crates/ide/src/syntax_highlighting.rs#L42
+[[semantic_tokens]]
+token = "comment"
+face = "documentation"
+modifiers = ["documentation"]
+
+[[semantic_tokens]]
+token = "comment"
+face = "comment"
+
+[[semantic_tokens]]
+token = "function"
+face = "function"
+
+[[semantic_tokens]]
+token = "keyword"
+face = "keyword"
+
+[[semantic_tokens]]
+token = "namespace"
+face = "module"
+
+[[semantic_tokens]]
+token = "operator"
+face = "operator"
+
+[[semantic_tokens]]
+token = "string"
+face = "string"
+
+[[semantic_tokens]]
+token = "type"
+face = "type"
+
+[[semantic_tokens]]
+token = "variable"
+face = "default+d"
+modifiers = ["readonly"]
+
+[[semantic_tokens]]
+token = "variable"
+face = "default+d"
+modifiers = ["constant"]
+
+[[semantic_tokens]]
+token = "variable"
+face = "variable"
+
+[server]
+# exit session if no requests were received during given period in seconds
+# works only in unix sockets mode (-s/--session)
+# set to 0 to disable
+timeout = 1800 # seconds = 30 minutes
+
+# [language.css]
+# filetypes = ["css"]
+# roots = ["package.json", ".git"]
+# command = "css-languageserver"
+# args = ["--stdio"]
+
+# [language.less]
+# filetypes = ["less"]
+# roots = ["package.json", ".git"]
+# command = "css-languageserver"
+# args = ["--stdio"]
+
+# [language.scss]
+# filetypes = ["scss"]
+# roots = ["package.json", ".git"]
+# command = "css-languageserver"
+# args = ["--stdio"]
+
+# [language.go]
+# filetypes = ["go"]
+# roots = ["Gopkg.toml", "go.mod", ".git", ".hg"]
+# command = "gopls"
+# offset_encoding = "utf-8"
+
+# [language.haskell]
+# filetypes = ["haskell"]
+# roots = ["Setup.hs", "stack.yaml", "*.cabal"]
+# # You might also be interested in the newer, but early stage, haskell-language-server
+# # https://github.com/haskell/haskell-language-server
+# command = "hie-wrapper"
+# args = ["--lsp"]
+
+# [language.html]
+# filetypes = ["html"]
+# roots = ["package.json"]
+# command = "html-languageserver"
+# args = ["--stdio"]
+
+# [language.javascript]
+# filetypes = ["javascript"]
+# roots = [".flowconfig"]
+# command = "flow"
+# args = ["lsp"]
+
+# [language.json]
+# filetypes = ["json"]
+# roots = ["package.json"]
+# command = "json-languageserver"
+# args = ["--stdio"]
+
+# [language.latex]
+# filetypes = ["latex"]
+# roots = [".git"]
+# command = "texlab"
+
+# [language.nix]
+# filetypes = ["nix"]
+# roots = ["flake.nix", "shell.nix", ".git"]
+# command = "rnix-lsp"
+
+[language.python]
+filetypes = ["python"]
+roots = ["requirements.txt", "setup.py", ".git", ".hg", "pyproject.toml"]
+# command = "pyls"
+# command = "fnm"
+# args = ["exec", "--using", "system", "pyright-langserver", "--stdio"]
+command = "sh"
+args = ["-c", "/usr/bin/node $(which pyright-langserver) --stdio"]
+# command = "pyright-langserver"
+# args = ["--stdio"]
+# offset_encoding = "utf-8"
+
+# [language.python.initialization_options]
+# python.pythonPath = "~/.pyenv/shims/python"
+# python.formatting.autopep8Path = "~/.local/bin/autopep8"
+# python.formatting.provider = "autopep8"
+# python.linting.flake8Enabled = true
+# python.linting.flake8Path = "~/.local/bin/flake8"
+
+# [language.rust]
+# filetypes = ["rust"]
+# roots = ["Cargo.toml"]
+# command = "sh"
+# args = ["-c", "if command -v rustup >/dev/null; then $(rustup which rls); else rls; fi"]
+
+[language.rust]
+filetypes = ["rust"]
+roots = ["Cargo.toml"]
+command = "rust-analyzer"
+
+[language.rust.initialization_options]
+# If you get 'unresolved proc macro' warnings, you have two options
+# 1. The safe choice is two disable the warning:
+diagnostics.disabled = ["unresolved-proc-macro"]
+# 2. Or you can opt-in for proc macro support
+# procMacro.enable = true
+cargo.loadOutDirsFromCheck = true
+cargo.allFeatures = true
+# See https://github.com/rust-analyzer/rust-analyzer/issues/6448
+
+[language.terraform]
+filetypes = ["terraform"]
+roots = ["*.tf"]
+command = "terraform-ls"
+args = ["serve"]
+
+[language.yaml]
+filetypes = ["yaml"]
+roots = [".git"]
+command = "yaml-language-server"
+args = ["--stdio"]
+
+[language.sql]
+filetypes = ["sql"]
+roots = [".git", "*.sql"]
+command = "sql-language-server"
+args = ["up", "--method", "stdio"]
+
+[language.typescript]
+filetypes = ["typescript", "javascript"]
+roots = [".git", "package.json"]
+command = "typescript-language-server"
+args = ["--stdio"]
