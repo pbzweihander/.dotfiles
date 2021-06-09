@@ -145,7 +145,11 @@ alias ㅣㄴ=ls
 
 # git
 function git_current_branch {
-    git branch | grep \* | cut -d ' ' -f2
+    git branch --show-current
+}
+
+function git_main_branch {
+    git branch --format='%(refname:short)' --no-column --list main master | head -n 1
 }
 
 alias gdo='git diff origin/$(git_current_branch)'
@@ -157,13 +161,14 @@ alias grh1='git reset HEAD~1'
 alias grhs='git reset --soft'
 alias grhs1='git reset --soft HEAD~1'
 alias grhsd='git reset --soft HEAD'
-alias gsm='git switch master'
+alias gsm='git switch $(git_main_branch)'
 alias grbo='git rebase origin/$(git_current_branch)'
 alias grbu='git rebase upstream/$(git_current_branch)'
-alias grbum='git rebase upstream/master'
+alias grbom='git rebase origin/$(git_main_branch)'
+alias grbum='git rebase upstream/$(git_main_branch)'
 alias grbud='git rebase upstream/develop'
-alias grbim='git rebase -i master'
-alias grbium='git rebase -i upstream/master'
+alias grbim='git rebase -i $(git_main_branch)'
+alias grbium='git rebase -i upstream/$(git_main_branch)'
 
 # python
 alias py=python
