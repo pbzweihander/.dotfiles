@@ -22,7 +22,7 @@ plug "pbzweihander/kakoune-snazzy" theme config %{
 plug "andreyorst/fzf.kak" config %{
   map global normal <c-p> ': fzf-mode<ret>'
 } defer fzf-file %{
-  set-option global fzf_file_command 'rg'
+  set-option global fzf_file_command 'fd -LH -t f -E /.git'
   set-option global fzf_highlight_command 'bat'
 } defer fzf-grep %{
   set-option global fzf_grep_command 'rg'
@@ -82,7 +82,7 @@ plug "andreyorst/powerline.kak" defer powerline %{
 plug "andreyorst/smarttab.kak" defer smarttab %{
   set-option global softtabstop 4
 } config %{
-  hook global WinSetOption .* %{ expandtab }
+  hook global WinSetOption filetype=.* expandtab
 }
 plug "https://gitlab.com/Screwtapello/kakoune-state-save" config %{
   hook global KakBegin .* %{
@@ -212,6 +212,8 @@ map global normal <a-ret> ': new<ret>' -docstring 'split a new window'
 # quit all
 alias global qa kill
 alias global Qa kill
+alias global qa! kill!
+alias global Qa! kill!
 
 # gitgutter
 hook global WinCreate .* %{
