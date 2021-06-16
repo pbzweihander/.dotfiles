@@ -151,7 +151,9 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
     zinit wait lucid for \
         pick"zsh-expand-all.zsh" simnalamburt/zsh-expand-all \
         voronkovich/gitignore.plugin.zsh \
-        has"pyenv" id-as"pyenv" atclone"pyenv init - --no-rehash zsh > pyenv.zsh" atpull"%atclone" run-atpull pick"pyenv.zsh" nocompile"!" atload"!__zshrc_pyenv_atload" zdharma/null
+        has"pyenv" id-as"pyenv" atclone"pyenv init - --no-rehash zsh > pyenv.zsh" atpull"%atclone" run-atpull pick"pyenv.zsh" nocompile"!" atload"!__zshrc_pyenv_atload" zdharma/null \
+        has"fnm" id-as"fnm" atclone"fnm env --use-on-cd --shell zsh > fnm.zsh" atpull"%atclone" run-atpull pick"fnm.zsh" nocompile"!" zdharma/null \
+        has"fzf" id-as"fzf" multisrc"(completion|key-bindings).zsh" compile"(completion|key-bindings).zsh" svn https://github.com/junegunn/fzf/trunk/shell
 
     # aliases
     zinit wait lucid for \
@@ -172,23 +174,6 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
         atload"__zshrc_zsh_history_substring_search_bindkey" zsh-users/zsh-history-substring-search \
         blockf atpull"zinit creinstall -q ." zsh-users/zsh-completions \
         atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions
-fi
-
-#
-# External programs
-#
-
-# sources
-if [ -f ~/.opam/opam-init/init.zsh ]; then
-    source ~/.opam/opam-init/init.zsh
-fi
-
-if [ -f ~/.fzf.zsh ]; then
-    source ~/.fzf.zsh
-fi
-
-if [ $+command[fnm] ]; then
-    eval "$(fnm env --use-on-cd)"
 fi
 
 #
