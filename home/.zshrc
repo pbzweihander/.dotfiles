@@ -143,14 +143,15 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
         sed 's/alias k\(\w*\)a\(\w\?\)=/alias k\1ap\2=/g' .kubectl_aliases > .kubectl_aliases_mod
     }
 
-    function __zshrc_pyenv_rehash_background {
+    function __zshrc_pyenv_atload {
+        eval "$(pyenv init --path zsh)"
         command pyenv rehash >/dev/null &!
     }
 
     zinit wait lucid for \
         pick"zsh-expand-all.zsh" simnalamburt/zsh-expand-all \
         voronkovich/gitignore.plugin.zsh \
-        has"pyenv" id-as"pyenv" atclone"pyenv init - --no-rehash zsh > pyenv.zsh" atpull"%atclone" run-atpull pick"pyenv.zsh" nocompile"!" atload"__zshrc_pyenv_rehash_background" zdharma/null
+        has"pyenv" id-as"pyenv" atclone"pyenv init - --no-rehash zsh > pyenv.zsh" atpull"%atclone" run-atpull pick"pyenv.zsh" nocompile"!" atload"!__zshrc_pyenv_atload" zdharma/null
 
     # aliases
     zinit wait lucid for \
