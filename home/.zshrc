@@ -150,7 +150,6 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
     }
 
     zinit wait lucid for \
-        pick"zsh-expand-all.zsh" simnalamburt/zsh-expand-all \
         voronkovich/gitignore.plugin.zsh \
         has"pyenv" id-as"pyenv" atclone"pyenv init - --no-rehash zsh > pyenv.zsh" atpull"%atclone" run-atpull pick"pyenv.zsh" nocompile"!" atload"!__zshrc_pyenv_atload" zdharma/null \
         has"fnm" id-as"fnm" atclone"fnm env --use-on-cd --shell zsh > fnm.zsh" atpull"%atclone" run-atpull pick"fnm.zsh" nocompile"!" zdharma/null \
@@ -174,7 +173,8 @@ if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
         atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" zdharma/fast-syntax-highlighting \
         atload"__zshrc_zsh_history_substring_search_bindkey" zsh-users/zsh-history-substring-search \
         blockf atpull"zinit creinstall -q ." zsh-users/zsh-completions \
-        atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions
+        atload"_zsh_autosuggest_start" zsh-users/zsh-autosuggestions \
+        simnalamburt/zsh-expand-all
 fi
 
 #
