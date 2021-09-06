@@ -17,3 +17,14 @@ E = "extend_next_word_end"
 "A-E" = "extend_next_long_word_end"
 
 g = { "k" = "goto_file_start", "j" = "goto_last_line" }
+
+"C-h" = "rotate_view"
+"C-l" = "rotate_view"
+
+"X" = "extend_line"
+"A-x" = "extend_to_line_bounds"
+
+"space" = { "k" = "hover" }
+
+[keys.insert]
+"C-space" = "completion"
