@@ -1,3 +1,4 @@
+# vim: set ft=sh
 alias rm='rm -i'
 alias rmf='rm -f'
 alias rmr='rm -ir'
@@ -75,8 +76,14 @@ alias usctl='systemctl --user'
 alias jctl='sudo journalctl'
 alias bctl=bluetoothctl
 
-# Docker
-if groups | grep -qw docker; then
+# Docker and Podman
+alias pm="podman"
+alias pc="podman-compose"
+
+if hash podman 2> /dev/null; then
+    alias dk="podman"
+    alias dc="podman-compose"
+elif groups | grep -qw docker; then
     alias dk="docker"
     alias dc="docker-compose"
     alias ds="docker service"
@@ -119,7 +126,8 @@ za() {
 
 # arch package managers
 alias ya=yay
-alias pc="sudo pacman"
+alias pcm="sudo pacman"
+alias pa=paru
 
 # vscode
 alias c.='code . &'
@@ -152,6 +160,7 @@ function git_main_branch {
     git branch --format='%(refname:short)' --no-column --list main master | head -n 1
 }
 
+alias gdm='git diff origin/$(git_main_branch)'
 alias gdo='git diff origin/$(git_current_branch)'
 alias gpsup='git push -u origin $(git_current_branch)'
 alias gc!!='git commit -v --amend --no-verify'
@@ -162,6 +171,7 @@ alias grhs='git reset --soft'
 alias grhs1='git reset --soft HEAD~1'
 alias grhsd='git reset --soft HEAD'
 alias gsm='git switch $(git_main_branch)'
+alias gswd='git switch --detach'
 alias grbo='git rebase origin/$(git_current_branch)'
 alias grbu='git rebase upstream/$(git_current_branch)'
 alias grbom='git rebase origin/$(git_main_branch)'
@@ -180,6 +190,15 @@ alias ssaws="AWS_PROFILE=spoqa-seoul aws"
 alias daws="AWS_PROFILE=dodo-point aws"
 alias uaws="AWS_PROFILE=upnl aws"
 alias paws="AWS_PROFILE=private aws"
+
+# aws ecr
+function aws-ecr-login {
+    aws ecr get-login-password \
+        | docker login \
+            --username AWS \
+            --password-stdin \
+            "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.$(aws configure get region).amazonaws.com"
+}
 
 # terraform
 alias tf="terraform"
