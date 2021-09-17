@@ -3,7 +3,7 @@
 # rulers
 add-highlighter global/ number-lines -hlcursor -separator " " -min-digits 3
 
-set-option -add global ui_options ncurses_assistant=none
+set-option -add global ui_options terminal_assistant=none
 set-option global scrolloff 3,5
 set-option global tabstop 4
 
@@ -36,7 +36,6 @@ plug "kak-lsp/kak-lsp" do %{
   set-option -add global lsp_cmd " -c %val{config}/kak-lsp.toml --log /tmp/kak-lsp.log"
   set-option global lsp_hover_anchor true
   set-option global lsp_auto_highlight_references true
-  lsp-auto-hover-enable
   lsp-auto-signature-help-enable
   lsp-stop-on-exit-enable
   lsp-enable
@@ -46,7 +45,7 @@ plug "kak-lsp/kak-lsp" do %{
   map global user ] ': lsp-find-error --include-warnings<ret>' -docstring 'lsp find next error or warning'
   map global user [ ': lsp-find-error --previous --include-warnings<ret>' -docstring 'lsp find previous error or warning'
   map global user a ': lsp-code-actions<ret>' -docstring 'lsp code actions'
-  map global user f ': lsp-formatting<ret>' -docstring 'lsp formatting'
+  map global user F ': lsp-formatting<ret>' -docstring 'lsp formatting'
   map global user d ': lsp-diagnostics<ret>' -docstring 'show lsp diagnostics'
   map global user <space> ': enter-user-mode lsp<ret>' -docstring 'enter lsp mode'
   map global normal <F2> ': lsp-rename-prompt<ret>' -docstring 'lsp rename'
@@ -60,12 +59,8 @@ plug "kak-lsp/kak-lsp" do %{
     lsp-did-change-config
   }
   hook global WinSetOption filetype=sql %{
-    lsp-auto-hover-disable
     set-option window lsp_auto_highlight_references false
     define-command switch-database -params 1 %{ lsp-execute-command switchDatabase "'[""%arg{1}""]'" }
-  }
-  hook global WinSetOption filetype=rust %{
-    lsp-auto-hover-disable
   }
 }
 plug "andreyorst/powerline.kak" defer powerline %{
@@ -111,7 +106,7 @@ plug "dgmulf/local-kakrc" config %{
   set-option global source_local_kakrc true
 }
 # Disable mouse
-set-option -add global ui_options ncurses_enable_mouse=false
+set-option -add global ui_options terminal_enable_mouse=false
 
 # Is it wayland now?
 declare-option bool is_wayland %sh{
@@ -228,7 +223,7 @@ map global normal <c-s> ': w<ret>'
 map global insert <c-s> '<a-;>: w<ret>'
 
 # formatting
-map global user F ': format-buffer<ret>' -docstring 'formatting'
+map global user f ': format-buffer<ret>' -docstring 'formatting'
 
 # easy config
 define-command kakconfig  -docstring 'open kakrc' %{
@@ -252,6 +247,11 @@ define-command format-sql -docstring 'format sql' %{
   execute-keys "| %opt{sql_formatcmd}<ret>"
 }
 
+# sort
+define-command sort -docstring 'sort selected lines' -params .. %{
+  execute-keys "| LC_ALL=C sort %arg{@}<ret>"
+}
+
 # filetype specifics
 hook global WinSetOption filetype=(kak|json|yaml|sql|terraform) %{
   set-option window indentwidth 2
@@ -270,5 +270,5 @@ hook global WinSetOption filetype=terraform %{
   set-option window formatcmd 'terraform fmt -'
 }
 hook global WinSetOption filetype=rust %{
-  set-option buffer formatcmd 'rustfmt +stable'
+  set-option buffer formatcmd 'rustfmt +stable --edition 2018'
 }
