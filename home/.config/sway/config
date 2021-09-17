@@ -43,7 +43,11 @@ for_window [app_id="floatingAlsamixer"] floating enable
 for_window [app_id="floatingNmtui"] floating enable
 for_window [app_id="floatingSpotifytui"] floating enable
 for_window [class="floatingPCManFM"] floating enable
-for_window [title="Firefox — Sharing Indicator"] floating enable
+
+for_window [title="Firefox — Sharing Indicator"] {
+    floating enable
+    move scratchpad
+}
 
 font pango:Victor Mono, Noto Sans Mono CJK KR 10
 
@@ -172,10 +176,10 @@ bindsym $mod+F12 exec --no-startup-id pactl -- set-sink-volume 0 +5%
 bindsym $mod+F11 exec --no-startup-id pactl -- set-sink-volume 0 -5%
 bindsym $mod+F10 exec --no-startup-id pactl -- set-sink-mute 0 toggle
 
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
-bindsym Shift+XF86MonBrightnessUp exec --no-startup-id light -A 5
-bindsym Shift+XF86MonBrightnessDown exec --no-startup-id light -U 5
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 bindsym $mod+o exec --no-startup-id $pavucontrol
 bindsym $mod+p exec --no-startup-id $nmtui
