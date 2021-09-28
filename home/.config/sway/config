@@ -11,7 +11,6 @@ set $right l
 set $term alacritty
 set $floating_term alacritty --class floatingAlacritty
 set $launcher sirula
-set $powermenu $HOME/.config/rofi/bin/powermenu
 
 set $lock lock.sh
 set $capture grim "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
