@@ -138,7 +138,6 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'vim-scripts/BufOnly.vim'
     Plug 'google/vim-searchindex'
     Plug 'kshenoy/vim-signature'
-    Plug 'psliwka/vim-smoothie'
     if has('nvim')
         Plug 'lambdalisue/suda.vim'
     endif
