@@ -104,13 +104,13 @@ if [ -d ~/.tfenv/bin ]; then
     export PATH="$HOME/.tfenv/bin:$PATH"
 fi
 
-if [ $+command[ruby] ] && [ $+command[gem] ]; then
+if (( $+commands[ruby] )) && (( $+commands[gem] )); then
     export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
-if [ $+command[kak] ]; then
+if (( $+commands[kak] )); then
     export EDITOR=kak
-elif [ $+command[nvim] ]; then
+elif (( $+commands[nvim] )); then
     export EDITOR=nvim
 else
     export EDITOR=vim
