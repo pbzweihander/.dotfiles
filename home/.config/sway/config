@@ -67,12 +67,19 @@ input type:keyboard {
     xkb_options "ctrl:nocaps,korean:ralt_hangul,korean:rctrl_hanja"
 }
 
-output DP-1 {
-    pos 0 0
+output eDP-1 {
+    pos 346 1350
+    scale 1.5
 }
 
-output eDP-1 {
-    pos 0 1200
+output HDMI-A-1 {
+    pos 0 0
+    scale 1.6
+}
+
+output DP-1 {
+    pos 2400 0
+    scale 1.6
 }
 
 bar {
