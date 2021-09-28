@@ -70,6 +70,9 @@ fi
 alias ka=kak
 alias ska="sudo -E kak"
 
+# helix
+alias shx="sudo -E hx"
+
 # systemctl
 alias sctl='sudo systemctl'
 alias usctl='systemctl --user'
