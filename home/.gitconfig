@@ -1,4 +1,6 @@
 # vim: noexpandtab sw=8
+[include]
+	path = .gitconfig.pgp
 [user]
 	name = pbzweihander
 	email = pbzweihander@gmail.com
