@@ -92,9 +92,8 @@
     "tooltip": false
   },
   "network": {
-    "interface": "wlp2*",
     "format-wifi": "{essid} ",
-    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-ethernet": "{ipaddr}/{cidr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
