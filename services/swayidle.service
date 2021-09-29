@@ -6,8 +6,8 @@ PartOf=graphical-session.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/swayidle -w \
-    timeout 600 'lock.sh' \
-    timeout 900 'swaymsg "output * dpms off"' \
+    timeout 300 'lock.sh' \
+    timeout 600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
     before-sleep 'lock.sh'
 
