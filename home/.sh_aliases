@@ -187,13 +187,6 @@ alias grbium='git rebase -i upstream/$(git_main_branch)'
 alias py=python
 alias pyvenv="pyenv virtualenv"
 
-# aws cli
-alias saws="AWS_PROFILE=spoqa aws"
-alias ssaws="AWS_PROFILE=spoqa-seoul aws"
-alias daws="AWS_PROFILE=dodo-point aws"
-alias uaws="AWS_PROFILE=upnl aws"
-alias paws="AWS_PROFILE=private aws"
-
 # aws ecr
 function aws-ecr-login {
     aws ecr get-login-password \
