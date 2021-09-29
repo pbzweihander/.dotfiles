@@ -47,3 +47,5 @@
 	diff = /usr/share/git/diff-highlight/diff-highlight | less -+XF -Qc
 [interactive]
 	diffFilter = /usr/share/git/diff-highlight/diff-highlight
+[init]
+	defaultBranch = main
