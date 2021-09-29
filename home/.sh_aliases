@@ -223,3 +223,8 @@ alias kns=kubens
 
 # etc
 alias mkdoc="pushd docs && make html && popd"
+
+# local
+if [ -f ~/.sh_aliases.local ]; then
+    source ~/.sh_aliases.local
+fi
