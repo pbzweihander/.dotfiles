@@ -42,7 +42,6 @@ bindkey -r '^D'
 
 # etc
 export KAKOUNE_POSIX_SHELL=/usr/bin/dash
-export GPG_TTY=$(tty)
 
 #
 # Plugin Configs
