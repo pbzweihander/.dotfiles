@@ -7,5 +7,5 @@ for OUTPUT in $(swaymsg -rt get_outputs | jq -r .[].name); do \
         -scale 4000% \
         /tmp/lock-screen-${OUTPUT}.png &&\
     echo -i ${OUTPUT}:/tmp/lock-screen-${OUTPUT}.png; done |\
-    xargs swaylock -fec 000000 &&\
+    xargs swaylock -fc 000000 &&\
     rm -f /tmp/lock-screen-*.png
