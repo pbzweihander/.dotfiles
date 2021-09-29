@@ -40,7 +40,9 @@ bindkey '^[[1;5D' backward-word
 bindkey '^[[1;3D' backward-word
 bindkey -r '^D'
 
+# etc
 export KAKOUNE_POSIX_SHELL=/usr/bin/dash
+export GPG_TTY=$(tty)
 
 #
 # Plugin Configs
