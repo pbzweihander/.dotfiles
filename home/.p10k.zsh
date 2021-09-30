@@ -61,6 +61,7 @@
   # Right prompt segments.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
+    asdf
     kubecontext
     terraform
     rust_version
@@ -97,7 +98,7 @@
   # Prompt symbol in overwrite vi mode is the same as in command mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=false
 
-  typeset -g POWERLEVEL9K_{VIRTUALENV,NODENV,RUST_VERSION,KUBECONTEXT,TERRAFORM}_FOREGROUND=$grey
+  typeset -g POWERLEVEL9K_{VIRTUALENV,NODENV,RUST_VERSION,KUBECONTEXT,TERRAFORM,ASDF}_FOREGROUND=$grey
 
   typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
@@ -191,6 +192,49 @@
   # can slow down prompt by 1-2 milliseconds, so it's better to keep it turned off unless you
   # really need it.
   typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true
+
+  ###############[ asdf: asdf version manager (https://github.com/asdf-vm/asdf) ]###############
+  # There are four parameters that can be used to hide asdf tools. Each parameter describes
+  # conditions under which a tool gets hidden. Parameters can hide tools but not unhide them. If at
+  # least one parameter decides to hide a tool, that tool gets hidden. If no parameter decides to
+  # hide a tool, it gets shown.
+  #
+  # Special note on the difference between POWERLEVEL9K_ASDF_SOURCES and
+  # POWERLEVEL9K_ASDF_PROMPT_ALWAYS_SHOW. Consider the effect of the following commands:
+  #
+  #   asdf local  python 3.8.1
+  #   asdf global python 3.8.1
+  #
+  # After running both commands the current python version is 3.8.1 and its source is "local" as
+  # it takes precedence over "global". If POWERLEVEL9K_ASDF_PROMPT_ALWAYS_SHOW is set to false,
+  # it'll hide python version in this case because 3.8.1 is the same as the global version.
+  # POWERLEVEL9K_ASDF_SOURCES will hide python version only if the value of this parameter doesn't
+  # contain "local".
+
+  # Hide tool versions that don't come from one of these sources.
+  #
+  # Available sources:
+  #
+  # - shell   `asdf current` says "set by ASDF_${TOOL}_VERSION environment variable"
+  # - local   `asdf current` says "set by /some/not/home/directory/file"
+  # - global  `asdf current` says "set by /home/username/file"
+  #
+  # Note: If this parameter is set to (shell local global), it won't hide tools.
+  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_ASDF_${TOOL}_SOURCES.
+  typeset -g POWERLEVEL9K_ASDF_SOURCES=(shell local)
+
+  # If set to false, hide tool versions that are the same as global.
+  #
+  # Note: The name of this parameter doesn't reflect its meaning at all.
+  # Note: If this parameter is set to true, it won't hide tools.
+  # Tip:  Override this parameter for ${TOOL} with POWERLEVEL9K_ASDF_${TOOL}_PROMPT_ALWAYS_SHOW.
+  typeset -g POWERLEVEL9K_ASDF_PROMPT_ALWAYS_SHOW=false
+
+  # If set to false, hide tool versions that are equal to "system".
+  #
+  # Note: If this parameter is set to true, it won't hide tools.
+  # Tip: Override this parameter for ${TOOL} with POWERLEVEL9K_ASDF_${TOOL}_SHOW_SYSTEM.
+  typeset -g POWERLEVEL9K_ASDF_SHOW_SYSTEM=false
 
   # If p10k is already loaded, reload configuration.
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
