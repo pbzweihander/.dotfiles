@@ -117,6 +117,10 @@ else
     export EDITOR=vim
 fi
 
+if [ -f /opt/asdf-vm/asdf.sh ]; then
+    source /opt/asdf-vm/asdf.sh
+fi
+
 # aliases
 if [ -f ~/.sh_aliases ]; then
     source ~/.sh_aliases
