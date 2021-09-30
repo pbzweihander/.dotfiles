@@ -49,23 +49,20 @@ engine:
         - Hangul
         - Latin
       result: Consume
-    # C-Hangul:
-    #   behavior:
-    #     Switch: Latin
-    #   result: Consume
-    # S-Hangul:
-    #   behavior:
-    #     Switch: Hangul
-    #   result: Consume
+    C-Hangul:
+      behavior:
+        Switch: Latin
+      result: Consume
+    S-Hangul:
+      behavior:
+        Switch: Hangul
+      result: Consume
     Hangul:
       behavior:
         Toggle:
         - Hangul
         - Latin
       result: Consume
-    ContorlL:
-      behavior: Ignore
-      result: Bypass
   category_hotkeys:
     Hangul:
       ControlR:
