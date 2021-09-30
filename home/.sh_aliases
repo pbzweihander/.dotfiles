@@ -196,13 +196,6 @@ function aws-ecr-login {
             "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.$(aws configure get region).amazonaws.com"
 }
 
-# terraform
-alias tf="terraform"
-alias stf="AWS_PROFILE=spoqa terraform"
-alias dtf="AWS_PROFILE=dodo-point terraform"
-alias utf="AWS_PROFILE=upnl terraform"
-alias ptf="AWS_PROFILE=private terraform"
-
 # sway
 function tcp {
     if [[ "$(loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}')" = 'wayland' ]]; then
