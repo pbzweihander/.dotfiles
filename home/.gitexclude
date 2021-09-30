@@ -47,3 +47,4 @@ Session.vim
 
 .node-version
 .python-version
+.terraform-version
