@@ -78,8 +78,8 @@ output HDMI-A-1 {
 }
 
 output DP-1 {
-    pos 2400 -525
-    scale 1.6
+    mode 2560x1440@60Hz
+    pos 2400 -300
     transform 270
 }
 
