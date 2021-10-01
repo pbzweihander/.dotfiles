@@ -77,7 +77,7 @@ output HDMI-A-1 {
     scale 1.6
 }
 
-output DP-2 {
+output DP-1 {
     pos 2400 -525
     scale 1.6
     transform 270
