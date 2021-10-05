@@ -1,5 +1,0 @@
-[Unit]
-Description=Butterfly Terminal Server
-
-[Service]
-ExecStart=/usr/bin/butterfly.server.py

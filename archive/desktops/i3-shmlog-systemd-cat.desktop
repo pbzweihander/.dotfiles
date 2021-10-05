@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=i3 (with debug log and systemd-cat)
-Comment=improved dynamic tiling window manager
-Exec=systemd-cat --identifier=i3 i3-with-shmlog
-Type=Application
-Keywords=tiling;wm;windowmanager;window;manager;
