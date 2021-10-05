@@ -30,39 +30,6 @@ plug "andreyorst/fzf.kak" config %{
 plug "danr/kakoune-easymotion" config %{
   map global user , ": enter-user-mode easymotion<ret>" -docstring "enter easy motion mode"
 }
-plug "kak-lsp/kak-lsp" do %{
-  cargo install --locked --force --path .
-} config %{
-  set-option -add global lsp_cmd " -c %val{config}/kak-lsp.toml --log /tmp/kak-lsp.log"
-  set-option global lsp_hover_anchor true
-  set-option global lsp_auto_highlight_references true
-  lsp-auto-signature-help-enable
-  lsp-stop-on-exit-enable
-  lsp-enable
-  require-module kak_lsp_theme_snazzy
-
-  map global user . ': lsp-hover<ret>' -docstring 'lsp hover'
-  map global user ] ': lsp-find-error --include-warnings<ret>' -docstring 'lsp find next error or warning'
-  map global user [ ': lsp-find-error --previous --include-warnings<ret>' -docstring 'lsp find previous error or warning'
-  map global user a ': lsp-code-actions<ret>' -docstring 'lsp code actions'
-  map global user F ': lsp-formatting<ret>' -docstring 'lsp formatting'
-  map global user d ': lsp-diagnostics<ret>' -docstring 'show lsp diagnostics'
-  map global user <space> ': enter-user-mode lsp<ret>' -docstring 'enter lsp mode'
-  map global normal <F2> ': lsp-rename-prompt<ret>' -docstring 'lsp rename'
-  map global insert <F2> '<esc>: lsp-rename-prompt<ret>' -docstring 'lsp rename'
-
-  hook global WinSetOption filetype=python %{
-    set-option -add global lsp_server_configuration \
-      "python.pythonPath='%sh{pyenv which python}'" \
-      python.analysis.autoImportCompletions=false \
-      python.analysis.useLibraryCodeForTypes=true
-    lsp-did-change-config
-  }
-  hook global WinSetOption filetype=sql %{
-    set-option window lsp_auto_highlight_references false
-    define-command switch-database -params 1 %{ lsp-execute-command switchDatabase "'[""%arg{1}""]'" }
-  }
-}
 plug "andreyorst/powerline.kak" defer powerline %{
   powerline-format global 'line_column position filetype git lsp bufname mode_info'
 
