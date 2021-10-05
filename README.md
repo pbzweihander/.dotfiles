@@ -14,4 +14,4 @@
 
 ## [License](LICENSE)
 
-All configurations and codes in this repository are, if not explicitly stated otherwise, licensed under the terms of [MIT license](https://spdx.org/licenses/MIT.html).
+All configurations and codes in this repository are licensed under the terms of [MIT license](https://spdx.org/licenses/MIT.html), unless explicitly stated otherwise.
