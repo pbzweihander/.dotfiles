@@ -133,7 +133,7 @@ alias pcm="sudo pacman"
 alias pa=paru
 
 # vscode
-alias c.='code . &'
+alias c.='code .'
 
 # micro
 alias mi=micro
