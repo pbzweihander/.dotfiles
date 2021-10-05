@@ -35,17 +35,18 @@
 	helper = cache --timeout=3600
 [credential "https://github.com"]
 	username = pbzweihander
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-[alias]
-	g = "log --graph --pretty=\"format:%C(auto)%h%d %s%x1b[38;5;022m% GS%x1b[0m\""
 [pager]
-	log = /usr/share/git/diff-highlight/diff-highlight | less -+XF -Qc
-	show = /usr/share/git/diff-highlight/diff-highlight | less -+XF -Qc
-	diff = /usr/share/git/diff-highlight/diff-highlight | less -+XF -Qc
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
 [interactive]
-	diffFilter = /usr/share/git/diff-highlight/diff-highlight
+	diffFilter = delta --color-only --features=interative
 [init]
 	defaultBranch = main
+
+[delta]
+	features = decorations
+	pager = less -+XF -Qc
+	plus-style = syntax "#03491b"
+	minus-style = syntax "#4d0300"
