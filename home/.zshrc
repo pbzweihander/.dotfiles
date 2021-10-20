@@ -73,7 +73,7 @@ function __zshrc_zsh_history_substring_search_bindkey {
 typeset -g ZSH_AUTOSUGGEST_USE_ASYNC=1
 typeset -g ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-# paths
+# paths and programs
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin:$PATH"
 
 if [ -d ~/.local/bin ]; then
@@ -123,6 +123,11 @@ fi
 
 if [ -f /opt/asdf-vm/asdf.sh ]; then
     source /opt/asdf-vm/asdf.sh
+fi
+
+if (( $+commands[go] )); then
+    export GOPATH=$(go env GOPATH)
+    export PATH="$GOPATH/bin:$PATH"
 fi
 
 # aliases
