@@ -44,6 +44,8 @@ bindkey -r '^D'
 
 # etc
 export KAKOUNE_POSIX_SHELL=/usr/bin/dash
+export DISPLAY=wayland
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 #
 # Plugin Configs
