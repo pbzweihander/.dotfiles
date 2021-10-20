@@ -203,3 +203,26 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# kakoune
+function kas {
+    session=$(pwd | sha1sum | awk '{print $1}')
+    if ! kak -l | grep -w -q "$session"; then
+        echo "$config"
+        kak -d -s "$session" &!
+        sleep 0.1
+        kak -p "$session" <<'EOF'
+hook global ClientClose .* %{
+    nop %sh{
+        {
+            sleep 0.1
+            if [ -z "$kak_client_list" ]; then
+                printf kill | kak -p "$kak_session"
+            fi
+        } &
+    }
+}
+EOF
+    fi
+    kak -c "$session" $@
+}
