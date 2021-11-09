@@ -40,6 +40,7 @@
 	log = delta
 	reflog = delta
 	show = delta
+	stash = false
 [interactive]
 	diffFilter = delta --color-only --features=interative
 [init]
