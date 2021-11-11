@@ -88,8 +88,6 @@ plug "https://gitlab.com/Screwtapello/kakoune-state-save" config %{
 plug "TeddyDD/kakoune-edit-or-dir" config %{
   unalias global e edit
   alias global e edit-or-dir
-
-  map global normal <minus> ': edit-or-dir .<ret>' -docstring 'edit current directory'
 }
 plug "occivink/kakoune-filetree"
 plug "dgmulf/local-kakrc" config %{
