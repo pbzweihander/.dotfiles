@@ -69,19 +69,13 @@ input type:keyboard {
 }
 
 output eDP-1 {
-    pos 693 1650
+    pos 347 1350
     scale 1.5
 }
 
 output HDMI-A-1 {
-    pos 0 300
+    pos 0 0
     scale 1.6
-}
-
-output DP-1 {
-    mode 2560x1440@60Hz
-    pos 2400 0
-    transform 270
 }
 
 bar {
