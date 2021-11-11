@@ -105,7 +105,17 @@ nnoremap <C-s> :w<CR>
 inoremap <C-s> <ESC>:w<CR>
 " Visual to search
 vnoremap // "vy/\V<C-R>=escape(@v,'/\')<CR><CR>
-
+" Kakoune-like
+nnoremap gh ^
+nnoremap gl $
+nnoremap gk gg
+nnoremap gj G
+vnoremap gh ^
+vnoremap gl $
+vnoremap gk gg
+vnoremap gj G
+nnoremap C <C-v>j
+vnoremap C j
 "
 " Commands
 "
@@ -145,6 +155,7 @@ try | call plug#begin(exists('s:plug') ? s:plug : '~/.vim/plugged')
     Plug 'APZelos/blamer.nvim'
     Plug 'AndrewRadev/splitjoin.vim'
     Plug 'vimwiki/vimwiki'
+    Plug 'jasonccox/vim-wayland-clipboard'
 
     " The Pope
     Plug 'tpope/vim-fugitive'
@@ -386,18 +397,6 @@ command! -nargs=? -complete=buffer -bang Bo
 
 " vim-json
 let g:vim_json_syntax_conceal = 0
-
-" alt
-function! AltCommand(path, vim_command)
-  let l:alternate = system("alt " . a:path)
-  if empty(l:alternate)
-    echo "No alternate file for " . a:path . " exists!"
-  else
-    exec a:vim_command . " " . l:alternate
-  endif
-endfunction
-
-nnoremap <leader>. :call AltCommand(expand('%'), ':e')<cr>
 
 " vim-commentary
 nnoremap <C-/> gcc
