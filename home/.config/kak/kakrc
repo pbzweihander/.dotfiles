@@ -30,14 +30,6 @@ plug "andreyorst/fzf.kak" config %{
 plug "kak-lsp/kak-lsp" do %{
   cargo install --locked --force --path .
 } config %{
-  set-option -add global lsp_cmd " -c %val{config}/kak-lsp.toml --log /tmp/kak-lsp.log"
-  set-option global lsp_hover_anchor true
-  set-option global lsp_auto_highlight_references true
-  lsp-auto-signature-help-enable
-  lsp-stop-on-exit-enable
-  lsp-enable
-  require-module kak_lsp_theme_snazzy
-
   map global user . ': lsp-hover<ret>' -docstring 'lsp hover'
   map global user ] ': lsp-find-error --include-warnings<ret>' -docstring 'lsp find next error or warning'
   map global user [ ': lsp-find-error --previous --include-warnings<ret>' -docstring 'lsp find previous error or warning'
@@ -48,16 +40,21 @@ plug "kak-lsp/kak-lsp" do %{
   map global normal <F2> ': lsp-rename-prompt<ret>' -docstring 'lsp rename'
   map global insert <F2> '<esc>: lsp-rename-prompt<ret>' -docstring 'lsp rename'
 
+  hook global WinSetOption filetype=(rust|python|go|javascript|typescript|sql|terraform) %{
+    set-option -add global lsp_cmd " -c %val{config}/kak-lsp.toml --log /tmp/kak-lsp.log"
+    set-option global lsp_hover_anchor true
+    set-option global lsp_auto_highlight_references true
+    lsp-auto-signature-help-enable
+    lsp-stop-on-exit-enable
+    lsp-enable-window
+    require-module kak_lsp_theme_snazzy
+  }
   hook global WinSetOption filetype=python %{
     set-option -add global lsp_server_configuration \
       "python.pythonPath='%sh{pyenv which python}'" \
       python.analysis.autoImportCompletions=false \
       python.analysis.useLibraryCodeForTypes=true
     lsp-did-change-config
-  }
-  hook global WinSetOption filetype=sql %{
-    set-option window lsp_auto_highlight_references false
-    define-command switch-database -params 1 %{ lsp-execute-command switchDatabase "'[""%arg{1}""]'" }
   }
 }
 plug "andreyorst/powerline.kak" defer powerline %{
@@ -251,6 +248,7 @@ hook global WinSetOption filetype=(kak|json|yaml|sql|terraform) %{
 }
 hook global WinSetOption filetype=sql %{
   set-option window formatcmd %opt{sql_formatcmd}
+  set-option window lsp_auto_highlight_references false
 }
 hook global WinSetOption filetype=python %{
   set-option window lintcmd "~/.local/bin/flake8 --filename='*' --format='%%(path)s:%%(row)d:%%(col)d: error: %%(text)s'"
@@ -261,7 +259,26 @@ hook global WinSetOption filetype=python %{
 }
 hook global WinSetOption filetype=terraform %{
   set-option window formatcmd 'terraform fmt -'
+  set-option window lsp_auto_highlight_references false
+  lsp-auto-signature-help-disable
 }
 hook global WinSetOption filetype=rust %{
   set-option buffer formatcmd 'rustfmt +stable --edition 2018'
+}
+hook global WinSetOption filetype=go %{
+  noexpandtab
+  set-option window formatcmd 'gofmt'
+  # add-highlighter window/ wrap -indent -word -marker >
+}
+hook global WinSetOption filetype=typescript %{
+  set-option window indentwidth 2
+  set-option window formatcmd "npx prettier --stdin-filepath %val{bufname}"
+}
+hook global WinSetOption filetype=rust %{
+  hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+  hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+  hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+  hook -once -always window WinSetOption filetype=.* %{
+    remove-hooks window semantic-tokens
+  }
 }
