@@ -33,7 +33,6 @@ set $ws10 "10"
 set $ws11 "11"
 set $ws12 "12"
 
-
 default_border pixel 2
 focus_follows_mouse no
 
@@ -243,4 +242,5 @@ mode "$mode_system" {
 }
 bindsym $mod+Escape mode "$mode_system"
 
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec_always "systemctl --user import-environment; systemctl --user start sway-session.target"
