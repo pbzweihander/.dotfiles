@@ -148,7 +148,8 @@ hook global BufCreate .* %{
 }
 
 # Show whitespaces
-set-face global Whitespace rgb:333333,default
+set-face global Whitespace rgb:3a3d4d,default
+add-highlighter global/ show-whitespaces
 
 # Try ; first, then <space>
 define-command combined-space -docstring 'try ; first, then <space>.' %{
