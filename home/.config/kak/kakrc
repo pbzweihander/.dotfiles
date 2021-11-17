@@ -150,6 +150,8 @@ hook global BufCreate .* %{
 # Show whitespaces
 set-face global Whitespace rgb:3a3d4d,default
 add-highlighter global/ show-whitespaces
+# Trailing whitespace
+add-highlighter global/trailing-whitespace regex '\h+$' 0:default,rgb:ff5c57
 
 # Try ; first, then <space>
 define-command combined-space -docstring 'try ; first, then <space>.' %{
