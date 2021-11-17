@@ -219,9 +219,6 @@ define-command kakconfig  -docstring 'open kakrc' %{
   edit "%val{config}/kakrc"
 }
 
-# EasyMotion workaround https://github.com/danr/kakoune-easymotion/issues/27#issuecomment-731768320
-set-face global EasyMotionForeground rgb:fdf6e3,rgb:268bd2+fg
-
 # easy git
 alias global g git
 
