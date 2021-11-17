@@ -147,9 +147,6 @@ hook global BufCreate .* %{
   try modeline-parse
 }
 
-# Show whitespaces
-set-face global Whitespace rgb:3a3d4d,default
-add-highlighter global/ show-whitespaces
 # Trailing whitespace
 add-highlighter global/trailing-whitespace regex '\h+$' 0:default,rgb:ff5c57
 
