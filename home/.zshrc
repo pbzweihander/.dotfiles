@@ -138,8 +138,9 @@ fi
 # zinit
 #
 export PS1='%n@%m:%~%(!.#.$) '
-if [[ -f ~/.zinit/bin/zinit.zsh ]]; then
-    source ~/.zinit/bin/zinit.zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [[ -f "${ZINIT_HOME}/zinit.zsh" ]]; then
+    source "${ZINIT_HOME}/zinit.zsh"
 
     zinit depth=1 light-mode for romkatv/powerlevel10k
 
