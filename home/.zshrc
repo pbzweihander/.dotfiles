@@ -91,6 +91,15 @@ if [ -d ~/.poetry ]; then
     export PATH="$HOME/.poetry/bin:$PATH"
 fi
 
+if [ -d ~/.pyenv ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+fi
+
+if [ -d ~/.pyenv/plugins/pyenv-virtualenv/ ]; then
+    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+fi
+
 if [ -d ~/.yarn/bin ]; then
     export PATH="$HOME/.yarn/bin:$PATH"
 fi
@@ -145,8 +154,15 @@ if [[ -f "${ZINIT_HOME}/zinit.zsh" ]]; then
         sed 's/alias k\(\w*\)a\(\w\?\)=/alias k\1ap\2=/g' .kubectl_aliases > .kubectl_aliases_mod
     }
 
+    function __zshrc_pyenv_atload {
+        eval "$(pyenv init --path zsh)"
+        command pyenv rehash >/dev/null &!
+    }
+
     zinit wait lucid for \
         voronkovich/gitignore.plugin.zsh \
+        has"pyenv" id-as"pyenv" atclone"pyenv init - --no-rehash zsh > pyenv.zsh" atpull"%atclone" run-atpull pick"pyenv.zsh" nocompile"!" atload"!__zshrc_pyenv_atload" pbzweihander/zinit-null \
+        if"[ -d ~/.pyenv/plugins/pyenv-virtualenv/ ]" id-as"pyenv-virtualenv" atclone"pyenv virtualenv-init - zsh > pyenv-virtualenv.zsh" atpull"%atclone" run-atpull pick"pyenv-virtualenv.zsh" nocompile"!" pbzweihander/zinit-null \
         has"fzf" id-as"fzf" multisrc"(completion|key-bindings).zsh" compile"(completion|key-bindings).zsh" svn https://github.com/junegunn/fzf/trunk/shell \
         if"[ -f /opt/asdf-vm/asdf.sh ]" id-as"asdf" pick"/opt/asdf-vm/asdf.sh" nocompile pbzweihander/zinit-null
 
