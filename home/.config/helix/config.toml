@@ -18,12 +18,14 @@ E = "extend_next_word_end"
 
 g = { "k" = "goto_file_start", "j" = "goto_last_line" }
 
-# "A-h" = "extend_to_line_start"
-# "A-l" = "extend_to_line_end"
-# "A-L" = "extend_to_line_end_newline"
+"A-h" = "extend_to_line_start"
+"A-l" = "extend_to_line_end"
+"A-L" = "extend_to_line_end_newline"
 
-"C-h" = "rotate_view"
-"C-l" = "rotate_view"
+"C-h" = "jump_view_right"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_left"
 
 "X" = "extend_line"
 "A-x" = "extend_to_line_bounds"
@@ -31,6 +33,10 @@ g = { "k" = "goto_file_start", "j" = "goto_last_line" }
 "space" = { "k" = "hover" }
 
 "A-j" = "join_selections"
+
+"A-ret" = "vsplit"
+
+"C-s" = ":write"
 
 [keys.insert]
 "C-space" = "completion"
