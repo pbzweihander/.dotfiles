@@ -112,7 +112,9 @@ if (( $+commands[ruby] )) && (( $+commands[gem] )); then
     export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
-if (( $+commands[kak] )); then
+if (( $+commands[helix] )); then
+    export EDITOR=helix
+elif (( $+commands[kak] )); then
     export EDITOR=kak
 elif (( $+commands[nvim] )); then
     export EDITOR=nvim
