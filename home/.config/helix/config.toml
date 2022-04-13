@@ -1,5 +1,10 @@
 theme = "snazzy"
 
+[editor]
+mouse = false
+middle-click-paste = false
+auto-pairs = false
+
 [keys.normal]
 H = "extend_char_left"
 J = "extend_line_down"
@@ -22,15 +27,15 @@ g = { "k" = "goto_file_start", "j" = "goto_last_line" }
 "A-l" = "extend_to_line_end"
 "A-L" = "extend_to_line_end_newline"
 
-"C-h" = "jump_view_right"
+"C-h" = "jump_view_left"
 "C-j" = "jump_view_down"
 "C-k" = "jump_view_up"
-"C-l" = "jump_view_left"
+"C-l" = "jump_view_right"
 
 "X" = "extend_line"
 "A-x" = "extend_to_line_bounds"
 
-"space" = { "k" = "hover" }
+"space" = { "k" = "hover", "F" = ":format" }
 
 "A-j" = "join_selections"
 
