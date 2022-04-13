@@ -5,7 +5,7 @@
 	name = pbzweihander
 	email = pbzweihander@gmail.com
 [core]
-	editor = kak
+	editor = helix
 	pager = less -+XF -Qc
 	excludesfile = ~/.gitexclude
 	fscache = yes
