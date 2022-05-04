@@ -146,7 +146,7 @@ alias am=amp
 # clipboard
 if [[ "$(loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}')" = 'wayland' ]]; then
     alias xc='wl-copy'
-    alias xp='wl-paste'
+    alias xp='wl-paste -t text'
 else
     alias xc='xclip -i -selection clipboard'
     alias xp='xclip -o -selection clipboard'
