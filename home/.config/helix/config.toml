@@ -5,6 +5,14 @@ mouse = false
 middle-click-paste = false
 auto-pairs = false
 
+[editor.lsp]
+display-messages = true
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "block"
+
 [keys.normal]
 H = "extend_char_left"
 J = "extend_line_down"
@@ -34,8 +42,6 @@ g = { "k" = "goto_file_start", "j" = "goto_last_line" }
 
 "X" = "extend_line"
 "A-x" = "extend_to_line_bounds"
-
-"space" = { "k" = "hover", "F" = ":format" }
 
 "A-j" = "join_selections"
 
