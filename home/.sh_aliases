@@ -72,7 +72,7 @@ alias ska="sudo -E kak"
 
 # helix
 alias hx="helix"
-alias shx="sudo -E hx"
+alias shx="sudo -E helix"
 
 # systemctl
 alias sctl='sudo systemctl'
