@@ -166,7 +166,8 @@ if [[ -f "${ZINIT_HOME}/zinit.zsh" ]]; then
         has"pyenv" id-as"pyenv" atclone"pyenv init - --no-rehash zsh > pyenv.zsh" atpull"%atclone" run-atpull pick"pyenv.zsh" nocompile"!" atload"!__zshrc_pyenv_atload" pbzweihander/zinit-null \
         if"[ -d ~/.pyenv/plugins/pyenv-virtualenv/ ]" id-as"pyenv-virtualenv" atclone"pyenv virtualenv-init - zsh > pyenv-virtualenv.zsh" atpull"%atclone" run-atpull pick"pyenv-virtualenv.zsh" nocompile"!" pbzweihander/zinit-null \
         has"fzf" id-as"fzf" multisrc"(completion|key-bindings).zsh" compile"(completion|key-bindings).zsh" svn https://github.com/junegunn/fzf/trunk/shell \
-        if"[ -f /opt/asdf-vm/asdf.sh ]" id-as"asdf" pick"/opt/asdf-vm/asdf.sh" nocompile pbzweihander/zinit-null
+        if"[ -f /opt/asdf-vm/asdf.sh ]" id-as"asdf" pick"/opt/asdf-vm/asdf.sh" nocompile pbzweihander/zinit-null \
+        has"navi" id-as"navi-widget" atclone"navi widget zsh > navi-widget.zsh" atpull"%atclone" run-atpull pick"navi-widget.zsh" nocompile"!" pbzweihander/zinit-null
 
     # aliases
     zinit wait lucid for \
