@@ -228,7 +228,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-set $mode_system (l)lock,(e)logout,(s)suspend,(h)hibernate,(Shift+r)reboot,(Shift+s)shutdown
+set $mode_system (l)lock,(e)logout,(s)suspend,(h)hibernate,(R)reboot,(S)shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $lock, mode "default"
     bindsym e exec --no-startup-id swaymsg exit, mode "default"
