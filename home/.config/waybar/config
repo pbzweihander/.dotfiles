@@ -19,7 +19,8 @@
     "backlight",
     "battery",
     "tray",
-    "clock"
+    "clock",
+    "custom/notification"
   ],
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>",
@@ -114,5 +115,21 @@
     },
     "on-click": "pavucontrol",
     "tooltip": false
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "<sup> </sup>",
+      "dnd-notification": "<sup> </sup>",
+      "dnd-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
   }
 }
