@@ -1,0 +1,11 @@
+[Unit]
+Description=A simple GTK based notification daemon for SwayWM
+Documentation=man:swaync(1)
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/swaync
+
+[Install]
+WantedBy=sway-session.target
