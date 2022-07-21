@@ -96,6 +96,8 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec --no-startup-id $launcher
 
+bindsym $mod+n exec swaync-client -t -sw
+
 floating_modifier $mod normal
 
 bindsym $mod+Shift+r reload
