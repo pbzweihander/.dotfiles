@@ -64,6 +64,10 @@ input "1133:50184:Logitech_USB_Trackball" {
     accel_profile adaptive
 }
 
+input "7504:24868:Ultimate_Gadget_Laboratories_UHK_60_v2" {
+    accel_profile adaptive
+}
+
 input type:keyboard {
     xkb_options "ctrl:nocaps,korean:ralt_hangul,korean:rctrl_hanja"
 }
