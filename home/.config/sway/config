@@ -12,7 +12,9 @@ set $term alacritty
 set $floating_term alacritty --class floatingAlacritty
 set $launcher sirula
 
-set $lock lock.sh
+# Using swaylock-effects (https://github.com/mortie/swaylock-effects)
+set $lock swaylock --clock --indicator --screenshots --effect-pixelate 32
+
 set $capture grim "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
 set $capture_region grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
 set $pavucontrol pavucontrol
