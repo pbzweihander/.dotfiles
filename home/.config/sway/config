@@ -64,8 +64,14 @@ input "1133:50184:Logitech_USB_Trackball" {
     accel_profile adaptive
 }
 
+input "1133:50475:Logitech_USB_Receiver_Mouse" {
+    accel_profile adaptive
+}
+
 input "7504:24868:Ultimate_Gadget_Laboratories_UHK_60_v2" {
     accel_profile adaptive
+    scroll_factor 0.5
+    pointer_accel -1
 }
 
 input type:keyboard {
