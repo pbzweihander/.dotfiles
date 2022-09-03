@@ -256,5 +256,7 @@ mode "$mode_system" {
 }
 bindsym $mod+Escape mode "$mode_system"
 
+include $HOME/.config/sway/$(hostname).config
+
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec_always "systemctl --user import-environment; systemctl --user start sway-session.target"
