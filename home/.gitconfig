@@ -4,6 +4,11 @@
 [user]
 	name = pbzweihander
 	email = pbzweihander@gmail.com
+	signingKey = ~/.ssh/id_ed25519.pub
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
 [core]
 	editor = helix
 	pager = less -+XF -Qc
