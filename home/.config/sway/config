@@ -80,22 +80,6 @@ input type:keyboard {
     xkb_options "ctrl:nocaps,korean:ralt_hangul,korean:rctrl_hanja"
 }
 
-output eDP-1 {
-    pos 347 1650
-    scale 1.5
-}
-
-output HDMI-A-1 {
-    pos 0 300
-    scale 1.6
-}
-
-output DP-2 {
-    pos 2400 0
-    transform 270
-    scale 1.6
-}
-
 bar {
     swaybar_command waybar
 }
