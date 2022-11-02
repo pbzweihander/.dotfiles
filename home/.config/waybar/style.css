@@ -48,6 +48,7 @@ window#waybar.hidden {
 
 #clock {
     background-color: #64727D;
+    color: #ffffff;
 }
 
 #battery {
@@ -84,10 +85,12 @@ window#waybar.hidden {
 
 #memory {
     background: #9b59b6;
+    color: #ffffff;
 }
 
 #backlight {
     background: #90b1b1;
+    color: #ffffff;
 }
 
 #network {
@@ -110,6 +113,7 @@ window#waybar.hidden {
 
 #temperature {
     background: #f0932b;
+    color: #ffffff;
 }
 
 #temperature.critical {
@@ -122,6 +126,7 @@ window#waybar.hidden {
 
 #idle_inhibitor {
     background-color: #2d3436;
+    color: #ffffff;
 }
 
 #idle_inhibitor.activated {
