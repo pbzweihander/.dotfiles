@@ -38,6 +38,7 @@ window#waybar.hidden {
 
 #mode {
     background: #64727D;
+    color: #ffffff;
     border-bottom: 3px solid #ffffff;
 }
 
