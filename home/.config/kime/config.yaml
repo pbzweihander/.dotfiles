@@ -1,4 +1,3 @@
----
 daemon:
   modules:
     - Wayland
@@ -11,80 +10,53 @@ engine:
   global_category_state: false
   icon_color: White
   global_hotkeys:
-    # Super-Space:
-    #   behavior:
-    #     Toggle:
-    #     - Hangul
-    #     - Latin
-    #   result: Consume
     Super-Period:
-      behavior:
-        Mode: Emoji
+      behavior: !Mode Emoji
       result: ConsumeIfProcessed
     M-Period:
-      behavior:
-        Mode: Emoji
+      behavior: !Mode Emoji
       result: ConsumeIfProcessed
     Esc:
-      behavior:
-        Switch: Latin
+      behavior: !Switch Latin
       result: Bypass
-    # Muhenkan:
-    #   behavior:
-    #     Toggle:
-    #     - Hangul
-    #     - Latin
-    #   result: Consume
     C-AltR:
-      behavior:
-        Switch: Latin
+      behavior: !Switch Latin
       result: Consume
     S-AltR:
-      behavior:
-        Switch: Hangul
+      behavior: !Switch Hangul
       result: Consume
     AltR:
-      behavior:
-        Toggle:
-        - Hangul
-        - Latin
+      behavior: !Toggle
+      - Hangul
+      - Latin
       result: Consume
     C-Hangul:
-      behavior:
-        Switch: Latin
+      behavior: !Switch Latin
       result: Consume
     S-Hangul:
-      behavior:
-        Switch: Hangul
+      behavior: !Switch Hangul
       result: Consume
     Hangul:
-      behavior:
-        Toggle:
-        - Hangul
-        - Latin
+      behavior: !Toggle
+      - Hangul
+      - Latin
       result: Consume
   category_hotkeys:
     Hangul:
       ControlR:
-        behavior:
-          Mode: Hanja
+        behavior: !Mode Hanja
         result: Consume
       HangulHanja:
-        behavior:
-          Mode: Hanja
+        behavior: !Mode Hanja
         result: Consume
-      # F9:
-      #   behavior:
-      #     Mode: Hanja
-      #   result: ConsumeIfProcessed
   mode_hotkeys:
-    # Math:
-    #   Enter:
-    #     behavior: Commit
-    #     result: ConsumeIfProcessed
-    #   Tab:
-    #     behavior: Commit
-    #     result: ConsumeIfProcessed
+    Math:
+      Enter:
+        behavior: Commit
+        result: ConsumeIfProcessed
+      Tab:
+        behavior: Commit
+        result: ConsumeIfProcessed
     Hanja:
       Enter:
         behavior: Commit
@@ -99,6 +71,7 @@ engine:
       Tab:
         behavior: Commit
         result: ConsumeIfProcessed
+  candidate_font: Noto Sans Mono CJK KR
   xim_preedit_font:
   - Noto Sans Mono CJK KR
   - 17.0
