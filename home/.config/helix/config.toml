@@ -4,6 +4,9 @@ theme = "snazzy"
 mouse = false
 middle-click-paste = false
 auto-pairs = false
+color-modes = true
+cursorline = true
+cursorcolumn = true
 
 [editor.lsp]
 display-messages = true
