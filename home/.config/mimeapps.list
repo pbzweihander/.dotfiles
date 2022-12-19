@@ -1,0 +1,7 @@
+[Default Applications]
+application/pdf=firefox.desktop
+image/jpeg=imv.desktop
+image/png=imv.desktop
+inode/directory=pcmanfm.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
