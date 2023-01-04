@@ -1,0 +1,10 @@
+[Unit]
+Description=screen rotation daemon
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rot8
+
+[Install]
+WantedBy=sway-session.target
