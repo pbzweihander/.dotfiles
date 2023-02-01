@@ -7,6 +7,7 @@ auto-pairs = false
 color-modes = true
 cursorline = true
 cursorcolumn = true
+rulers = [80, 100]
 
 [editor.lsp]
 display-messages = true
@@ -15,6 +16,10 @@ display-messages = true
 normal = "block"
 insert = "bar"
 select = "block"
+
+[editor.indent-guides]
+render = true
+skip-levels = 1
 
 [keys.normal]
 H = "extend_char_left"
