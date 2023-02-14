@@ -6,10 +6,10 @@ PartOf=graphical-session.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/swayidle -w \
-    timeout 180 'swaylock --font "Victor Mono" --clock --indicator --screenshots --effect-pixelate 32' \
+    timeout 180 'swaylock' \
     timeout 300 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock --font "Victor Mono" --clock --indicator --screenshots --effect-pixelate 32'
+    before-sleep 'swaylock'
 
 [Install]
 WantedBy=sway-session.target

@@ -12,9 +12,6 @@ set $term alacritty
 set $floating_term alacritty --class floatingAlacritty
 set $launcher sirula
 
-# Using swaylock-effects (https://github.com/mortie/swaylock-effects)
-set $lock swaylock --font "Victor Mono" --clock --indicator --screenshots --effect-pixelate 32
-
 set $capture grim "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
 set $capture_region grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
 set $pavucontrol pavucontrol
@@ -228,7 +225,7 @@ bindsym $mod+r mode "resize"
 
 set $mode_system (l)lock,(e)logout,(s)suspend,(h)hibernate,(R)reboot,(S)shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $lock, mode "default"
+    bindsym l exec --no-startup-id swaylock, mode "default"
     bindsym e exec --no-startup-id swaymsg exit, mode "default"
     bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym h exec --no-startup-id systemctl hibernate, mode "default"
