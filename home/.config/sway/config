@@ -32,7 +32,7 @@ set $ws10 "10"
 set $ws11 "11"
 set $ws12 "12"
 
-default_border pixel 2
+default_border pixel 5
 focus_follows_mouse no
 
 for_window [window_role="pop-up"] floating enable
