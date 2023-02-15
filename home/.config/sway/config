@@ -18,6 +18,8 @@ set $pavucontrol pavucontrol
 set $nmtui alacritty --class floatingNmtui -e nmtui
 set $spotify_tui alacritty --class floatingSpotifytui -e spt
 set $floating_pcmanfm pcmanfm --class=floatingPCManFM
+# https://github.com/Zeioth/wofi-emoji
+set $emoji_picker $HOME/utils/wofi-emoji/wofi-emoji
 
 set $ws1 "1"
 set $ws2 "2"
@@ -192,6 +194,7 @@ bindsym $mod+o exec --no-startup-id $pavucontrol
 bindsym $mod+p exec --no-startup-id $nmtui
 bindsym $mod+m exec --no-startup-id $spotify_tui
 bindsym $mod+i exec --no-startup-id $floating_pcmanfm
+bindsym $mod+Period exec --no-startup-id $emoji_picker
 
 bindsym --release $mod+button2 kill
 bindsym $mod+button3 floating toggle
