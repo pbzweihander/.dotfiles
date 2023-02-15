@@ -10,12 +10,6 @@ engine:
   global_category_state: false
   icon_color: White
   global_hotkeys:
-    Super-Period:
-      behavior: !Mode Emoji
-      result: ConsumeIfProcessed
-    M-Period:
-      behavior: !Mode Emoji
-      result: ConsumeIfProcessed
     Esc:
       behavior: !Switch Latin
       result: Bypass
