@@ -1,0 +1,11 @@
+[Unit]
+Description=Set inactive window opacity on Sway
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.cargo/bin/sway-inactive-window-transparency
+Environment="INACTIVE_OPACITY=0.9"
+
+[Install]
+WantedBy=sway-session.target
