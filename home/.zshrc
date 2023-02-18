@@ -167,6 +167,7 @@ if [[ -f "${ZINIT_HOME}/zinit.zsh" ]]; then
         if"[ -d ~/.pyenv/plugins/pyenv-virtualenv/ ]" id-as"pyenv-virtualenv" atclone"pyenv virtualenv-init - zsh > pyenv-virtualenv.zsh" atpull"%atclone" run-atpull pick"pyenv-virtualenv.zsh" nocompile"!" pbzweihander/zinit-null \
         has"fzf" id-as"fzf" multisrc"(completion|key-bindings).zsh" compile"(completion|key-bindings).zsh" svn https://github.com/junegunn/fzf/trunk/shell \
         if"[ -f /opt/asdf-vm/asdf.sh ]" id-as"asdf" pick"/opt/asdf-vm/asdf.sh" nocompile pbzweihander/zinit-null \
+        has"rtx" id-as"rtx" atclone"rtx activate zsh > rtx.zsh" atpull"%atclone" run-atpull pick"rtx.zsh" nocompile"!" nocompile pbzweihander/zinit-null \
         has"navi" id-as"navi-widget" atclone"navi widget zsh > navi-widget.zsh" atpull"%atclone" run-atpull pick"navi-widget.zsh" nocompile"!" pbzweihander/zinit-null
 
     # aliases
@@ -178,8 +179,9 @@ if [[ -f "${ZINIT_HOME}/zinit.zsh" ]]; then
     # completions
     zinit wait lucid for \
         id-as"git-completion" as"completion" mv"git-completion -> _git" nocompile https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh \
-        has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull pbzweihander/zinit-null \
-        has"poetry" id-as"poetry-completion" as"completion" atclone"poetry completions zsh > _poetry" atpull"%atclone" run-atpull pbzweihander/zinit-null
+        has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull pick "_helm" nocompile"!" pbzweihander/zinit-null \
+        has"poetry" id-as"poetry-completion" as"completion" atclone"poetry completions zsh > _poetry" atpull"%atclone" run-atpull pick "_poetry" nocompile"!" pbzweihander/zinit-null \
+        has"kubectl" id-as"kubectl-completion" as"completion" atclone"kubectl completion zsh > _kubectl" atpull"%atclone" run-atpull pick"_kubectl" nocompile"!" pbzweihander/zinit-null
 
     # last group
     zinit wait lucid for \
