@@ -161,7 +161,7 @@ if [[ -f "${ZINIT_HOME}/zinit.zsh" ]]; then
         command pyenv rehash >/dev/null &!
     }
 
-    zinit pack for fzf
+    zinit pack"default+keys" for fzf
 
     zinit wait lucid for \
         voronkovich/gitignore.plugin.zsh \
