@@ -79,6 +79,10 @@ input type:keyboard {
     xkb_options "ctrl:nocaps,korean:ralt_hangul,korean:rctrl_hanja"
 }
 
+input "1356:3302:Sony_Interactive_Entertainment_Wireless_Controller_Touchpad" {
+    events disabled
+}
+
 bar {
     swaybar_command waybar
 }
