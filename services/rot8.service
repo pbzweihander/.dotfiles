@@ -4,7 +4,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/rot8
+ExecStart=/usr/bin/rot8 --sleep 3000 --display eDP-1
 
 [Install]
 WantedBy=sway-session.target
