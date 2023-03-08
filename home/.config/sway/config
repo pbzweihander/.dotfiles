@@ -14,6 +14,8 @@ set $launcher sirula
 
 set $capture grim "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
 set $capture_region grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
+set $capture_screen grim -o "$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')" "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
+set $capture_focused swaymsg -t get_tree | jq -r '.. | ((.nodes? + .floating_nodes?) // empty) | .[] | select(.focused and .pid) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -g - "$(xdg-user-dir PICTURES)/screenshots/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
 set $pavucontrol pavucontrol
 set $nmtui alacritty --class floatingNmtui -e nmtui
 set $spotify_tui alacritty --class floatingSpotifytui -e spt
@@ -179,8 +181,10 @@ bindsym $mod+z focus child
 bindsym $mod+Control+minus move scratchpad
 bindsym $mod+Control+equal scratchpad show
 
-bindsym --release Control+Print exec --no-startup-id $capture
 bindsym --release Print exec $capture_region
+bindsym --release Control+Print exec --no-startup-id $capture
+bindsym --release Shift+Print exec --no-startup-id $capture_focused
+bindsym --release Alt+Print exec --no-startup-id $capture_screen
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5%
