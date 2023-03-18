@@ -8,8 +8,10 @@ USER="$(id -nu "${USER_ID}")"
 case "$4" in
   00000001)
     SWAYSOCK="/run/user/${USER_ID}/sway-ipc.${USER_ID}.${SWAY_PID}.sock" su "${USER}" -c "swaymsg input 1386:21125:Wacom_HID_5285_Finger events enabled"
+    SWAYSOCK="/run/user/${USER_ID}/sway-ipc.${USER_ID}.${SWAY_PID}.sock" su "${USER}" -c "rot8 --sleep 3000 --display eDP-1" &
     ;;
   00000000)
     SWAYSOCK="/run/user/${USER_ID}/sway-ipc.${USER_ID}.${SWAY_PID}.sock" su "${USER}" -c "swaymsg input 1386:21125:Wacom_HID_5285_Finger events disabled"
+    killall rot8
     ;;
 esac
