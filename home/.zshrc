@@ -180,8 +180,8 @@ if [[ -f "${ZINIT_HOME}/zinit.zsh" ]]; then
     # completions
     zinit wait lucid for \
         id-as"git-completion" as"completion" mv"git-completion -> _git" nocompile https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh \
-        has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull pick "_helm" nocompile"!" pbzweihander/zinit-null \
-        has"poetry" id-as"poetry-completion" as"completion" atclone"poetry completions zsh > _poetry" atpull"%atclone" run-atpull pick "_poetry" nocompile"!" pbzweihander/zinit-null \
+        has"helm" id-as"helm-completion" as"completion" atclone"helm completion zsh > _helm" atpull"%atclone" run-atpull pick"_helm" nocompile"!" pbzweihander/zinit-null \
+        has"poetry" id-as"poetry-completion" as"completion" atclone"poetry completions zsh > _poetry" atpull"%atclone" run-atpull pick"_poetry" nocompile"!" pbzweihander/zinit-null \
         has"kubectl" id-as"kubectl-completion" as"completion" atclone"kubectl completion zsh > _kubectl" atpull"%atclone" run-atpull pick"_kubectl" nocompile"!" pbzweihander/zinit-null
 
     # last group
