@@ -43,6 +43,13 @@ g = { "k" = "goto_file_start", "j" = "goto_last_line" }
 "A-l" = "extend_to_line_end"
 "A-L" = "extend_to_line_end_newline"
 
+"A-f" = "find_prev_char"
+"A-t" = "till_prev_char"
+"F" = "extend_next_char"
+"T" = "extend_till_char"
+"A-F" = "extend_prev_char"
+"A-T" = "extend_till_prev_char"
+
 "C-h" = "jump_view_left"
 "C-j" = "jump_view_down"
 "C-k" = "jump_view_up"
@@ -56,6 +63,9 @@ g = { "k" = "goto_file_start", "j" = "goto_last_line" }
 "A-ret" = "vsplit"
 
 "C-s" = ":write"
+
+[keys.select]
+g = { "k" = "goto_file_start", "j" = "goto_last_line" }
 
 [keys.insert]
 "C-space" = "completion"
