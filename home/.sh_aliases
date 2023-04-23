@@ -219,6 +219,17 @@ alias kns=kubens
 # etc
 alias mkdoc="pushd docs && make html && popd"
 
+function pdfcrush {
+    gs \
+        -q -dNOPAUSE -dBATCH -dSAFER \
+        -sDEVICE=pdfwrite \
+        -dCompatibilityLevel=1.3 \
+        -dPDFSETTINGS=/screen \
+        -dEmbedAllFonts=true -dSubsetFonts=true \
+        -sOutputFile=compressed.pdf \
+        "$1"
+}
+
 # local
 if [ -f ~/.sh_aliases.local ]; then
     source ~/.sh_aliases.local
