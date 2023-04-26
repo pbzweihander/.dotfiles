@@ -224,7 +224,7 @@ function pdfcrush {
         -q -dNOPAUSE -dBATCH -dSAFER \
         -sDEVICE=pdfwrite \
         -dCompatibilityLevel=1.4 \
-        -dPDFSETTINGS=/screen \
+        -dPDFSETTINGS=/default \
         -dEmbedAllFonts=true -dSubsetFonts=true \
         -sOutputFile=compressed.pdf \
         "$1"
