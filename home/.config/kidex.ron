@@ -1,0 +1,25 @@
+Config(
+  ignored: [],
+  directories: [
+    WatchDir(
+      path: "/home/pbzweihander/Documents",
+      recurse: true,
+      ignored: [],
+    ),
+    WatchDir(
+      path: "/home/pbzweihander/Downloads",
+      recurse: true,
+      ignored: [],
+    ),
+    WatchDir(
+      path: "/home/pbzweihander/Pictures",
+      recurse: true,
+      ignored: [],
+    ),
+    WatchDir(
+      path: "/home/pbzweihander/Videos",
+      recurse: true,
+      ignored: [],
+    ),
+  ],
+)

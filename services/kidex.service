@@ -1,0 +1,9 @@
+[Unit]
+Description=A simple file indexing service for looking up file locations 
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/kidex
+
+[Install]
+WantedBy=default.target
