@@ -28,8 +28,9 @@ Config(
   // `<anyrun config dir>/plugins` directory or with an absolute path to just load the file the path points to.
   plugins: [
     "libapplications.so",
-    "libsymbols.so",
-    "libshell.so",
+    "libkidex.so",
     "librink.so",
+    "libshell.so",
+    "libsymbols.so",
   ],
 )
