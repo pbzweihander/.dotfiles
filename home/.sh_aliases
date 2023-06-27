@@ -66,10 +66,6 @@ elif hash vim 2>/dev/null; then
     alias svi="sudo -E vim"
 fi
 
-# kakoune
-alias ka=kak
-alias ska="sudo -E kak"
-
 # helix
 alias hx="helix"
 alias shx="sudo -E helix"
