@@ -129,9 +129,9 @@ function aws-ecr-login
 end
 
 # kubernetes
-alias ktx=kubectx
-alias ktc="kubectx -c"
-alias kns=kubens
+abbr -a ktx kubectx
+abbr -a ktc "kubectx -c"
+abbr -a kns kubens
 
 function pdfcrush
     gs \
