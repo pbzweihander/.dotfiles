@@ -127,3 +127,19 @@ function aws-ecr-login
             --password-stdin \
             "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.$(aws configure get region).amazonaws.com"
 end
+
+# kubernetes
+alias ktx=kubectx
+alias ktc="kubectx -c"
+alias kns=kubens
+
+function pdfcrush
+    gs \
+        -q -dNOPAUSE -dBATCH -dSAFER \
+        -sDEVICE=pdfwrite \
+        -dCompatibilityLevel=1.4 \
+        -dPDFSETTINGS=/default \
+        -dEmbedAllFonts=true -dSubsetFonts=true \
+        -sOutputFile=compressed.pdf \
+        "$1"
+end
