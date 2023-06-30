@@ -19,7 +19,7 @@ abbr -a diff "diff --color=auto"
 abbr -a ccd "cd .."
 abbr -a cccd "cd ../.."
 abbr -a ccccd "cd ../../.."
-abbr -a cdd "cd $OLDPWD"
+abbr -a cdd "cd -"
 
 # lsd or exa or ls
 if type -q lsd
