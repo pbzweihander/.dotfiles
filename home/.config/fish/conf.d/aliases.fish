@@ -143,3 +143,6 @@ function pdfcrush
         -sOutputFile=compressed.pdf \
         "$1"
 end
+
+# terraform
+abbr -a tf terraform
