@@ -1,0 +1,10 @@
+[Unit]
+Description=Resume action for linnamaa
+After=suspend.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/reload-modem
+
+[Install]
+WantedBy=suspend.target
