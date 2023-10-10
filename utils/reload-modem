@@ -1,0 +1,7 @@
+#!/bin/sh
+usb=$(lsusb -t | parse-lsusb-t.py | grep Communications | grep cdc_mbim | awk '{print $1}')
+echo "$usb" | sudo tee /sys/bus/usb/drivers/usb/unbind
+sleep 1
+echo "$usb" | sudo tee /sys/bus/usb/drivers/usb/bind
+sleep 1
+sudo systemctl restart ModemManager.service
