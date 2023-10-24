@@ -144,5 +144,9 @@ function pdfcrush
         "$1"
 end
 
+# aws
+abbr -a pap AWS_PROFILE=personal
+abbr -a paws "AWS_PROFILE=personal aws"
+
 # terraform
 abbr -a tf terraform
