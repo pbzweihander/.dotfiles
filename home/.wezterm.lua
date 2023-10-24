@@ -11,6 +11,7 @@ config.color_scheme = 'Snazzy'
 config.font = wezterm.font_with_fallback {
   'Victor Mono',
   'Noto Sans CJK KR',
+  'VictorMono Nerd Font',
 }
 config.font_size = 13.0
 
