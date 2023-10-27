@@ -23,4 +23,17 @@ config.keys = {
   },
 }
 
+config.mouse_bindings = {
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'NONE',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'CTRL|ALT',
+    action = wezterm.action.OpenLinkAtMouseCursor,
+  },
+}
+
 return config
