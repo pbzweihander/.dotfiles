@@ -32,7 +32,7 @@
         "normal": {
             "cursorStyle": "block",
             "selectionBehavior": "character",
-            "lineNumbers": "relative",
+            "lineNumbers": "on",
             "decorations": {
                 "applyTo": "main",
                 "backgroundColor": "$editor.hoverHighlightBackground",
@@ -74,4 +74,6 @@
             ]
         }
     },
+    "workbench.colorTheme": "Snazzy",
+    "git.enableSmartCommit": true,
 }
