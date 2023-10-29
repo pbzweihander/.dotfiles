@@ -394,5 +394,6 @@
                 }
             }
         }
-    }
+    },
+    "editor.scrollbar.horizontal": "visible"
 }
