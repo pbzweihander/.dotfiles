@@ -36,7 +36,7 @@
             "decorations": {
                 "applyTo": "main",
                 "backgroundColor": "$editor.hoverHighlightBackground",
-                "isWholeLine": true
+                "isWholeLine": false
             },
             "onEnterMode": [
                 [
