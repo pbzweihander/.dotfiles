@@ -150,3 +150,6 @@ abbr -a paws "AWS_PROFILE=personal aws"
 
 # terraform
 abbr -a tf terraform
+
+# code
+abbr -a c. "code ."
