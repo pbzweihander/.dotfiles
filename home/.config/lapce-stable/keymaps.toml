@@ -1,0 +1,119 @@
+[[keymaps]]
+command = "line_start"
+mode = "inv"
+key = "Ctrl+a"
+
+[[keymaps]]
+command = "line_start"
+mode = "nv"
+key = "g h"
+
+[[keymaps]]
+command = "line_end"
+mode = "inv"
+key = "Ctrl+e"
+
+[[keymaps]]
+command = "line_end"
+mode = "nv"
+key = "g l"
+
+[[keymaps]]
+command = "document_start"
+mode = "nv"
+key = "g k"
+
+[[keymaps]]
+command = "document_end"
+mode = "nv"
+key = "g j"
+
+[[keymaps]]
+command = "indent_line"
+mode = "v"
+key = "Tab"
+
+[[keymaps]]
+command = "outdent_line"
+mode = "v"
+key = "Shift+Tab"
+
+[[keymaps]]
+command = "undo"
+mode = "nv"
+key = "Ctrl+z"
+
+[[keymaps]]
+command = "-scroll_down"
+mode = "nv"
+key = "Ctrl+e"
+
+[[keymaps]]
+command = "-select_all"
+key = "Ctrl+a"
+
+[[keymaps]]
+command = "-select_all"
+key = "%"
+
+[[keymaps]]
+command = "-show_hover"
+mode = "n"
+key = "g h"
+
+[[keymaps]]
+command = "-create_mark"
+mode = "nv"
+key = "m"
+
+[[keymaps]]
+command = "match_pairs"
+mode = "nv"
+key = "m m"
+
+[[keymaps]]
+command = "-match_pairs"
+mode = "nv"
+key = "%"
+
+[[keymaps]]
+command = "select_current_line"
+mode = "nv"
+key = "x"
+
+[[keymaps]]
+command = "-delete_forward"
+mode = "nv"
+key = "x"
+
+[[keymaps]]
+command = "-open_file"
+key = "Ctrl+o"
+
+[[keymaps]]
+command = "-toggle_code_lens"
+mode = "nv"
+key = "Space"
+
+[[keymaps]]
+command = "split_vertical"
+key = "Alt+Enter"
+
+[[keymaps]]
+command = "goto_type_definition"
+key = "g y"
+
+[[keymaps]]
+command = "-line_start_non_blank"
+mode = "nv"
+key = "g s"
+
+[[keymaps]]
+command = "show_code_actions"
+mode = "n"
+key = "Space a"
+
+[[keymaps]]
+command = "rename_symbol"
+mode = "n"
+key = "Space r"

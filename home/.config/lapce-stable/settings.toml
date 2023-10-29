@@ -1,0 +1,15 @@
+
+[lapce-rust]
+serverPath = "/usr/lib/rustup/bin/rust-analyzer"
+
+[core]
+modal = true
+
+[editor]
+show-bread-crumbs = true
+format-on-save = true
+font-family = "Victor Mono"
+font-size = 15
+
+[ui]
+font-family = "Noto Sans Mono"
