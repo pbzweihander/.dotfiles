@@ -384,6 +384,10 @@
                     "text": "go to file",
                     "command": "workbench.action.quickOpen"
                 },
+                "a": {
+                    "text": "code action",
+                    "command": "editor.action.quickFix"
+                },
                 "/": {
                     "text": "global search",
                     "command": "workbench.view.search"
