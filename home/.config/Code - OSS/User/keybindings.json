@@ -52,5 +52,63 @@
         "key": "ctrl+shift+tab",
         "command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
         "when": "!activeEditorGroupEmpty"
+    },
+    {
+        "key": "alt+space",
+        "command": "-dance.selections.clear.main",
+        "when": "editorTextFocus && dance.mode == 'normal'"
+    },
+    {
+        "key": ",",
+        "command": "dance.selections.clear.secondary",
+        "when": "editorTextFocus && dance.mode == 'normal'"
+    },
+    {
+        "key": "space",
+        "command": "-dance.selections.clear.secondary",
+        "when": "editorTextFocus && dance.mode == 'normal'"
+    },
+    {
+        "key": "space",
+        "command": "dance.openMenu",
+        "when": "editorTextFocus && dance.mode == 'normal'",
+        "args": {
+            "menu": "user"
+        }
+    },
+    {
+        "key": "x",
+        "command": "dance.select.line.below.extend",
+        "when": "editorTextFocus && dance.mode == 'normal'"
+    },
+    {
+        "key": "shift+x",
+        "command": "-dance.select.line.below.extend",
+        "when": "editorTextFocus && dance.mode == 'normal'"
+    },
+    {
+        "key": "x",
+        "command": "-dance.select.line.below",
+        "when": "editorTextFocus && dance.mode == 'normal'"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "-workbench.action.files.openFile",
+        "when": "true"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "-editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
     }
 ]
