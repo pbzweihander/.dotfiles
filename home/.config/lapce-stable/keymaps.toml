@@ -34,9 +34,14 @@ mode = "v"
 key = "Tab"
 
 [[keymaps]]
+command = "indent_line"
+mode = "nv"
+key = ">"
+
+[[keymaps]]
 command = "outdent_line"
-mode = "v"
-key = "Shift+Tab"
+mode = "nv"
+key = "<"
 
 [[keymaps]]
 command = "undo"
@@ -87,6 +92,11 @@ mode = "nv"
 key = "x"
 
 [[keymaps]]
+command = "delete_forward"
+mode = "nv"
+key = "d"
+
+[[keymaps]]
 command = "-open_file"
 key = "Ctrl+o"
 
@@ -117,3 +127,30 @@ key = "Space a"
 command = "rename_symbol"
 mode = "n"
 key = "Space r"
+
+[[keymaps]]
+command = "-motion_mode_indent"
+mode = "n"
+key = ">"
+
+[[keymaps]]
+command = "-motion_mode_outdent"
+mode = "n"
+key = "<"
+
+[[keymaps]]
+command = "-motion_mode_delete"
+mode = "n"
+key = "d"
+
+[[keymaps]]
+command = "page_up"
+key = "Ctrl+b"
+
+[[keymaps]]
+command = "page_down"
+key = "Ctrl+f"
+
+[[keymaps]]
+command = "-search"
+key = "Ctrl+f"
