@@ -396,5 +396,6 @@
         }
     },
     "editor.scrollbar.horizontal": "visible",
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "git.autofetch": true
 }
