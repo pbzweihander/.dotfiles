@@ -395,5 +395,6 @@
             }
         }
     },
-    "editor.scrollbar.horizontal": "visible"
+    "editor.scrollbar.horizontal": "visible",
+    "git.confirmSync": false
 }
