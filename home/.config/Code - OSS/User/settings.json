@@ -397,5 +397,6 @@
     },
     "editor.scrollbar.horizontal": "visible",
     "git.confirmSync": false,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "editor.fontLigatures": true
 }
