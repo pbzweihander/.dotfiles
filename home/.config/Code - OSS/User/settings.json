@@ -1,402 +1,409 @@
 {
-    "editor.fontFamily": "'Victor Mono'",
-    "editor.renderWhitespace": "all",
-    "editor.formatOnSave": true,
-    "editor.cursorSurroundingLines": 3,
-    "dance.modes": {
-        "": {
-            "hiddenSelectionsIndicatorsDecoration": {
-                "after": {
-                    "color": "$list.warningForeground"
-                },
-                "backgroundColor": "$inputValidation.warningBackground",
-                "borderColor": "$inputValidation.warningBorder",
-                "borderStyle": "solid",
-                "borderWidth": "1px",
-                "isWholeLine": true
-            }
+  "editor.fontFamily": "'Victor Mono'",
+  "editor.renderWhitespace": "all",
+  "editor.formatOnSave": true,
+  "editor.cursorSurroundingLines": 3,
+  "dance.modes": {
+    "": {
+      "hiddenSelectionsIndicatorsDecoration": {
+        "after": {
+          "color": "$list.warningForeground"
         },
-        "input": {
-            "cursorStyle": "underline-thin"
-        },
-        "insert": {
-            "onLeaveMode": [
-                [
-                    ".selections.save",
-                    {
-                        "register": " insert"
-                    }
-                ]
-            ]
-        },
-        "normal": {
-            "cursorStyle": "block",
-            "selectionBehavior": "character",
-            "lineNumbers": "on",
-            "decorations": {
-                "applyTo": "main",
-                "backgroundColor": "$editor.hoverHighlightBackground",
-                "isWholeLine": false
+        "backgroundColor": "$inputValidation.warningBackground",
+        "borderColor": "$inputValidation.warningBorder",
+        "borderStyle": "solid",
+        "borderWidth": "1px",
+        "isWholeLine": true
+      }
+    },
+    "input": {
+      "cursorStyle": "underline-thin"
+    },
+    "insert": {
+      "onLeaveMode": [
+        [
+          ".selections.save",
+          {
+            "register": " insert"
+          }
+        ]
+      ]
+    },
+    "normal": {
+      "cursorStyle": "block",
+      "selectionBehavior": "character",
+      "lineNumbers": "on",
+      "decorations": {
+        "applyTo": "main",
+        "backgroundColor": "$editor.hoverHighlightBackground",
+        "isWholeLine": false
+      },
+      "onEnterMode": [
+        [
+          ".selections.restore",
+          {
+            "register": " ^",
+            "try": true
+          }
+        ]
+      ],
+      "onLeaveMode": [
+        [
+          ".selections.save",
+          {
+            "register": " ^",
+            "style": {
+              "borderColor": "$editor.selectionBackground",
+              "borderStyle": "solid",
+              "borderWidth": "2px",
+              "borderRadius": "1px"
             },
-            "onEnterMode": [
-                [
-                    ".selections.restore",
-                    {
-                        "register": " ^",
-                        "try": true
-                    }
-                ]
-            ],
-            "onLeaveMode": [
-                [
-                    ".selections.save",
-                    {
-                        "register": " ^",
-                        "style": {
-                            "borderColor": "$editor.selectionBackground",
-                            "borderStyle": "solid",
-                            "borderWidth": "2px",
-                            "borderRadius": "1px"
-                        },
-                        "until": [
-                            [
-                                "mode-did-change",
-                                {
-                                    "include": "normal"
-                                }
-                            ],
-                            [
-                                "selections-did-change"
-                            ]
-                        ]
-                    }
-                ]
+            "until": [
+              [
+                "mode-did-change",
+                {
+                  "include": "normal"
+                }
+              ],
+              ["selections-did-change"]
             ]
+          }
+        ]
+      ]
+    }
+  },
+  "workbench.colorTheme": "Snazzy",
+  "git.enableSmartCommit": true,
+  "editor.selectionHighlight": false,
+  "dance.menus": {
+    "object": {
+      "title": "Select object...",
+      "items": {
+        "b()": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "\\((?#inner)\\)"
+            }
+          ],
+          "text": "parenthesis block"
+        },
+        "B{}": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "\\{(?#inner)\\}"
+            }
+          ],
+          "text": "braces block"
+        },
+        "r[]": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "\\[(?#inner)\\]"
+            }
+          ],
+          "text": "brackets block"
+        },
+        "a<>": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "<(?#inner)>"
+            }
+          ],
+          "text": "angle block"
+        },
+        "Q\"": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "(?#noescape)\"(?#inner)(?#noescape)\""
+            }
+          ],
+          "text": "double quote string"
+        },
+        "q'": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "(?#noescape)'(?#inner)(?#noescape)'"
+            }
+          ],
+          "text": "single quote string"
+        },
+        "g`": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "(?#noescape)`(?#inner)(?#noescape)`"
+            }
+          ],
+          "text": "grave quote string"
+        },
+        "w": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "[\\p{L}_\\d]+(?<after>[^\\S\\n]+)"
+            }
+          ],
+          "text": "word"
+        },
+        "W": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "[\\S]+(?<after>[^\\S\\n]+)"
+            }
+          ],
+          "text": "WORD"
+        },
+        "s": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "(?#predefined=sentence)"
+            }
+          ],
+          "text": "sentence"
+        },
+        "p": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "(?#predefined=paragraph)"
+            }
+          ],
+          "text": "paragraph"
+        },
+        " ": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "(?<before>[\\s]+)[^\\S\\n]+(?<after>[\\s]+)"
+            }
+          ],
+          "text": "whitespaces"
+        },
+        "i": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "(?#predefined=indent)"
+            }
+          ],
+          "text": "indent"
+        },
+        "n": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "(?#singleline)-?[\\d_]+(\\.[0-9]+)?([eE]\\d+)?"
+            }
+          ],
+          "text": "number"
+        },
+        "u": {
+          "command": "dance.seek.object",
+          "args": [
+            {
+              "input": "(?#predefined=argument)"
+            }
+          ],
+          "text": "argument"
+        },
+        "c": {
+          "command": "dance.seek.object",
+          "text": "custom object desc"
         }
+      }
     },
-    "workbench.colorTheme": "Snazzy",
-    "git.enableSmartCommit": true,
-    "editor.selectionHighlight": false,
-    "dance.menus": {
-        "object": {
-            "title": "Select object...",
-            "items": {
-                "b()": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "\\((?#inner)\\)"
-                        }
-                    ],
-                    "text": "parenthesis block"
-                },
-                "B{}": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "\\{(?#inner)\\}"
-                        }
-                    ],
-                    "text": "braces block"
-                },
-                "r[]": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "\\[(?#inner)\\]"
-                        }
-                    ],
-                    "text": "brackets block"
-                },
-                "a<>": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "<(?#inner)>"
-                        }
-                    ],
-                    "text": "angle block"
-                },
-                "Q\"": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "(?#noescape)\"(?#inner)(?#noescape)\""
-                        }
-                    ],
-                    "text": "double quote string"
-                },
-                "q'": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "(?#noescape)'(?#inner)(?#noescape)'"
-                        }
-                    ],
-                    "text": "single quote string"
-                },
-                "g`": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "(?#noescape)`(?#inner)(?#noescape)`"
-                        }
-                    ],
-                    "text": "grave quote string"
-                },
-                "w": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "[\\p{L}_\\d]+(?<after>[^\\S\\n]+)"
-                        }
-                    ],
-                    "text": "word"
-                },
-                "W": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "[\\S]+(?<after>[^\\S\\n]+)"
-                        }
-                    ],
-                    "text": "WORD"
-                },
-                "s": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "(?#predefined=sentence)"
-                        }
-                    ],
-                    "text": "sentence"
-                },
-                "p": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "(?#predefined=paragraph)"
-                        }
-                    ],
-                    "text": "paragraph"
-                },
-                " ": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "(?<before>[\\s]+)[^\\S\\n]+(?<after>[\\s]+)"
-                        }
-                    ],
-                    "text": "whitespaces"
-                },
-                "i": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "(?#predefined=indent)"
-                        }
-                    ],
-                    "text": "indent"
-                },
-                "n": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "(?#singleline)-?[\\d_]+(\\.[0-9]+)?([eE]\\d+)?"
-                        }
-                    ],
-                    "text": "number"
-                },
-                "u": {
-                    "command": "dance.seek.object",
-                    "args": [
-                        {
-                            "input": "(?#predefined=argument)"
-                        }
-                    ],
-                    "text": "argument"
-                },
-                "c": {
-                    "command": "dance.seek.object",
-                    "text": "custom object desc"
-                }
-            }
+    "goto": {
+      "title": "Go...",
+      "items": {
+        "h": {
+          "text": "to line start",
+          "command": "dance.select.lineStart"
         },
-        "goto": {
-            "title": "Go...",
-            "items": {
-                "h": {
-                    "text": "to line start",
-                    "command": "dance.select.lineStart"
-                },
-                "l": {
-                    "text": "to line end",
-                    "command": "dance.select.lineEnd"
-                },
-                "i": {
-                    "text": "to non-blank line start",
-                    "command": "dance.select.lineStart",
-                    "args": [
-                        {
-                            "skipBlank": true
-                        }
-                    ]
-                },
-                "gk": {
-                    "text": "to first line",
-                    "command": "dance.select.lineStart",
-                    "args": [
-                        {
-                            "count": 1
-                        }
-                    ]
-                },
-                "j": {
-                    "text": "to last line",
-                    "command": "dance.select.lastLine"
-                },
-                "e": {
-                    "text": "to last char of last line",
-                    "command": "dance.select.lineEnd",
-                    "args": [
-                        {
-                            "count": 2147483647
-                        }
-                    ]
-                },
-                "t": {
-                    "text": "to first displayed line",
-                    "command": "dance.select.firstVisibleLine"
-                },
-                "c": {
-                    "text": "to middle displayed line",
-                    "command": "dance.select.middleVisibleLine"
-                },
-                "b": {
-                    "text": "to last displayed line",
-                    "command": "dance.select.lastVisibleLine"
-                },
-                "a": {
-                    "text": "to last buffer",
-                    "command": "workbench.action.openPreviousRecentlyUsedEditorInGroup"
-                },
-                "f": {
-                    "text": "to file whose name is selected",
-                    "command": "dance.selections.open"
-                },
-                ".": {
-                    "text": "to last buffer modification position",
-                    "command": "dance.selections.restore",
-                    "args": [
-                        {
-                            "register": " insert"
-                        }
-                    ]
-                },
-                "d": {
-                    "text": "to definition",
-                    "command": "editor.action.revealDefinition"
-                },
-                "r": {
-                    "text": "to reference",
-                    "command": "editor.action.goToReferences"
-                },
-                "D": {
-                    "text": "to declaration",
-                    "command": "editor.action.revealDeclaration"
-                },
-                "y": {
-                    "text": "to declaration",
-                    "command": "editor.action.goToTypeDefinition"
-                },
-                "I": {
-                    "text": "to declaration",
-                    "command": "editor.action.goToImplementation"
-                }
-            }
+        "l": {
+          "text": "to line end",
+          "command": "dance.select.lineEnd"
         },
-        "view": {
-            "title": "View",
-            "items": {
-                "vc": {
-                    "text": "center cursor vertically",
-                    "command": "dance.view.line",
-                    "args": [
-                        {
-                            "at": "center"
-                        }
-                    ]
-                },
-                "t": {
-                    "text": "cursor on top",
-                    "command": "dance.view.line",
-                    "args": [
-                        {
-                            "at": "top"
-                        }
-                    ]
-                },
-                "b": {
-                    "text": "cursor on bottom",
-                    "command": "dance.view.line",
-                    "args": [
-                        {
-                            "at": "bottom"
-                        }
-                    ]
-                },
-                "j": {
-                    "text": "scroll down",
-                    "command": "editorScroll",
-                    "args": [
-                        {
-                            "to": "down",
-                            "by": "line",
-                            "revealCursor": true
-                        }
-                    ]
-                },
-                "k": {
-                    "text": "scroll up",
-                    "command": "editorScroll",
-                    "args": [
-                        {
-                            "to": "up",
-                            "by": "line",
-                            "revealCursor": true
-                        }
-                    ]
-                }
+        "i": {
+          "text": "to non-blank line start",
+          "command": "dance.select.lineStart",
+          "args": [
+            {
+              "skipBlank": true
             }
+          ]
         },
-        "user": {
-            "title": "User",
-            "items": {
-                "k": {
-                    "text": "hover",
-                    "command": "editor.action.showHover"
-                },
-                "r": {
-                    "text": "rename",
-                    "command": "editor.action.rename"
-                },
-                "f": {
-                    "text": "go to file",
-                    "command": "workbench.action.quickOpen"
-                },
-                "a": {
-                    "text": "code action",
-                    "command": "editor.action.quickFix"
-                },
-                "/": {
-                    "text": "global search",
-                    "command": "workbench.view.search"
-                }
+        "gk": {
+          "text": "to first line",
+          "command": "dance.select.lineStart",
+          "args": [
+            {
+              "count": 1
             }
+          ]
+        },
+        "j": {
+          "text": "to last line",
+          "command": "dance.select.lastLine"
+        },
+        "e": {
+          "text": "to last char of last line",
+          "command": "dance.select.lineEnd",
+          "args": [
+            {
+              "count": 2147483647
+            }
+          ]
+        },
+        "t": {
+          "text": "to first displayed line",
+          "command": "dance.select.firstVisibleLine"
+        },
+        "c": {
+          "text": "to middle displayed line",
+          "command": "dance.select.middleVisibleLine"
+        },
+        "b": {
+          "text": "to last displayed line",
+          "command": "dance.select.lastVisibleLine"
+        },
+        "a": {
+          "text": "to last buffer",
+          "command": "workbench.action.openPreviousRecentlyUsedEditorInGroup"
+        },
+        "f": {
+          "text": "to file whose name is selected",
+          "command": "dance.selections.open"
+        },
+        ".": {
+          "text": "to last buffer modification position",
+          "command": "dance.selections.restore",
+          "args": [
+            {
+              "register": " insert"
+            }
+          ]
+        },
+        "d": {
+          "text": "to definition",
+          "command": "editor.action.revealDefinition"
+        },
+        "r": {
+          "text": "to reference",
+          "command": "editor.action.goToReferences"
+        },
+        "D": {
+          "text": "to declaration",
+          "command": "editor.action.revealDeclaration"
+        },
+        "y": {
+          "text": "to declaration",
+          "command": "editor.action.goToTypeDefinition"
+        },
+        "I": {
+          "text": "to declaration",
+          "command": "editor.action.goToImplementation"
         }
+      }
     },
-    "editor.scrollbar.horizontal": "visible",
-    "git.confirmSync": false,
-    "git.autofetch": true,
-    "editor.fontLigatures": true
+    "view": {
+      "title": "View",
+      "items": {
+        "vc": {
+          "text": "center cursor vertically",
+          "command": "dance.view.line",
+          "args": [
+            {
+              "at": "center"
+            }
+          ]
+        },
+        "t": {
+          "text": "cursor on top",
+          "command": "dance.view.line",
+          "args": [
+            {
+              "at": "top"
+            }
+          ]
+        },
+        "b": {
+          "text": "cursor on bottom",
+          "command": "dance.view.line",
+          "args": [
+            {
+              "at": "bottom"
+            }
+          ]
+        },
+        "j": {
+          "text": "scroll down",
+          "command": "editorScroll",
+          "args": [
+            {
+              "to": "down",
+              "by": "line",
+              "revealCursor": true
+            }
+          ]
+        },
+        "k": {
+          "text": "scroll up",
+          "command": "editorScroll",
+          "args": [
+            {
+              "to": "up",
+              "by": "line",
+              "revealCursor": true
+            }
+          ]
+        }
+      }
+    },
+    "user": {
+      "title": "User",
+      "items": {
+        "k": {
+          "text": "hover",
+          "command": "editor.action.showHover"
+        },
+        "r": {
+          "text": "rename",
+          "command": "editor.action.rename"
+        },
+        "f": {
+          "text": "go to file",
+          "command": "workbench.action.quickOpen"
+        },
+        "a": {
+          "text": "code action",
+          "command": "editor.action.quickFix"
+        },
+        "/": {
+          "text": "global search",
+          "command": "workbench.view.search"
+        }
+      }
+    }
+  },
+  "editor.scrollbar.horizontal": "visible",
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "editor.fontLigatures": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }
