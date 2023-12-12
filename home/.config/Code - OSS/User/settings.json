@@ -65,7 +65,9 @@
                   "include": "normal"
                 }
               ],
-              ["selections-did-change"]
+              [
+                "selections-did-change"
+              ]
             ]
           }
         ]
