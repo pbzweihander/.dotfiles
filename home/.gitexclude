@@ -49,3 +49,4 @@ Session.vim
 .python-version
 .terraform-version
 .tool-versions
+.rtx.toml
