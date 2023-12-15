@@ -413,5 +413,8 @@
   },
   "[terraform]": {
     "editor.tabSize": 2
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   }
 }
