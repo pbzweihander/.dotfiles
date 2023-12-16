@@ -415,6 +415,6 @@
     "editor.tabSize": 2
   },
   "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
+    "editor.defaultFormatter": "kennylong.kubernetes-yaml-formatter"
   }
 }
