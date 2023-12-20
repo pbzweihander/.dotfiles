@@ -416,5 +416,9 @@
   },
   "[yaml]": {
     "editor.defaultFormatter": "kennylong.kubernetes-yaml-formatter"
+  },
+  "redhat.telemetry.enabled": false,
+  "[helm]": {
+    "editor.tabSize": 2
   }
 }
