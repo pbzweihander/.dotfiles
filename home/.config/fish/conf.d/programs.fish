@@ -36,10 +36,10 @@ if type -q go
     fish_add_path $GOPATH/bin
 end
 
-# rtx
-if type -q rtx
-    rtx activate fish | source
-    rtx completion fish | source
+# mise
+if type -q mise
+    mise activate fish | source
+    mise completion fish | source
 end
 
 # navi
