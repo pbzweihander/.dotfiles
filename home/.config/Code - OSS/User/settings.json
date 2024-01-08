@@ -419,6 +419,39 @@
   },
   "redhat.telemetry.enabled": false,
   "[helm]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false,
     "editor.tabSize": 2
+  },
+  "rust-analyzer.showUnlinkedFileNotification": false,
+  "[markdown]": {
+    "editor.tabSize": 2,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "diffEditor.ignoreTrimWhitespace": false
+  },
+  "isort.args": [
+    "--profile",
+    "black"
+  ],
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
