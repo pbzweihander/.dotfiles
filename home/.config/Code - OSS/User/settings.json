@@ -415,6 +415,7 @@
     "editor.tabSize": 2
   },
   "[yaml]": {
+    "editor.formatOnSave": false,
     "editor.defaultFormatter": "kennylong.kubernetes-yaml-formatter"
   },
   "redhat.telemetry.enabled": false,
@@ -453,5 +454,9 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "editor.rulers": [
+    70,
+    100,
+  ]
 }
