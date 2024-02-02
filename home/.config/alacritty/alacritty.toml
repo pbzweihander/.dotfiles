@@ -7,3 +7,15 @@ resize_increments = true
 [font]
 normal = { family = "Victor Mono" }
 size = 13.0
+
+[[hints.enabled]]
+command = "xdg-open"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse = { mods = "Control|Alt", enabled = true }
+binding = { key = "U", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+[mouse]
+bindings = [{ mouse = "Middle", action = "None" }]
