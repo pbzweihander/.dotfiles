@@ -1,0 +1,9 @@
+import = ["~/.config/alacritty/snazzy.toml"]
+
+[window]
+opacity = 0.95
+resize_increments = true
+
+[font]
+normal = { family = "Victor Mono" }
+size = 13.0
