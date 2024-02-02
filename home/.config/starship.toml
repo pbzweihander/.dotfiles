@@ -1,0 +1,29 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """$all\
+\
+$fill\
+\
+$kubernetes\
+$time\
+\
+$line_break\
+\
+$character"""
+
+[directory]
+truncation_length = 0
+before_repo_root_style = "cyan"
+repo_root_style = "bold cyan"
+fish_style_pwd_dir_length = 3
+
+[fill]
+symbol = " "
+
+[kubernetes]
+disabled = false
+format = ' in [$symbol$context( \($namespace\))]($style)'
+
+[time]
+disabled = false
+format = ' at [$time]($style)'
