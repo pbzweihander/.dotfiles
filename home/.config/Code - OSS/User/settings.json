@@ -458,5 +458,7 @@
   "editor.rulers": [
     70,
     100,
-  ]
+  ],
+  "window.zoomLevel": 1,
+  "pestIdeTools.serverPath": "/usr/bin/pest-language-server"
 }
