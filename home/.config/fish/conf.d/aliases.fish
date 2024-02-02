@@ -81,15 +81,20 @@ abbr -a pm "podman"
 abbr -a pc "podman-compose"
 
 if type -q podman
+    set -g docker podman
+    abbr -a docker podman
+    abbr -a docker-compose podman-compose
     abbr -a dk "podman"
     abbr -a dc "podman-compose"
 else if groups | grep -qw docker
+    set -g docker docker
     abbr -a dk "docker"
     abbr -a dc "docker-compose"
     abbr -a ds "docker service"
     abbr -a dst "docker stack"
     abbr -a dsw "docker swarm"
 else
+    set -g docker "sudo -E docker"
     abbr -a dk "sudo -E docker"
     abbr -a dc "sudo -E docker-compose"
     abbr -a ds "sudo -E docker service"
@@ -122,7 +127,7 @@ abbr -a pyvenv "pyenv virtualenv"
 # aws ecr
 function aws-ecr-login
     aws ecr get-login-password \
-        | docker login \
+        | $docker login \
             --username AWS \
             --password-stdin \
             "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.$(aws configure get region).amazonaws.com"
