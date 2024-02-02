@@ -2,6 +2,7 @@ import = ["~/.config/alacritty/snazzy.toml"]
 
 [window]
 opacity = 0.95
+padding = { x = 5, y = 5 }
 resize_increments = true
 
 [font]
