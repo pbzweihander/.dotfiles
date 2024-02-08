@@ -1,13 +1,14 @@
 import = ["~/.config/alacritty/dimidium.toml"]
 
 [window]
-opacity = 0.95
+opacity = 0.9
 padding = { x = 5, y = 5 }
 resize_increments = true
 
 [font]
-normal = { family = "Victor Mono" }
-size = 12.0
+normal = { family = "Victor Mono", style = "Medium" }
+italic = { style = "Medium Italic" }
+size = 11.0
 
 [[hints.enabled]]
 command = "xdg-open"

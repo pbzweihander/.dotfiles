@@ -1,4 +1,4 @@
-theme = "base16_transparent_custom"
+theme = "base16"
 
 [editor]
 mouse = false

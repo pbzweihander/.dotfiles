@@ -1,0 +1,59 @@
+"ui.cursor" = { fg = "light-gray", modifiers = ["reversed"] }
+"ui.cursor.match" = { fg = "yellow", modifiers = ["reversed"] }
+"ui.linenr.selected" = { modifiers = ["bold"] }
+"ui.statusline.inactive" = { fg = "gray" }
+"ui.statusline.normal" = { fg = "blue", modifiers = ["reversed"] }
+"ui.statusline.insert" = { fg = "green", modifiers = ["reversed"] }
+"ui.statusline.select" = { fg = "magenta", modifiers = ["reversed"] }
+"ui.window" = { fg = "gray" }
+"ui.text.focus" = { modifiers = ["reversed"] }
+"ui.virtual.ruler" = { bg = "gray" }
+"ui.virtual.whitespace" = { fg = "gray" }
+"ui.virtual.indent-guide" = { fg = "gray" }
+"ui.virtual.inlay-hint" = { fg = "gray" }
+"ui.virtual.wrap" = "gray"
+"ui.menu.selected" = { modifiers = ["reversed"] }
+"ui.selection" = { bg = "gray" }
+"ui.highlight" = { bg = "gray" }
+"ui.cursorline.primary" = { underline = { color = "gray", style = "line" } }
+
+"warning" = "yellow"
+"error" = "red"
+"info" = "blue"
+"hint" = "gray"
+
+"diagnostic.hint" = { underline = { color = "gray", style = "curl" } }
+"diagnostic.info" = { underline = { color = "blue", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
+"diagnostic.error" = { underline = { color ="red", style = "curl" } }
+
+"attribute" = "yellow"
+"type" = "cyan"
+"constructor" = "blue"
+"constant" = "green"
+"constant.character.escape" = "yellow"
+"string"  = "green"
+"comment" = { fg = "gray", modifiers = ["italic"] }
+"variable" = "light-gray"
+# "label" = ""
+"punctuation" = "magenta"
+"keyword" = "magenta"
+"keyword.storage" = "yellow"
+"keyword.storage.modifier" = "magenta"
+"operator" = "magenta"
+"function" = "blue"
+"tag" = "red"
+"namespace" = "light-gray"
+"special" = "light-gray"
+"markup.heading" = "blue"
+"markup.list" = "yellow"
+"markup.bold" = { fg = "red", modifiers = ["bold"] }
+"markup.italic" = { fg = "red", modifiers = ["italic"] }
+"markup.strikethrough" = { fg = "red", modifiers = ["crossed_out"] }
+"markup.link" = "green"
+"markup.link.url" = { fg = "red", underline = { color = "red", style = "line"} }
+"markup.quote" = "cyan"
+"markup.raw" = "magenta"
+"diff.plus" = "green"
+"diff.minus" = "red"
+"diff.delta" = "blue"
