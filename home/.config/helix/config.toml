@@ -1,4 +1,4 @@
-theme = "snazzy"
+theme = "base16_transparent_custom"
 
 [editor]
 mouse = false
@@ -6,19 +6,26 @@ middle-click-paste = false
 auto-pairs = false
 color-modes = true
 cursorline = true
-cursorcolumn = true
 rulers = [80, 100]
 
 [editor.lsp]
 display-messages = true
+display-inlay-hints = true
 
 [editor.cursor-shape]
 normal = "block"
 insert = "bar"
 select = "block"
 
+[editor.whitespace.render]
+space = "all"
+nbsb = "all"
+tab = "all"
+newline = "none"
+
 [editor.indent-guides]
 render = true
+character = "▏"
 skip-levels = 1
 
 [keys.normal]
@@ -63,6 +70,15 @@ g = { "k" = "goto_file_start", "j" = "goto_last_line" }
 "A-ret" = "vsplit"
 
 "C-s" = ":write"
+
+"C-/" = "toggle_comments"
+
+"N" = "extend_search_next"
+"A-N" = "extend_search_prev"
+"A-n" = "search_prev"
+
+"m" = "match_brackets"
+"M" = ["select_mode", "match_brackets", "normal_mode"]
 
 [keys.select]
 g = { "k" = "goto_file_start", "j" = "goto_last_line" }

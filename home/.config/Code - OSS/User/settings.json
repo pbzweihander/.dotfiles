@@ -438,16 +438,12 @@
     }
   },
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit"
+      "source.fixAll": "explicit"
     },
     "diffEditor.ignoreTrimWhitespace": false
   },
-  "isort.args": [
-    "--profile",
-    "black"
-  ],
   "[typescriptreact]": {
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -460,5 +456,7 @@
     100,
   ],
   "window.zoomLevel": 1,
-  "pestIdeTools.serverPath": "/usr/bin/pest-language-server"
+  "pestIdeTools.serverPath": "/usr/bin/pest-language-server",
+  "editor.fontSize": 11,
+  "terminal.integrated.fontSize": 11,
 }
