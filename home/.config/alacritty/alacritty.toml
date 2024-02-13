@@ -6,9 +6,8 @@ padding = { x = 5, y = 5 }
 resize_increments = true
 
 [font]
-normal = { family = "Victor Mono", style = "Medium" }
-italic = { style = "Medium Italic" }
-size = 11.0
+normal = { family = "Sarasa Term K" }
+size = 12.0
 
 [[hints.enabled]]
 command = "xdg-open"
