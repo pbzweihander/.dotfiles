@@ -21,23 +21,18 @@ abbr -a cccd "cd ../.."
 abbr -a ccccd "cd ../../.."
 abbr -a cdd "cd -"
 
-# lsd or exa or ls
+# lsd or ls
 if type -q lsd
-    abbr -a l "lsd --group-dirs first --"
-    abbr -a ls "lsd -F --group-dirs first --"
-    abbr -a la "lsd -aF --group-dirs first --"
-    abbr -a ll "lsd -lF --group-dirs first --"
-    abbr -a lla "lsd -alF --group-dirs first --"
-    abbr -a lt "lsd --tree -F --group-dirs first --"
-    abbr -a lta "lsd --tree -aF --group-dirs first --"
-else if type -q exa
-    abbr -a l "exa --group-directories-first"
-    abbr -a ls "exa -F --group-directories-first"
-    abbr -a la "exa -aF --group-directories-first"
-    abbr -a ll "exa -lgF --group-directories-first"
-    abbr -a lla "exa -algF --group-directories-first"
-    abbr -a lt "exa -TF --group-directories-first"
-    abbr -a lta "exa -TFa --group-directories-first"
+    abbr -a l   "lsd --group-dirs first --"
+    abbr -a ls  "lsd --group-dirs first --classify --"
+    abbr -a la  "lsd --group-dirs first --classify --almost-all --"
+    abbr -a ll  "lsd --group-dirs first --classify --long --"
+    abbr -a lla "lsd --group-dirs first --classify --long --almost-all --"
+    abbr -a lt  "lsd --group-dirs first --classify --tree --"
+    abbr -a lta "lsd --group-dirs first --classify --tree --almost-all --"
+
+    # fzf.fish
+    set fzf_preview_dir_cmd lsd --color always --icon always --almost-all --oneline --classify
 else
     abbr -a l "ls --color=auto --group-directories-first"
     abbr -a ls "ls --color=auto --group-directories-first"
