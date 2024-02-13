@@ -56,5 +56,6 @@
 [delta]
 	features = decorations
 	pager = less -+XF -Qc
-	plus-style = syntax "#03491b"
-	minus-style = syntax "#4d0300"
+	side-by-side = true
+	plus-style = syntax green
+	minus-style = syntax red
