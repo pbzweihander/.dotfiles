@@ -1,10 +1,12 @@
 "ui.cursor" = { fg = "light-gray", modifiers = ["reversed"] }
 "ui.cursor.match" = { fg = "light-yellow", modifiers = ["reversed"] }
 "ui.linenr.selected" = { modifiers = ["bold"] }
-"ui.statusline.inactive" = { fg = "gray" }
+"ui.statusline" = { bg = "black" }
+"ui.statusline.inactive" = { fg = "gray", bg = "black" }
 "ui.statusline.normal" = { fg = "light-blue", modifiers = ["reversed"] }
 "ui.statusline.insert" = { fg = "light-green", modifiers = ["reversed"] }
 "ui.statusline.select" = { fg = "light-magenta", modifiers = ["reversed"] }
+"ui.popup" = { bg = "black" }
 "ui.window" = { fg = "gray" }
 "ui.text.focus" = { modifiers = ["reversed"] }
 "ui.virtual.ruler" = { bg = "gray" }
@@ -12,6 +14,7 @@
 "ui.virtual.indent-guide" = { fg = "gray" }
 "ui.virtual.inlay-hint" = { fg = "gray" }
 "ui.virtual.wrap" = "gray"
+"ui.menu" = { bg = "black" }
 "ui.menu.selected" = { modifiers = ["reversed"] }
 "ui.selection" = { bg = "gray" }
 "ui.highlight" = { bg = "gray" }
@@ -22,7 +25,7 @@
 "info" = "light-blue"
 "hint" = "light-gray"
 
-"diagnostic.hint" = { underline = { color = "gray", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "light-gray", style = "curl" } }
 "diagnostic.info" = { underline = { color = "light-blue", style = "curl" } }
 "diagnostic.warning" = { underline = { color = "light-yellow", style = "curl" } }
 "diagnostic.error" = { underline = { color ="light-red", style = "curl" } }
