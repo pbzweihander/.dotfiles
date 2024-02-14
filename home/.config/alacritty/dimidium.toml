@@ -1,6 +1,6 @@
 [colors.primary]
-background = "0x141414"
 foreground = "0xbab7b6"
+background = "0x141414"
 
 [colors.normal]
 black = "0x141414"
@@ -21,3 +21,23 @@ blue = "0x688dfd"
 magenta = "0xed6fe9"
 cyan = "0x32e0fb"
 white = "0xdad6d5"
+
+[colors.cursor]
+text = "0x141414"
+background = "0xbab7b6"
+
+[colors.search.matches]
+foreground = "CellForeground"
+background = "0x565554"
+
+[colors.search.focused_match]
+foreground = "0x141414"
+background = "0xdb9c11"
+
+[colors.footer_bar]
+foreground = "0xbab7b6"
+background = "0x565554"
+
+[colors.selection]
+text = "CellForeground"
+background = "0x565554"
