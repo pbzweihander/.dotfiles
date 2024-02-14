@@ -3,7 +3,7 @@
 	path = .gitconfig.local
 [user]
 	name = pbzweihander
-	email = pbzweihander@gmail.com
+	email = pbzweihander@protonmail.com
 	signingKey = ~/.ssh/id_ed25519.pub
 [gpg]
 	format = ssh
