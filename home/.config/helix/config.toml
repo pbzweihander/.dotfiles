@@ -28,6 +28,9 @@ render = true
 character = "▏"
 skip-levels = 1
 
+[editor.smart-tab]
+enable = false
+
 [keys.normal]
 H = "extend_char_left"
 J = "extend_line_down"
