@@ -50,3 +50,8 @@ end
 if type -q helm
     helm completion fish | source
 end
+
+# zoxide
+if type -q zoxide
+    zoxide init fish | source
+end

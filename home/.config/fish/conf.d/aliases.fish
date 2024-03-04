@@ -19,7 +19,11 @@ abbr -a diff "diff --color=auto"
 abbr -a ccd "cd .."
 abbr -a cccd "cd ../.."
 abbr -a ccccd "cd ../../.."
+abbr -a cccccd "cd ../../../.."
 abbr -a cdd "cd -"
+abbr -a .... ../..
+abbr -a ...... ../../..
+abbr -a ........ ../../../..
 
 # lsd or ls
 if type -q lsd
@@ -153,3 +157,6 @@ abbr -a tf terraform
 
 # code
 abbr -a c. "code ."
+
+# zoxide
+abbr -a zz "z -"
