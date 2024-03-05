@@ -4,11 +4,10 @@ daemon:
     - Indicator
     - Xim
 indicator:
-  icon_color: Black
+  icon_color: White
 engine:
   default_category: Latin
-  global_category_state: false
-  icon_color: White
+  global_category_state: true
   global_hotkeys:
     Esc:
       behavior: !Switch Latin
@@ -65,10 +64,10 @@ engine:
       Tab:
         behavior: Commit
         result: ConsumeIfProcessed
-  candidate_font: Noto Sans Mono CJK KR
+  candidate_font: Sarasa UI K Regular
   xim_preedit_font:
-  - Noto Sans Mono CJK KR
-  - 17.0
+  - Sarasa UI K Regular
+  - 15.0
   latin:
     layout: Qwerty
   hangul:
