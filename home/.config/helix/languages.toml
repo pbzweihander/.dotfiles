@@ -1,0 +1,11 @@
+[language-server.haskell-language-server]
+command = "haskell-language-server-wrapper"
+args = ["--lsp"]
+
+[language-server.haskell-language-server.config]
+haskell.formattingProvider = "fourmolu"
+haskell.plugin.rename.config.diff = true
+
+[[language]]
+name = "haskell"
+auto-format = true
