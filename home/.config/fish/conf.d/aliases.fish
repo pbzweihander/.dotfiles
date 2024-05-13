@@ -28,12 +28,12 @@ abbr -a ...... ../../../../..
 
 # lsd or ls
 if type -q lsd
-    abbr -a l   "lsd --group-dirs first --"
-    abbr -a ls  "lsd --group-dirs first --classify --"
-    abbr -a la  "lsd --group-dirs first --classify --almost-all --"
-    abbr -a ll  "lsd --group-dirs first --classify --long --"
+    abbr -a l "lsd --group-dirs first --"
+    abbr -a ls "lsd --group-dirs first --classify --"
+    abbr -a la "lsd --group-dirs first --classify --almost-all --"
+    abbr -a ll "lsd --group-dirs first --classify --long --"
     abbr -a lla "lsd --group-dirs first --classify --long --almost-all --"
-    abbr -a lt  "lsd --group-dirs first --classify --tree --"
+    abbr -a lt "lsd --group-dirs first --classify --tree --"
     abbr -a lta "lsd --group-dirs first --classify --tree --almost-all --"
 
     # fzf.fish
@@ -66,30 +66,36 @@ else if type -q vim
 end
 
 # helix
-abbr -a hx "helix"
+abbr -a hx helix
 abbr -a shx "sudo -E helix"
 
 # systemctl
 abbr -a sctl "sudo systemctl"
 abbr -a usctl "systemctl --user"
 abbr -a jctl "sudo journalctl"
+abbr -a jctle "sudo journalctl -e"
+abbr -a jctleb "sudo journalctl -eb"
+abbr -a jctlebf "sudo journalctl -eb -f"
 abbr -a ujctl "journalctl --user"
+abbr -a ujctle "journalctl --user -e"
+abbr -a ujctleb "journalctl --user -eb"
+abbr -a ujctlebf "journalctl --user -eb -f"
 abbr -a bctl bluetoothctl
 
 # Docker and Podman
-abbr -a pm "podman"
-abbr -a pc "podman-compose"
+abbr -a pm podman
+abbr -a pc podman-compose
 
 if type -q podman
     set -g docker podman
     abbr -a docker podman
     abbr -a docker-compose podman-compose
-    abbr -a dk "podman"
-    abbr -a dc "podman-compose"
+    abbr -a dk podman
+    abbr -a dc podman-compose
 else if groups | grep -qw docker
     set -g docker docker
-    abbr -a dk "docker"
-    abbr -a dc "docker-compose"
+    abbr -a dk docker
+    abbr -a dc docker-compose
     abbr -a ds "docker service"
     abbr -a dst "docker stack"
     abbr -a dsw "docker swarm"
@@ -108,8 +114,8 @@ abbr -a pcm "sudo pacman"
 abbr -a pa paru
 
 # clipboard
-if test "$(loginctl show-session $(loginctl | awk '/tty/ {print $1}') -p Type | awk -F= '{print $2}')" = 'wayland'
-    abbr -a xc "wl-copy"
+if test "$(loginctl show-session $(loginctl | awk '/tty/ {print $1}') -p Type | awk -F= '{print $2}')" = wayland
+    abbr -a xc wl-copy
     abbr -a xp "wl-paste -t text"
 else
     abbr -a xc "xclip -i -selection clipboard"
@@ -128,9 +134,9 @@ abbr -a pyvenv "pyenv virtualenv"
 function aws-ecr-login
     aws ecr get-login-password \
         | $docker login \
-            --username AWS \
-            --password-stdin \
-            "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.$(aws configure get region).amazonaws.com"
+        --username AWS \
+        --password-stdin \
+        "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.$(aws configure get region).amazonaws.com"
 end
 
 # kubernetes

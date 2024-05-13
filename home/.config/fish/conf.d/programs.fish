@@ -55,3 +55,13 @@ end
 if type -q zoxide
     zoxide init fish | source
 end
+
+# dotnet
+if test -d ~/.dotnet/tools
+    fish_add_path $HOME/.dotnet/tools
+end
+
+# ghcup
+if test -d ~/.ghcup/bin
+    fish_add_path $HOME/.ghcup/bin
+end
