@@ -1,3 +1,7 @@
+# DEPRECATED
+
+See <https://github.com/pbzweihander/nixos-config> instead.
+
 # dotfiles
 
 대대손손 물려줄 설정파일들
